@@ -1,0 +1,13 @@
+name = "stemmuslims"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+
+main = "./.open-next/worker.js"
+
+[[r2_buckets]]
+binding = "NEXT_INC_CACHE_R2_BUCKET"
+bucket_name = "stem-muslims-website"
+preview_bucket_name = "stem-muslims-website"
+
+[assets]
+directory = ".open-next/assets"

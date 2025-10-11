@@ -1,0 +1,30 @@
+@import "./globals.module.scss";
+
+.footer {
+    background-color: $stemm-blue;
+    color: white;
+    padding: 25px 0;
+    text-align: center;
+    border-top: 1.5px solid #E0E0E0;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .links {
+    margin-top: 10px;
+  }
+  
+  .links a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+  }
+  
+  .links a:hover {
+    text-decoration: underline;
+  }
+  

@@ -1,0 +1,30 @@
+@import "./globals.module.scss"; 
+
+.button {
+
+    
+    max-width: 1200px;
+    padding: 20px 50px;
+    border-radius: 50px;
+    background-color: $stemm-blue;
+    color: white;
+    cursor: pointer;
+    font-size: clamp(20px, 1.6vw, 34px);
+    font-weight: bolder;
+    border: .1rem solid $stemm-blue;
+    transition: background-color 0.2s;
+    text-align: center;
+
+
+    text-decoration: none;
+    box-shadow: inset 0 0 0 8px white; // Inner border
+
+    &:hover {
+        background-color: $background-color;
+        color: $stemm-blue;
+    }
+
+    
+}
+
+// do we need other variants?

@@ -1,0 +1,66 @@
+@import "../styles/globals.module.scss";
+
+.prayerTimesContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 20px;
+    padding: 1rem 0;
+    margin: 0 -0.2rem 0 0;
+    
+
+    .times {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        width: 100%;
+        gap: 0;
+
+        .time {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0 0.3rem;
+            
+            &:not(:last-child) {
+                border-right: 1px solid black;
+            }
+
+            h1 {
+                font-size: 1.2rem;
+                font-weight: 600;
+                color: black;
+                margin: 0;
+            }
+
+            p {
+                font-size: 1rem;
+                font-weight: 500;
+                color: black;
+                margin: 0.5rem 0 0;
+            }
+        }
+    }
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    background-color: white;
+    border-radius: 20px;
+}
+
+
+@media screen and (max-width: $mobile-bp) {
+    .prayerTimesContainer {
+        width: 80vw;
+    }
+
+    .times {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+    }
+}

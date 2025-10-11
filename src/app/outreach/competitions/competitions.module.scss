@@ -1,0 +1,256 @@
+@import "../../../styles/globals.module.scss";
+@import url("https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap");
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("/fonts/Montserrat/Montserrat-VariableFont_wght.ttf")
+    format("truetype");
+  font-display: swap;
+}
+
+.contentContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 4rem;
+
+  h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    font-family: "Cinzel Decorative", "serif";
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    color: $isoc-bright-red;
+  }
+
+  hr {
+    display: flex;
+    width: 60%;
+    border-top: 1px solid #b84136;
+    margin: 1em 0;
+    padding: 0;
+  }
+
+  .backgroundImage {
+    width: 100%;
+    min-height: 10vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+      url("/Outreach/stemDay.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: "Montserrat", sans-serif;
+    color: white;
+    padding: 2rem;
+    padding-top: 12rem; // Added padding to account for navbar
+    h1 {
+      font-family: "Cinzel Decorative", serif;
+      font-weight: 700;
+      font-size: 3rem;
+      padding: 0.5rem 1rem;
+      border-radius: 10px;
+      margin-bottom: 2rem;
+      color: white;
+    }
+  }
+
+  .masonryContainer {
+    width: 80%;
+
+    .competitionCard {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      text-align: center;
+      min-width: 100px;
+
+      padding: 2rem 5rem;
+      padding-top: 1rem;
+
+      overflow: hidden;
+
+      .cardContent {
+        display: flex;
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        overflow: hidden;
+        align-items: center;
+      }
+
+      .cardImageContainer {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        overflow: hidden;
+
+        .cardImage {
+          flex: 0 0 40%;
+          max-width: 80%; /* Adjust image size */
+          height: auto;
+          overflow: hidden;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-left: 8.5rem;
+          margin-bottom: 2.5rem;
+          border-radius: 30px;
+
+          img {
+            width: 100%; /* Make the image scale to fill the container's width */
+            height: auto; /* Make the image scale to fill the container's height */
+            object-fit: cover; /* Ensure the image maintains its proportions and crops excess */
+          }
+        }
+      }
+
+      .textContent {
+        flex: 0 0 50%;
+        justify-content: center;
+        align-items: center; /* Center vertically */
+        height: auto;
+        background-color: #f9f4ef;
+        border-radius: 30px;
+        padding: 1.5rem;
+        font-size: 1.3rem;
+
+        h1 {
+          font-family: "Cinzel", "serif";
+          color: $isoc-light-red;
+          font-size: 3.5rem;
+          font-weight: 400;
+        }
+
+        p {
+          font-size: 0.9em;
+          line-height: 2em;
+          font-weight: 300;
+          padding-bottom: 1rem;
+        }
+      }
+    }
+  }
+}
+
+.testimonialContainer {
+  margin: 1.5rem;
+  display: flex;
+  flex-direction: column;
+
+  .testimonial {
+    display: flex;
+    margin: 1.5rem;
+    background-color: #f9f4ef;
+    flex-direction: column;
+    max-width: 40vw;
+    border-radius: 20px;
+
+    .imgWrapper {
+      max-height: 20vh;
+      overflow: hidden;
+
+      img {
+        border-radius: 20px;
+        height: 40vh;
+      }
+    }
+
+    p {
+      font-family: "Cinzel", "serif";
+      padding: 1rem;
+      max-width: 29vw;
+    }
+  }
+}
+
+.pastPapers {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h1 {
+    font-size: 3em;
+    color: $isoc-bright-red;
+  }
+
+  summary {
+    padding-inline: 0.5rem;
+    padding-bottom: 0.5rem;
+    font-family: "Montserrat", "serif";
+    cursor: pointer;
+  }
+
+  .congratsMessage {
+    font-size: 1rem;
+    color: #555;
+    margin-top: 0.5rem;
+    font-style: italic;
+
+    strong {
+      color: $isoc-red; // Adjust color to match your theme
+    }
+  }
+
+  a {
+    text-decoration: none !important;
+
+    .downloadLink {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1rem;
+      color: #0070f3;
+      text-decoration: none;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: #0056b3;
+      }
+    }
+  }
+
+  details {
+    position: relative;
+    max-inline-size: 40rem;
+    padding: 1rem;
+    margin-block: 1rem 0;
+    margin-inline: auto;
+    border: 1px solid #002028;
+    background-color: #f9f4ef;
+    border-radius: 5px;
+    margin: 10px;
+    min-width: 40vw;
+    padding: 1em;
+  }
+
+  .details::details-content {
+    padding-inline: 1rem;
+    display: block;
+    block-size: 0;
+    overflow: hidden;
+    transition-property: block-size, content-visibility; // allows for sliding animation
+    transition-duration: 1s;
+    transition-behavior: allow-discrete;
+    font-weight: bold;
+    font-size: large;
+  }
+
+  .details[open]::details-content {
+    block-size: auto;
+    block-size: calc-size(auto, size);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .contentContainer {
+    h1 {
+      font-size: 2rem;
+    }
+  }
+}

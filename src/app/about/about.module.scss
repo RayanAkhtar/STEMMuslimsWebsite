@@ -1,0 +1,189 @@
+@import "../../styles/globals.module.scss";
+
+.inline_bold {
+    font-weight: 700;
+}
+
+.container_page {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+
+    .container_mission {
+        color: #6d928c;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 0rem 2rem;
+        box-sizing: border-box;
+        
+        .title {
+            h1 {
+                font-size: clamp(1rem,4rem,10rem);
+                font-weight: 900;
+                margin-top: 10rem;
+                margin-bottom: 1rem;
+            }
+        }
+
+        .desc {
+            text-align: center;
+            width: 50%;
+            margin-top: 1rem;
+            font-size: clamp(0.6rem,1.5rem,8rem);
+        }
+    }
+
+    .container_who_we_are {
+        margin-top: 7rem;
+        color: #6d928c;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        box-sizing: border-box;
+
+        .title {
+            h1 {
+                font-size: clamp(1rem,4rem,10rem);
+                font-weight: 900;
+                margin-bottom: 2rem;
+            }
+        }
+
+        .desc {
+            width: 50%;
+            text-align: center;
+            font-size: clamp(0.6rem,1.5rem,8rem);
+        }   
+    }
+
+    .container_key_areas {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 80%;
+        box-sizing: border-box;
+        
+        .key_area {
+            color: #6d928c;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            box-sizing: border-box;
+            width: 29%;
+            padding: 0rem 2rem;
+
+            .key_area_title {
+                h1 {
+                    text-align: center;
+                    font-size: clamp(1rem,3rem,10rem);
+                    font-weight: 500;
+                    margin-bottom: 1rem;
+                }
+            }
+
+            .key_area_caption {
+                text-align: center;
+                font-size: clamp(0.6rem,1.4rem,8rem);
+                font-weight: 800;
+                margin-bottom: 1rem;
+            }
+
+            .key_area_text {
+                text-align: left;
+                font-size: clamp(0.6rem,1.05rem,8rem);
+                margin-bottom: 1rem;
+            }
+
+            .key_area_points {
+                text-align: left;
+                font-size: clamp(0.6rem,1.05rem,8rem);
+                margin-bottom: 1rem;
+                align-self: flex-start;
+
+                ul {
+                    padding-left: 2rem;
+                    margin: 0;
+                    font-weight: 700;
+                }
+            }
+        }
+    }   
+
+
+    .container_timeline {
+        // position: relative;
+        color: #6d928c;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 40rem;
+        h1 {
+            font-size: clamp(1rem,4rem,10rem);
+            font-weight: 900;
+            text-align: center;
+        }
+        
+        .event {
+            
+            h1 {
+                font-size: clamp(0.6rem,1.4rem,8rem);
+                font-weight: 800;
+                text-align: left;
+            }
+
+            text-align: left;
+            padding: 1rem 0 1rem 0;
+        }
+    }
+
+    .events_block {
+        position: relative;
+        border-left: 0.5rem solid #6d928c;
+        padding-left: 3rem;
+        margin-bottom: 2rem;
+    }
+
+    .event::before {
+        position: absolute;
+        content: '';
+        width: 1rem;
+        height: 1rem;
+        background-color: #6d928c;
+        border-radius: 50%;
+        left: -0.75rem;
+        transform: translateY(1.3rem);
+    }
+
+
+    // .container_timeline::after {
+    //     content: '';
+    //     position: absolute;
+    //     top: 50%;
+    //     left: 25%;
+    //     width: 1rem;
+    //     height: 70rem;
+    //     transform: translateY(-50%);
+    //     background: #6d928c;
+    // }
+
+    // .container_timeline::after {
+    //     content: '';
+    //     position: absolute;
+    //     top: 50%;
+    //     left: 25%;
+    //     width: 1rem;
+    //     height: 70rem;
+    //     transform: translateY(-50%);
+    //     background: #6d928c;
+        
+    // }
+
+}
+

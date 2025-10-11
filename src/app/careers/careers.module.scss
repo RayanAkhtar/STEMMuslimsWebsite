@@ -1,0 +1,516 @@
+@import "../../styles/globals.module.scss";
+
+// Animations
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(50px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  from { transform: translateX(-50px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes barGrow {
+  from { height: 0; }
+  to { height: 100%; }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.careersContainer {
+  width: 100%;
+  overflow-x: hidden;
+  .hero {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                      linear-gradient(rgba(0, 168, 150, 0.2), rgba(0, 168, 150, 0.2)),
+                      url('/careers/careersfair.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    position: relative;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: linear-gradient(to top, white, transparent);
+    }
+    
+    .heroContent {
+      max-width: 800px;
+      padding: 0 2rem;
+      z-index: 1;
+      animation: fadeIn 1.5s ease-out;
+      
+      h1 {
+        font-family: 'Cinzel Decorative', serif;
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        margin-bottom: 1rem;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+      }
+      
+      p {
+        font-size: clamp(1rem, 2vw, 1.4rem);
+        margin-bottom: 0.5rem;
+        text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+      }
+    }
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-size: clamp(2rem, 3vw, 2.5rem);
+    color: $stemm-blue;
+    position: relative;
+    
+    &::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 4px;
+      background-color: $stemm-lighter-blue;
+      margin: 15px auto 0;
+      border-radius: 2px;
+    }
+  }
+  
+  .overview {
+    position: relative;
+    
+    &::before, &::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 30px;
+      background-size: 20px 20px;
+      background-image: linear-gradient(45deg, $stemm-lighter-blue 25%, transparent 25%, transparent 50%, $stemm-lighter-blue 50%, $stemm-lighter-blue 75%, transparent 75%, transparent);
+      opacity: 0.1;
+    }
+    
+    &::before {
+      top: 0;
+    }
+    
+    &::after {
+      bottom: 0;
+      transform: rotate(180deg);
+    }
+    
+    .missionGrid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      
+      .missionCard {
+        background-color: #f8f8f8;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        transition: all 0.3s ease;
+        animation: slideInUp 0.8s ease-out;
+        animation-fill-mode: both;
+        
+        @for $i from 1 through 4 {
+          &:nth-child(#{$i}) {
+            animation-delay: #{$i * 0.15}s;
+          }
+        }
+        
+        &:hover {
+          transform: translateY(-10px);
+          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+          background-color: white;
+        }
+        
+        h3 {
+          margin-bottom: 1rem;
+          color: $stemm-blue;
+          font-size: 1.5rem;
+        }
+        
+        p {
+          color: #666;
+          line-height: 1.6;
+        }
+      }
+    }
+  }
+  
+  .statistics {
+    background-color: #f1f5f9;
+    position: relative;
+    overflow: hidden;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background-color: rgba($stemm-lighter-blue, 0.1);
+      z-index: 0;
+    }
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -100px;
+      left: -100px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background-color: rgba($stemm-lighter-blue, 0.1);
+      z-index: 0;
+    }
+    
+    .statsGrid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+      position: relative;
+      z-index: 1;
+      
+      .statCard {
+        background-color: white;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        transition: all 0.3s ease;
+        animation: slideInUp 0.8s ease-out;
+        animation-fill-mode: both;
+        
+        @for $i from 1 through 4 {
+          &:nth-child(#{$i}) {
+            animation-delay: #{$i * 0.15}s;
+          }
+        }
+        
+        &:hover {
+          transform: translateY(-10px);
+          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        h3 {
+          font-size: 2.5rem;
+          color: $stemm-blue;
+          margin-bottom: 1rem;
+          font-weight: bold;
+        }
+        
+        p {
+          color: #666;
+          line-height: 1.6;
+        }
+      }
+    }
+    
+    .chartContainer {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      margin: 3rem 0;
+      overflow: hidden;
+
+      h3 {
+        text-align: center;
+        color: $stemm-blue;
+        margin-bottom: 2rem;
+        font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+      }
+
+      .customTooltip {
+        background-color: white;
+        border: 1px solid #ccc;
+        padding: 10px;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+        .label {
+          margin: 0;
+          font-weight: bold;
+          color: #333;
+        }
+
+        .value {
+          margin: 5px 0 0;
+          color: $stemm-blue;
+          font-weight: bold;
+        }
+      }
+
+      .chartSource {
+        text-align: center;
+        color: #666;
+        font-style: italic;
+        margin-top: 1.5rem;
+        font-size: 0.9rem;
+      }
+
+      // Responsive adjustments
+      @media (max-width: 768px) {
+        padding: 1.5rem;
+        
+        .customChart, .wealthChart {
+          padding: 1rem 0.5rem;
+          
+          .barGroup {
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            
+            .barLabel {
+              min-width: auto;
+              text-align: left;
+              margin-bottom: 0.25rem;
+            }
+
+            .barContainer {
+              width: 100%;
+              height: 30px;
+
+              .bar .barValue {
+                font-size: 0.8rem;
+              }
+            }
+          }
+        }
+      }
+
+      // Animation for bars appearing on scroll
+      @keyframes barGrow {
+        from {
+          transform: scaleX(0);
+        }
+        to {
+          transform: scaleX(1);
+        }
+      }
+    }
+    
+    .callToAction {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      animation: fadeIn 1.5s ease-out;
+      
+      h3 {
+        margin-bottom: 1rem;
+        color: $stemm-blue;
+        font-size: 1.8rem;
+      }
+      
+      p {
+        margin-bottom: 2rem;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+        color: #666;
+        line-height: 1.6;
+      }
+      
+      .ctaButton {
+        display: inline-block;
+        background-color: $stemm-blue;
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        animation: pulse 2s infinite;
+        
+        &:hover {
+          background-color: $stemm-darker-blue;
+          transform: translateY(-3px);
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+      }
+    }
+  }
+  
+  .upcomingEvents {
+    position: relative;
+    
+    .eventCards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      
+      .eventCard {
+        background-color: #f8f8f8;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        animation: slideInUp 0.8s ease-out;
+        animation-fill-mode: both;
+        
+        &:nth-child(1) {
+          animation-delay: 0.2s;
+        }
+        
+        &:nth-child(2) {
+          animation-delay: 0.4s;
+        }
+        
+        &:hover {
+          transform: translateY(-10px);
+          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+          background-color: white;
+        }
+        
+        .eventDate {
+          color: $stemm-lighter-blue;
+          font-weight: bold;
+          margin-bottom: 0.5rem;
+          font-size: 1.1rem;
+        }
+        
+        h3 {
+          margin-bottom: 1rem;
+          color: $stemm-blue;
+          font-size: 1.5rem;
+        }
+        
+        p {
+          margin-bottom: 1.5rem;
+          color: #666;
+          line-height: 1.6;
+        }
+        
+        .eventLink {
+          color: $stemm-blue;
+          font-weight: bold;
+          text-decoration: none;
+          transition: all 0.3s ease;
+          
+          &:hover {
+            color: $stemm-darker-blue;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+    
+    .viewAll {
+      text-align: center;
+      margin-top: 3rem;
+      animation: fadeIn 1.5s ease-out;
+      
+      a {
+        display: inline-block;
+        color: $stemm-blue;
+        font-weight: bold;
+        text-decoration: none;
+        padding: 0.8rem 2rem;
+        border: 2px solid $stemm-blue;
+        border-radius: 50px;
+        transition: all 0.3s ease;
+        
+        &:hover {
+          background-color: $stemm-blue;
+          color: white;
+          transform: translateY(-3px);
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+      }
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .hero {
+      height: 60vh;
+      
+      .heroContent h1 {
+        font-size: 2.5rem;
+      }
+    }
+    
+    .container {
+      padding: 3rem 1.5rem;
+    }
+    
+    h2 {
+      font-size: 2rem;
+    }
+    
+    .chartContainer {
+      .customChart, .wealthChart {
+        overflow-x: auto;
+        justify-content: flex-start;
+        
+        .barGroup {
+          min-width: 60px;
+        }
+      }
+    }
+  }
+}
+
+.chartsRow {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin: 3rem 0;
+
+  .chartContainer {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    
+    h3 {
+      text-align: center;
+      color: $stemm-blue;
+      margin-bottom: 2rem;
+      font-size: clamp(1rem, 1.8vw, 1.4rem);
+    }
+  }
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+// Update the existing .chartContainer class to remove margin
+.chartContainer {
+  margin: 0;  // Remove the margin since it's handled by .chartsRow
+} 

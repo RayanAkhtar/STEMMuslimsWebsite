@@ -1,0 +1,107 @@
+@import "../../styles/globals.module.scss";
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&display=swap');
+
+
+
+.containerContact {
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    text-align: center;
+    padding: 50px;
+    background-color: #f5f5f5;
+}
+.headerBanner {
+    background-color: #f9eff5;
+    padding:40px 0;
+    text-align:center;
+}
+.header {
+    font-family: 'Cinzel Decorative',serif;
+    font-weight: 700;
+    font-size: 3rem;
+    color: $stemm-blue;
+    margin-bottom: 5px;
+    text-align:center ;
+    
+}
+
+
+.subheader {
+    font-size: 1.3rem;
+    color: $stemm-blue;
+    margin-bottom: 20px;
+    text-align: center;
+    font-style: italic;
+}
+.whiteSection {
+    background-color: white;
+    padding: 35px 0;
+    align-items: center;
+
+}
+.message {
+    font-size: 1.3rem;
+    color: $stemm-blue;
+    margin-bottom: 65px;
+    text-align: center;
+    font-style: italic;
+    margin-top: 5px;
+}
+.socialIcons {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    margin-bottom: 40px;
+}
+.socialIcons img{
+    width:100px;
+    height: 100px;
+}
+.socialIcons img:hover {
+    transform: scale(1.1);
+}
+.emailsect {
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.emailButton {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #658c87;
+    color: white;
+    border-radius: 50px;
+    font-size: 1.25rem;
+    margin: 20px auto;
+    cursor: pointer;
+    text-align: center;
+    margin-top: -10px;
+}
+.emailButton:hover {
+    background-color: #51716d;
+}
+.footerLink {
+    margin-top: 40px;
+    font-size: 1.3rem;
+    color: #658c87;
+    text-align: center;
+    font-style: italic;
+}
+.footerLink a {
+    color: #658c87;
+    text-decoration: underline;
+    text-align: center;
+}
+.footerLink a:hover {
+    color: #51716d;
+}
+@media (max-width: 768px) {
+    .container_contact {
+        flex-direction: column;
+        align-items: center;
+    }
+}

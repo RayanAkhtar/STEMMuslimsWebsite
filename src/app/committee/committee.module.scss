@@ -1,0 +1,353 @@
+@import "../../styles/globals.module.scss";
+
+
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.committee_page {
+
+  body {
+    font-family: "Poppins", sans-serif;
+  }
+
+  .header {
+    background-color: #e4e8e7;
+    text-align: center;
+    height: 145px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-style: normal;
+    font-weight: bold;
+    font-size: clamp(25px, 4vw, 38px);
+    /* optional subtle animation on load */
+    animation: fadeInUp 0.8s ease-out;
+  }
+
+  .divider {
+    width: 90%;
+  }
+
+  .committee_head {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 5% 30px;
+    animation: fadeInUp 0.6s ease-out;
+  }
+
+  .committee_members {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    max-width: 1200px;
+    margin: 30px auto 12%;
+    row-gap: 50px;
+    column-gap: 5px;
+    align-items: baseline;
+    justify-content: center;
+    justify-items: center;
+    /* add scroll snap for modern browsers */
+    scroll-snap-type: y mandatory;
+  }
+
+  .member {
+    text-align: center;
+    align-items: center;
+    margin: 0 5%;
+    border-radius: 20px;
+    padding: 5px;
+    width: 350px;
+    /* smooth transitions for hover animation */
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    /* fade in when loaded */
+    animation: fadeInUp 0.8s ease-out;
+    scroll-snap-align: start;
+
+    hr {
+      width: 50%;
+      margin: 0 auto;
+    }
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+
+    .info_div {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      height: 100%;
+      padding: 10px;
+
+      .member_name,
+      .member_role {
+        color: black;
+        text-align: center;
+        font-size: clamp(20px, 4vw, 25px);
+        margin: 0;
+      }
+
+      .member_name {
+        font-weight: bold;
+      }
+
+      .member_role {
+        font-style: italic;
+      }
+    }
+
+    .icons {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+    }
+  }
+
+  .icon {
+    background-color: $stemm-blue;
+    color: white;
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 50%;
+    transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    margin: 10px;
+
+    &:hover {
+      background-color: $isoc-gold;
+      transform: scale(1.1);
+      cursor: pointer;
+    }
+  }
+
+  .content_wrapper {
+    display: flex;
+    width: 100%;
+    position: relative;
+  }
+
+  .side_nav {
+    position: sticky;
+    top: 120px;
+    height: calc(100vh - 120px);
+    width: 250px;
+    padding: 20px 0;
+    overflow-y: auto;
+    /* animate the sidebar on page load */
+    animation: slideIn 1s ease-out forwards;
+    
+    .nav_container {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    .nav_item {
+      padding: 10px 15px;
+      border-left: 3px solid transparent;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-weight: 500;
+      
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+        border-left-color: $stemm-blue;
+        transform: scale(1.02);
+      }
+      
+      &.active {
+        border-left-color: $isoc-gold;
+        font-weight: 700;
+        background-color: rgba(0, 0, 0, 0.03);
+      }
+    }
+  }
+
+  .main_content {
+    flex: 1;
+    padding: 0 20px;
+    /* add a slight fade-in for the main content */
+    animation: fadeInUp 0.8s ease-out;
+    /* you could also add scroll-snap-type here if you want the content area to snap */
+  }
+
+  .section {
+    margin-bottom: 50px;
+    
+    .section_title {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid $stemm-blue;
+    }
+  }
+}
+
+@media screen and (max-width: $mobile-bp) {
+  .committee_page {
+    .content_wrapper {
+      flex-direction: column;
+    }
+    
+    .side_nav {
+      position: relative;
+      top: 20px;
+      width: 100%;
+      height: auto;
+      padding: 10px 0;
+      margin-bottom: 20px;
+      
+      .nav_container {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 5px;
+        gap: 0;
+      }
+      
+      .nav_item {
+        white-space: nowrap;
+        border-left: none;
+        border-bottom: 3px solid transparent;
+        
+        &:hover,
+        &.active {
+          border-left-color: transparent;
+          border-bottom-color: $isoc-gold;
+        }
+      }
+    }
+    
+    .main_content {
+      padding: 0 10px;
+    }
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .committee_head {
+      flex-direction: column;
+      width: 100%;
+    }
+    .committee_members {
+      row-gap: 20px;
+    }
+
+    .member {
+      width: 100%;
+      padding: 0;
+
+      .info_div {
+        padding: 0;
+      }
+    }
+  }
+}
+@media (max-width: 768px) {
+  .committee_page {
+    padding: 1rem;
+  }
+
+  .header {
+    padding: 2rem 1rem;
+    
+    p {
+      font-size: 1.75rem;
+    }
+  }
+
+  .content_wrapper {
+    flex-direction: column;
+  }
+
+  .side_nav {
+    position: sticky;
+    top: 70px;
+    width: 100%;
+    margin-bottom: 1.5rem;
+    z-index: 10;
+  }
+  
+  .nav_container {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 0.5rem 0;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    
+    &::-webkit-scrollbar {
+      height: 4px;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+      background: $stemm-blue;
+      border-radius: 4px;
+    }
+  }
+  
+  .nav_item {
+    flex: 0 0 auto;
+    padding: 0.5rem 1rem;
+    margin: 0 0.25rem;
+    white-space: nowrap;
+    font-size: 0.9rem;
+  }
+}
+
+.main_content {
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 0;
+  }
+}
+
+.section {
+  @media (max-width: 768px) {
+    padding: 1.5rem 0;
+  }
+  
+  .section_title {
+    @media (max-width: 768px) {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+.committee_head, .committee_members {
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  @media (min-width: 769px) and (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+

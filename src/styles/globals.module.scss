@@ -1,0 +1,160 @@
+// colours
+$stemm-blue: #6a928d;
+$stemm-light-blue: #85ada6;
+$stemm-lighter-blue: #a0ceca;
+$stemm-darker-blue: #567a75;
+$debug: #f700ff;
+
+// for those who haven't updated yet
+$isoc-red: #6a928d;
+$isoc-bright-red: #85ada6;
+$isoc-light-red: #a0ceca;
+
+$isoc-gold: #917849;
+
+$link-blue: #1a5978;
+
+$mobile-bp: 845px;
+
+$stone: #DCD5C3;
+$light-stone: #F9F4EF;
+
+$background-color: #FFFFFF;
+$text-color: #333333;
+
+// no need for fonts
+
+
+// Font Sizes
+$h1-size: clamp(2rem, 4vw, 3rem);
+$h2-size: clamp(1.5rem, 3vw, 2.5rem);
+
+$h3-size: clamp(1.25rem, 2.5vw, 2rem);
+$text-size: clamp(0.7rem, 2vw, 1.2rem);
+
+// Font Weight
+$h1-weight: 700;
+$h2-weight: 600;
+$h3-weight: 500;
+$text-weight: 400;
+
+// Responsive font sizes
+$h1-size-mobile: clamp(1.75rem, 5vw, 2.5rem);
+$h2-size-mobile: clamp(1.5rem, 4vw, 2rem);
+$h3-size-mobile: clamp(1.25rem, 3.5vw, 1.75rem);
+$text-size-mobile: clamp(0.9rem, 3vw, 1rem);
+
+// Responsive spacing
+$section-padding-mobile: 2rem 1rem;
+
+// Wrapper for all responsive utilities
+.responsive {
+  // Responsive container
+  &-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    
+    @media (max-width: 768px) {
+      padding: 0 1rem;
+    }
+  }
+  
+  // Responsive grid
+  &-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    @media (max-width: 480px) {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+  
+  // Responsive section
+  &-section {
+    padding: 5rem 0;
+    
+    @media (max-width: 768px) {
+      padding: 3rem 0;
+    }
+    
+    @media (max-width: 480px) {
+      padding: 2rem 0;
+    }
+  }
+  
+  // Responsive text
+  &-h1 {
+    @media (max-width: 768px) {
+      font-size: $h1-size-mobile;
+    }
+  }
+  
+  &-h2 {
+    @media (max-width: 768px) {
+      font-size: $h2-size-mobile;
+    }
+  }
+  
+  &-h3 {
+    @media (max-width: 768px) {
+      font-size: $h3-size-mobile;
+    }
+  }
+  
+  &-text {
+    @media (max-width: 768px) {
+      font-size: $text-size-mobile;
+    }
+  }
+}
+
+// Visibility classes
+.hideMobile {
+  @media (max-width: 768px) {
+    display: none !important;
+  }
+}
+
+.hideDesktop {
+  @media (min-width: 769px) {
+    display: none !important;
+  }
+}
+
+// Touch-friendly elements
+.touchFriendly {
+  // Make buttons and interactive elements larger on mobile
+  &-button {
+    @media (max-width: 768px) {
+      min-height: 44px; // Apple's recommended minimum touch target size
+      padding: 0.75rem 1.25rem;
+    }
+  }
+  
+  // Increase spacing between clickable elements
+  &-nav {
+    @media (max-width: 768px) {
+      margin: 0 0.75rem;
+    }
+  }
+  
+  // Add active states for touch feedback
+  &-feedback {
+    @media (max-width: 768px) {
+      transition: background-color 0.2s ease;
+      
+      &:active {
+        background-color: rgba(0, 0, 0, 0.05);
+      }
+    }
+  }
+}

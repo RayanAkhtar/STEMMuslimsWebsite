@@ -1,0 +1,148 @@
+@import "../../../styles/globals.module.scss";
+@import url("https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap");
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("/fonts/Montserrat/Montserrat-VariableFont_wght.ttf")
+    format("truetype");
+  font-display: swap;
+}
+
+.contentContainer {
+  width: 100%;
+  min-height: 16vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("/Outreach/stemDay.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Montserrat", sans-serif;
+  color: white;
+  padding: 2rem;
+  padding-top: 12rem; // Added padding to account for navbar
+  h1 {
+    font-family: "Cinzel Decorative", serif;
+    font-weight: 700;
+    font-size: 3rem;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+  }
+}
+
+.stemDayContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 4rem;
+
+  h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    font-family: "Cinzel Decorative", "serif";
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .masonryContainer {
+    width: 80%;
+
+    .outreachCard {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      text-align: center;
+      min-width: 100px;
+
+      padding: 2rem;
+      padding-top: 1rem;
+
+      overflow: hidden;
+
+      .cardContent {
+        display: flex;
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        overflow: hidden;
+      }
+
+      .cardImageContainer {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        overflow: hidden;
+
+        .cardImage {
+          overflow: hidden;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-left: 8.5rem;
+          margin-bottom: 2.5rem;
+          border-radius: 30px;
+
+          img {
+            width: 100%; /* Make the image scale to fill the container's width */
+            height: auto; /* Make the image scale to fill the container's height */
+          }
+        }
+      }
+
+      .textContent {
+        flex: 0 0 50%;
+        justify-content: center;
+        align-items: center; /* Center vertically */
+        height: auto;
+        background-color: #f9f4ef;
+        border-radius: 30px;
+        padding: 1.5rem;
+        font-size: 1.3rem;
+
+        h1 {
+          font-family: "Cinzel", "serif";
+          color: $isoc-light-red;
+          font-size: 3.5rem;
+          font-weight: 400;
+        }
+
+        p {
+          font-size: 0.9em;
+          line-height: 2em;
+          font-weight: 300;
+          padding-bottom: 1rem;
+        }
+      }
+    }
+  }
+}
+
+.contentBox {
+  background-color: #f9f4ef;
+  border: rgba(255, 255, 255, 0.7) 2px solid;
+  font-size: 1rem;
+  line-height: 1.6;
+  min-height: 300px;
+
+  p {
+    margin-bottom: 1rem;
+    text-align: center;
+    font-family: "Cinzel", "serif";
+    font-size: 1.5em;
+    padding: 4rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .contentContainer {
+    h1 {
+      font-size: 2rem;
+    }
+  }
+}

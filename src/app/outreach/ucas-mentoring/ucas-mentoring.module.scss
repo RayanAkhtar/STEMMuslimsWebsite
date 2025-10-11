@@ -1,0 +1,199 @@
+@import "../../../styles/globals.module.scss";
+@import url("https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap");
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("/fonts/Montserrat/Montserrat-VariableFont_wght.ttf")
+    format("truetype");
+  font-display: swap;
+}
+
+.contentContainer {
+  width: 100%;
+  min-height: 10vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("/Outreach/stemDay.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Montserrat", sans-serif;
+  color: white;
+  padding: 2rem;
+  padding-top: 12rem; // Added padding to account for navbar
+
+  h1 {
+    font-family: "Cinzel Decorative", serif;
+    font-weight: 700;
+    font-size: 3rem;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+  }
+}
+
+.ucasContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 4rem;
+
+  h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    font-family: "Cinzel Decorative", "serif";
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    color: $isoc-bright-red;
+  }
+
+  .masonryContainer {
+    width: 60%;
+
+    .outreachCard {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+
+      padding: 2rem;
+      padding-top: 1rem;
+
+      overflow: hidden;
+
+      .textContent {
+        flex: 0 0 50%;
+        justify-content: center;
+        align-items: center; /* Center vertically */
+        height: auto;
+        background-color: #F9F4EF;
+        border-radius: 30px;
+        padding: 1.5rem;
+        font-size: 1.3rem;
+
+        h1 {
+          font-family: 'Cinzel','serif';
+          color: $isoc-light-red;
+          font-size: 3.5rem;
+          font-weight: 400;
+        }
+
+        p {
+          font-size: 0.9em;
+          line-height: 2em;
+          font-weight: 300;
+          padding-bottom: 1rem;
+        }
+      }
+    }
+  }
+}
+
+.contentBox {
+  background-color: #f9f4ef;
+  border: rgba(255, 255, 255, 0.7) 2px solid;
+  font-size: 1rem;
+  line-height: 1.6;
+  min-height: 300px;
+
+  p {
+    margin-bottom: 1rem;
+    text-align: center;
+    font-family: "Cinzel", "serif";
+    font-size: 1.5em;
+    padding: 4rem;
+  }
+}
+
+.testimonials {
+  display: flex;
+  flex-direction: row; /* Change this to row for horizontal layout */
+  align-items: center; /* Align items vertically in the center */
+  justify-content: center; /* Center the testimonials horizontally */
+  flex-wrap: wrap; /* Allow wrapping if there are too many testimonials */
+
+
+  // .testimonial {
+  //   margin: 1.5rem;
+  //   padding: 1.5rem;
+  //   background-color: #f9f4ef;
+  //   border-radius: 30px;
+  //   max-width: 20rem;
+  //   min-height: 30rem;
+  //   flex: 1 1 30rem;
+  //   display: grid; /* Use CSS Grid */
+  //   place-items: center; /* Center children both horizontally and vertically */
+  //   text-align: center; /* Center text horizontally */
+
+  //   p {
+  //     font-size: 2.1vh;
+  //     font-family: "serif";
+  //     font-weight: 300;
+  //     margin: 0; /* Remove default margin for better alignment */
+  //   }
+
+  //   img {
+  //     max-width: 80%; /* Set a max-width for the image */
+  //     max-height: 80%; /* Set a max-height for the image */
+  //     width: auto;
+  //     height: auto;
+  //     object-fit: cover;
+  //     border-radius: 10px; /* Optional: Add rounded corners to the image */
+  //     margin-bottom: 1rem; /* Add space below the image */
+  //   }
+  // }
+
+  .testimonial {
+    margin: 1.5rem;
+    padding: 1.5rem;
+    background-color: #f9f4ef;
+    border-radius: 30px;
+    max-width: 20rem;
+    min-height: 30rem;
+    flex: 1 1 30rem;
+
+    p {
+      font-size: 2.1vh;
+      font-family: "serif";
+      font-weight: 300;
+      margin: 0; /* Remove default margin for better alignment */
+    }
+
+    img {
+      float: left; /* Float the image to the left */
+      max-width: 40%;
+      max-height: 40%;
+      width: auto;
+      height: auto;
+      object-fit: cover;
+      border-radius: 10px; /* Optional: Add rounded corners to the image */
+      margin-right: 1rem; /* Add space between the image and text */
+      margin-bottom: 0.5rem; /* Add space below the image */
+      shape-outside: circle(50%); /* Make text wrap around a circular shape */
+    }
+  }
+}
+
+.hr {
+    display: flex;
+    width: 75%;
+    border-top: 1px solid #b84136;
+    margin: auto;
+    }
+
+@media screen and (max-width: 600px) {
+  .contentContainer {
+    h1 {
+      font-size: 2rem;
+    }
+  }
+
+  .contentBox {
+    width: 100%;
+    padding: 1.5rem;
+  }
+}
