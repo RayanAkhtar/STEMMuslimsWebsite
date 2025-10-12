@@ -1,0 +1,167 @@
+{
+  "heads": {
+    "Dawud Khan": {
+        "role": "Head Brother",
+        "course": "Electrical and Information Engineering",
+        "year": "3rd",
+        "email": "dawud.khan23@imperial.ac.uk",
+        "LinkedIn": "https://www.linkedin.com/in/dawud-khan7"
+    },
+    "Madiha Qudoos": {
+        "role": "Head Sister",
+        "course": "Biochemistry",
+        "year": "3rd",
+        "email": "madiha.qudoos23@imperial.ac.uk",
+        "LinkedIn": "https://www.linkedin.com/in/madihaqudoos"
+    }
+  },
+  "members": {
+    "Faris Kebire": {
+        "role": "Vice President of Careers",
+        "course": "Electrical and Electronics Engineering",
+        "year": "3rd",
+        "email": "faris.kebire23@imperial.ac.uk",
+        "LinkedIn": "https://www.linkedin.com/in/fariskebire"
+    },
+    "Yasin Khan": {
+        "role": "Vice President of Education",
+        "course": "Computing",
+        "year": "3rd",
+        "email": "yasin.khan23@imperial.ac.uk",
+        "LinkedIn": "https://www.linkedin.com/in/yasin-ahmed-kamal-khan"
+    },
+    "Samiya Ibrahim": {
+        "role": "Vice President of Outreach",
+        "course": "Materials Science and Engineering",
+        "year": "2nd",
+        "email": "samiya.ibrahim24@imperial.ac.uk",
+        "LinkedIn": "https://www.linkedin.com/in/samiya-ibrahim-63729b328"
+    },
+    "Nour Mokhtar": {
+        "role": "Secretary of Logistics",
+        "course": "Biomedical Engineering",
+        "year": "3rd",
+        "email": "nour.mokhtar23@imperial.ac.uk",
+        "LinkedIn": "https://www.linkedin.com/in/nour-m-mokhtar"
+    },
+    "Salma Hashi": {
+        "role": "Secretary of Communication",
+        "course": "Medical Biosciences",
+        "year": "2nd",
+        "email": "salma.hashi24@imperial.ac.uk",
+        "LinkedIn": "https://www.linkedin.com/in/salma-hashi-1230b9329"
+    },
+    "Aiza Anwar": {
+        "role": "Outreach Officer",
+        "course": "Geology",
+        "year": "2nd",
+        "email": "aiza.anwar24@imperial.ac.uk",
+        "LinkedIn": "https://www.linkedin.com/in/aiza-anwar-35176436a"
+    },
+    "Asad Tariq": {
+        "role": "Outreach Officer",
+        "course": "Electrical and Information Engineering",
+        "year": "2nd",
+        "email": "asad.tariq24@imperial.ac.uk",
+        "LinkedIn": "https://www.linkedin.com/in/asad-tariq-35122b262"
+    },
+    "Safaa Qazi": {
+        "role": "Education Officer",
+        "course": "Design Engineering",
+        "year": "2nd",
+        "email": "safaa.qazi24@imperial.ac.uk",
+        "LinkedIn": "https://www.linkedin.com/in/safaaqazi"
+    },
+    "MHD Daigham Al-Mufti": {
+        "role": "Education Officer",
+        "course": "Materials Science and Engineering",
+        "year": "3rd",
+        "email": "dai.al-mufti23@imperial.ac.uk",
+        "LinkedIn": "https://www.linkedin.com/in/mhd-daigham-al-mufti-51b109191"
+    },
+    "Anica Tahsin": {
+        "role": "Careers Officer",
+        "course": "Materials Science and Engineering",
+        "year": "3rd",
+        "email": "anica.tahsin23@imperial.ac.uk",
+        "LinkedIn": "https://www.linkedin.com/in/anica-tahsin"
+    },
+    "Yusuf Baid": {
+        "role": "Careers Officer",
+        "course": "",
+        "year": "3rd",
+        "email": "yusuf.baig23@imperial.ac.uk",
+        "LinkedIn": ""
+    },
+    "Rameen Ashfaq": {
+        "role": "Publicity Head",
+        "course": "",
+        "year": "4th",
+        "email": "rameen.ashfaq22@imperial.ac.uk",
+        "LinkedIn": "https://www.linkedin.com/in/rameen-ashfaq-8249a8258"
+    },
+    "Shad Akhtar": {
+        "role": "Publicity Officer",
+        "course": "Computing",
+        "year": "3rd",
+        "email": "shad.akhtar23@imperial.ac.uk",
+        "LinkedIn": "https://www.linkedin.com/in/shad-akhtar-00b24522a"
+    },
+    "Khadeja Mahmood": {
+        "role": "Publicity Officer",
+        "course": "",
+        "year": "3rd",
+        "email": "khadeja.mahmood23@imperial.ac.uk",
+        "LinkedIn": "https://www.linkedin.com/in/khadeja-mahmood-2201a3315"
+    },
+    "Bilgesu Parmak": {
+        "role": "Treasury & Sponsorship Officer",
+        "course": "Physics",
+        "year": "3rd",
+        "email": "bilgesu.parmak23@imperial.ac.uk",
+        "LinkedIn": "https://www.linkedin.com/in/bilgesu-parmak"
+    },
+    "Rayan Akhtar": {
+        "role": "Tech Lead",
+        "course": "Computing",
+        "year": "4th",
+        "email": "rayan.akhtar22@imperial.ac.uk",
+        "LinkedIn": "https://www.linkedin.com/in/rayan-akhtar"
+    },
+    "Suweda Abdirahman": {
+        "role": "Tech Lead",
+        "course": "Computing",
+        "year": "4th",
+        "email": "suweda.abdirahman22@imperial.ac.uk",
+        "LinkedIn": "https://www.linkedin.com/in/suweda-abdirahman/"
+    },
+    "Afif Sajid": {
+        "role": "General Committee",
+        "course": "Mechanical Engineering",
+        "year": "4th",
+        "email": "afif.sajid22@imperial.ac.uk",
+        "LinkedIn": "https://www.linkedin.com/in/afif-sajid-13a3671b6"
+    },
+    "Aliyah Fadahunsi": {
+        "role": "General Committee",
+        "course": "Design Engineering",
+        "year": "2nd",
+        "email": "aliyah.fadahunsi24@imperial.ac.uk",
+        "LinkedIn": "https://www.linkedin.com/in/aliyah-fadahunsi-6b8381320"
+    },
+    "Adam Hasan": {
+        "role": "General Committee",
+        "course": "Physics",
+        "year": "2nd",
+        "email": "adam.hasan24@imperial.ac.uk",
+        "LinkedIn": "https://www.linkedin.com/in/adam-hasan-work"
+    },
+    "Zainab Bangee": {
+        "role": "General Committee",
+        "course": "Biochemistry with Management",
+        "year": "3rd",
+        "email": "zainab.bangee23@imperial.ac.uk",
+        "LinkedIn": "https://www.linkedin.com/in/zainabbangee"
+    }
+  }
+}

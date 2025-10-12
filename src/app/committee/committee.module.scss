@@ -30,19 +30,64 @@
     font-family: "Poppins", sans-serif;
   }
 
-  .header {
-    background-color: #e4e8e7;
-    text-align: center;
-    height: 145px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-style: normal;
-    font-weight: bold;
-    font-size: clamp(25px, 4vw, 38px);
-    /* optional subtle animation on load */
-    animation: fadeInUp 0.8s ease-out;
+    .header {
+      background-color: #e4e8e7;
+      text-align: center;
+      width: 100%;
+      padding-bottom: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-style: normal;
+      font-weight: bold;
+      font-size: clamp(25px, 4vw, 38px);
+      flex-direction: column;
+
+      /* ensure header content isn't hidden under any fixed navbars */
+      padding-top: 3rem;
+
+    .file_buttons {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: nowrap;
+      justify-content: center;
+      align-items: center;
+      overflow-x: auto;
+      padding: 6px 8px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .file_button {
+      background: transparent;
+      color: $stemm-blue;
+      border: 2px solid $stemm-blue;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease-in-out;
+      font-size: 0.95rem;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.04);
+        transform: translateY(-2px);
+      }
+    }
+
+    .active_file {
+      background-color: $stemm-blue;
+      color: white;
+      border-color: $stemm-blue;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+      transform: translateY(-2px);
+    }
+
+    .selected_label {
+      margin: 0;
+      font-size: 0.9rem;
+      color: $stemm-blue;
+      opacity: 0.9;
+    }
   }
 
   .divider {
@@ -54,18 +99,28 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    margin: 5% 30px;
+    gap: 1rem;
+    margin: 16px auto;
     animation: fadeInUp 0.6s ease-out;
+
+    /* make sure member cards inside header are treated like centered items */
+    .member {
+      margin: 0;
+      max-width: 420px; /* allow slightly wider head cards if needed */
+      width: 100%;
+    }
   }
 
   .committee_members {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    /* Use auto-fit so columns wrap cleanly and avoid overlapping when many cards are present */
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    /* Constrain overall width but allow internal wrapping */
     max-width: 1200px;
-    margin: 30px auto 12%;
+    margin: 16px auto 6%;
     row-gap: 50px;
-    column-gap: 5px;
-    align-items: baseline;
+    column-gap: 20px; /* increased gap to avoid visual crowding */
+    align-items: start; /* align start so cards have consistent heights */
     justify-content: center;
     justify-items: center;
     /* add scroll snap for modern browsers */
@@ -73,12 +128,14 @@
   }
 
   .member {
+    box-sizing: border-box; /* ensure padding/border don't cause overflow */
     text-align: center;
     align-items: center;
-    margin: 0 5%;
+    margin: 0;
     border-radius: 20px;
-    padding: 5px;
-    width: 350px;
+    padding: 12px;
+    width: 100%; /* take full width of the grid cell */
+    max-width: 420px; /* prevent a card from becoming overly wide on large screens */
     /* smooth transitions for hover animation */
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
     /* fade in when loaded */
@@ -124,6 +181,7 @@
       display: flex;
       flex-direction: row;
       justify-content: space-evenly;
+      gap: 6px;
     }
   }
 
@@ -156,6 +214,7 @@
     width: 250px;
     padding: 20px 0;
     overflow-y: auto;
+    overflow-x: hidden;
     /* animate the sidebar on page load */
     animation: slideIn 1s ease-out forwards;
     
@@ -192,6 +251,7 @@
     /* add a slight fade-in for the main content */
     animation: fadeInUp 0.8s ease-out;
     /* you could also add scroll-snap-type here if you want the content area to snap */
+    min-width: 0; /* allow this flex child to shrink below its contents to avoid overflow */
   }
 
   .section {
@@ -214,36 +274,50 @@
     }
     
     .side_nav {
-      position: relative;
-      top: 20px;
+      /* Keep the nav in the document flow initially; stick to the top when scrolled */
+      position: sticky;
+      top: 70px; /* offset for any global header - sticks after this distance */
       width: 100%;
-      height: auto;
-      padding: 10px 0;
-      margin-bottom: 20px;
-      
+      height: 56px;
+      padding: 8px 0px;
+      margin: 0 0 12px 0;
+      z-index: 60; /* ensure nav sits above content when sticky */
+      background: rgba(255,255,255,0.98);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+      overflow-y: hidden;
+
       .nav_container {
         flex-direction: row;
         flex-wrap: nowrap;
         overflow-x: auto;
-        padding-bottom: 5px;
-        gap: 0;
+        padding: 4px 0;
+        gap: 0.5rem;
+        align-items: center;
+        height: 100%;
       }
-      
+
       .nav_item {
         white-space: nowrap;
         border-left: none;
         border-bottom: 3px solid transparent;
-        
+        padding: 0.4rem 0.8rem;
+        background: transparent;
+        border-radius: 999px;
+
         &:hover,
         &.active {
           border-left-color: transparent;
           border-bottom-color: $isoc-gold;
+          background: rgba(0,0,0,0.03);
         }
       }
     }
     
     .main_content {
-      padding: 0 10px;
+      padding: 0;
+      /* when nav is sticky it remains in flow, so no extra top padding is needed */
+      padding-top: 0;
     }
 
     display: flex;
