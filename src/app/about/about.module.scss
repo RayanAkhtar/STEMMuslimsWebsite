@@ -5,11 +5,18 @@
 }
 
 .container_page {
+    /* keep page within viewport and avoid horizontal overflow */
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     flex-wrap: wrap;
+    overflow-x: hidden;
 
     .container_mission {
         color: #6d928c;
@@ -25,40 +32,43 @@
             h1 {
                 font-size: clamp(1rem,4rem,10rem);
                 font-weight: 900;
-                margin-top: 10rem;
+                margin-top: 6rem;
                 margin-bottom: 1rem;
             }
         }
 
         .desc {
             text-align: center;
-            width: 50%;
+            width: 100%;
+            max-width: 60ch;
             margin-top: 1rem;
-            font-size: clamp(0.6rem,1.5rem,8rem);
+            font-size: clamp(0.6rem,1.1rem,1.5rem);
         }
     }
 
     .container_who_we_are {
-        margin-top: 7rem;
-        color: #6d928c;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-        box-sizing: border-box;
+    margin-top: 4rem;
+    color: #6d928c;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    box-sizing: border-box;
 
         .title {
             h1 {
                 font-size: clamp(1rem,4rem,10rem);
                 font-weight: 900;
                 margin-bottom: 2rem;
+                text-align: center;
             }
         }
 
         .desc {
-            width: 50%;
+            width: 100%;
+            max-width: 70ch;
             text-align: center;
-            font-size: clamp(0.6rem,1.5rem,8rem);
+            font-size: clamp(0.6rem,1.05rem,1.4rem);
         }   
     }
 
@@ -66,8 +76,10 @@
         display: flex;
         flex-direction: row;
         justify-content: center;
-        width: 80%;
+        width: 100%;
+        gap: 1.5rem;
         box-sizing: border-box;
+        flex-wrap: wrap; /* allow wrapping on smaller screens */
         
         .key_area {
             color: #6d928c;
@@ -76,13 +88,14 @@
             justify-content: flex-start;
             align-items: center;
             box-sizing: border-box;
-            width: 29%;
-            padding: 0rem 2rem;
+            width: calc(33.333% - 1rem);
+            min-width: 220px;
+            padding: 0.75rem 1rem;
 
             .key_area_title {
                 h1 {
                     text-align: center;
-                    font-size: clamp(1rem,3rem,10rem);
+                    font-size: clamp(1rem,2rem,3rem);
                     font-weight: 500;
                     margin-bottom: 1rem;
                 }
@@ -97,13 +110,13 @@
 
             .key_area_text {
                 text-align: left;
-                font-size: clamp(0.6rem,1.05rem,8rem);
+                font-size: clamp(0.6rem,0.95rem,1.1rem);
                 margin-bottom: 1rem;
             }
 
             .key_area_points {
                 text-align: left;
-                font-size: clamp(0.6rem,1.05rem,8rem);
+                font-size: clamp(0.6rem,0.95rem,1.05rem);
                 margin-bottom: 1rem;
                 align-self: flex-start;
 
@@ -118,72 +131,94 @@
 
 
     .container_timeline {
-        // position: relative;
         color: #6d928c;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        width: 40rem;
+        width: 100%;
+        max-width: 40rem; /* keep readable line length */
+        box-sizing: border-box;
+        padding: 0 1rem;
+
         h1 {
-            font-size: clamp(1rem,4rem,10rem);
+            font-size: clamp(1rem,2rem,2.5rem);
             font-weight: 900;
             text-align: center;
         }
-        
+
         .event {
-            
             h1 {
-                font-size: clamp(0.6rem,1.4rem,8rem);
+                font-size: clamp(0.9rem,1.05rem,1.2rem);
                 font-weight: 800;
                 text-align: left;
             }
 
             text-align: left;
-            padding: 1rem 0 1rem 0;
+            padding: 1rem 0;
         }
     }
 
     .events_block {
         position: relative;
         border-left: 0.5rem solid #6d928c;
-        padding-left: 3rem;
+        padding-left: 2rem;
         margin-bottom: 2rem;
     }
 
     .event::before {
         position: absolute;
         content: '';
-        width: 1rem;
-        height: 1rem;
+        width: 0.9rem;
+        height: 0.9rem;
         background-color: #6d928c;
         border-radius: 50%;
-        left: -0.75rem;
-        transform: translateY(1.3rem);
+        left: -0.65rem;
+        transform: translateY(1.1rem);
     }
 
 
-    // .container_timeline::after {
-    //     content: '';
-    //     position: absolute;
-    //     top: 50%;
-    //     left: 25%;
-    //     width: 1rem;
-    //     height: 70rem;
-    //     transform: translateY(-50%);
-    //     background: #6d928c;
-    // }
+    // small-screen adjustments
+    @media (max-width: 900px) {
+        .container_key_areas {
+            gap: 1rem;
+        }
 
-    // .container_timeline::after {
-    //     content: '';
-    //     position: absolute;
-    //     top: 50%;
-    //     left: 25%;
-    //     width: 1rem;
-    //     height: 70rem;
-    //     transform: translateY(-50%);
-    //     background: #6d928c;
-        
-    // }
+        .container_mission .title h1 {
+            margin-top: 4rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .container_key_areas {
+            flex-direction: column;
+            width: 100%;
+            align-items: stretch;
+        }
+
+        .key_area {
+            width: 100% !important;
+            min-width: 0;
+            padding: 0.75rem 0.5rem;
+        }
+
+        .events_block {
+            padding-left: 1.25rem;
+        }
+
+        .event::before {
+            left: -0.5rem;
+            transform: translateY(1rem);
+            width: 0.7rem;
+            height: 0.7rem;
+        }
+    }
+
+    /* ensure images and other media don't overflow */
+    img, video {
+        max-width: 100%;
+        height: auto;
+        display: block;
+    }
 
 }
 
