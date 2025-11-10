@@ -379,7 +379,7 @@
       .formGroup {
         margin-bottom: 1.5rem;
         
-        label {
+        label, select {
           display: block;
           margin-bottom: 0.5rem;
           font-weight: bold;
@@ -393,7 +393,9 @@
           border-radius: 5px;
           font-size: 1rem;
           transition: border-color 0.3s ease;
-          
+          box-sizing: border-box; /* ensure padding doesn't cause overflow */
+          max-width: 100%;
+
           &:focus {
             border-color: $stemm-blue;
             outline: none;

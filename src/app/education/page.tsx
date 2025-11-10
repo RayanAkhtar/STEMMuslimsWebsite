@@ -17,6 +17,16 @@ export default function EducationPage() {
 
   // Animation on scroll
   useEffect(() => {
+    // Use slightly more forgiving options and a fallback for environments
+    // where IntersectionObserver may not reliably trigger (some mobile browsers).
+    if (typeof window !== 'undefined' && !(window as any).IntersectionObserver) {
+      // If IntersectionObserver isn't supported, reveal everything.
+      Object.values(sectionRefs.current).forEach((ref) => {
+        if (ref) ref.classList.add(styles.visible);
+      });
+      return;
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -25,14 +35,25 @@ export default function EducationPage() {
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.05, rootMargin: '0px 0px -10% 0px' }
     );
 
     Object.values(sectionRefs.current).forEach((ref) => {
       if (ref) observer.observe(ref);
     });
 
+    // As a safety net: if the observer hasn't revealed sections after 600ms,
+    // reveal them to avoid leaving users staring at blank areas.
+    const safety = setTimeout(() => {
+      Object.values(sectionRefs.current).forEach((ref) => {
+        if (ref && !ref.classList.contains(styles.visible)) {
+          ref.classList.add(styles.visible);
+        }
+      });
+    }, 600);
+
     return () => {
+      clearTimeout(safety);
       Object.values(sectionRefs.current).forEach((ref) => {
         if (ref) observer.unobserve(ref);
       });
@@ -76,6 +97,7 @@ export default function EducationPage() {
               width={500} 
               height={350}
               className={styles.image}
+              onError={() => { /* ignore image load errors to avoid breaking render */ }}
             />
           </div>
         </div>
@@ -96,6 +118,7 @@ export default function EducationPage() {
               width={500} 
               height={350}
               className={styles.image}
+              onError={() => {}}
             />
           </div>
           <div className={styles.content}>
@@ -165,6 +188,7 @@ export default function EducationPage() {
               width={500} 
               height={350}
               className={styles.image}
+              onError={() => {}}
             />
           </div>
         </div>
@@ -185,6 +209,7 @@ export default function EducationPage() {
               width={500} 
               height={350}
               className={styles.image}
+              onError={() => {}}
             />
           </div>
           <div className={styles.content}>
@@ -258,6 +283,7 @@ export default function EducationPage() {
               width={500} 
               height={350}
               className={styles.image}
+              onError={() => {}}
             />
           </div>
         </div>
@@ -284,6 +310,7 @@ export default function EducationPage() {
               width={500}
               height={350}
               className={styles.image}
+              onError={() => {}}
             />
           </div>
         </div>

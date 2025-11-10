@@ -26,24 +26,29 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 7%;
+      padding: 6%;
 
       font-family: "montserrat";
-      color: black;
+      color: $text-color;
       background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
 
       h1 {
-        font-size: 3rem;
-        line-height: 1.2em;
+        font-size: 2.6rem;
+        line-height: 1.15em;
+        color: $stemm-blue;
+        margin-bottom: 0.5rem;
       }
 
       p {
-        line-height: 1.8em;
-        font-size: 1.2em;
+        line-height: 1.6em;
+        font-size: 1rem;
+        color: $text-color;
       }
       
       span {
-          color: $stemm-light-blue;
+        color: $stemm-light-blue;
       }
     }
 
@@ -72,87 +77,87 @@
     margin-bottom: 2rem;
   }
 
-  .masonryContainer {
-    width: 70%;
+    .masonryContainer {
+      width: 70%;
 
-    .outreachCard {
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
-      text-align: center;
-      min-width: 100px;
-
-      border: 1px solid black;
-
-      padding: 2rem;
-      padding-top: 1rem;
-
-      overflow: hidden;
-
-      .cardContent {
+      .outreachCard {
         display: flex;
-        width: 100%;
-        height: auto;
-        flex-direction: row;
+        flex-direction: column;
+        align-items: stretch;
+        text-align: left;
+        min-width: 100px;
+
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+        padding: 1.25rem;
         overflow: hidden;
-      }
 
-      .cardImage {
-        flex: 0 0 60%;
-        overflow: hidden;
-        display: flex;
-        // max-height: 30rem; // Set your maximum height
-        max-height: 30vh;
-        justify-content: right;
-        align-items: center;
-        border-radius: 8px;
-
-        img {
-          // max-width: 100%; // Ensure the image doesn't exceed the container's width
-          // max-height: 100%; // Ensure the image doesn't exceed the container's height
-          width: 100%; // Allow the width to adjust based on the height
-          height: auto; // Allow the height to adjust based on the width
-          object-fit: cover; // Ensure the image scales proportionally
-        }
-      }
-
-      .textContent {
-        flex: 0 0 40%;
-        justify-content: center;
-        align-items: center; /* Center vertically */
-        height: auto;
-
-        h1 {
-          color: $isoc-bright-red;
-          font-size: 3rem;
-          font-weight: 400;
+        .cardContent {
+          display: flex;
+          width: 100%;
+          height: auto;
+          flex-direction: row;
+          gap: 1rem;
+          align-items: center;
         }
 
-        p {
-          font-size: 0.9em;
-          line-height: 2em;
-          font-weight: 300;
-          padding-bottom: 1rem;
+        .cardImage {
+          flex: 0 0 45%;
+          overflow: visible; /* allow image to determine height */
+          display: block;
+          justify-content: center;
+          align-items: center;
+          border-radius: 8px;
+
+          img {
+            width: 100%;
+            height: auto; /* keep natural height */
+            object-fit: contain; /* avoid cropping */
+            border-radius: 8px;
+          }
         }
 
-        button {
-          padding: 0.5rem 2rem;
-          border-radius: 20px;
-          background-color: #002028;
+        .textContent {
+          flex: 1 1 55%;
+          justify-content: center;
+          align-items: flex-start;
+          height: auto;
+          padding: 0.5rem 0;
 
-          font-weight: 200;
-          color: white;
+          h1 {
+            color: $stemm-blue;
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin: 0 0 0.5rem 0;
+          }
 
-          font-size: 1em;
-          transition: 0.2s;
+          p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: $text-color;
+            margin-bottom: 0.75rem;
+          }
 
-          &:hover {
-            background-color: $isoc-bright-red;
+          button, a {
+            display: inline-block;
+            padding: 0.6rem 1rem;
+            border-radius: 999px;
+            background: $stemm-blue;
+            color: white;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: background 0.15s ease, transform 0.12s ease;
+
+            &:hover {
+              background: $stemm-darker-blue;
+              transform: translateY(-2px);
+            }
           }
         }
       }
     }
-  }
 }
 
 @media screen and (max-width: 900px) {
@@ -170,14 +175,76 @@
         text-align: center;
         width: 100%;
         height: fit-content;
-        padding: 0 5px;
+        padding: 1.5rem; /* more comfortable padding on small screens */
+
+        h1 {
+          font-size: 2rem; /* smaller heading on tablet */
+        }
+
+        p {
+          font-size: 1rem; /* slightly smaller body text */
+        }
       }
     }
   }
 
-  .pageIntroductionImage {
+  /* fixed selector: pageIntroImage (not pageIntroductionImage) */
+  .pageIntroImage {
     width: 100%;
     height: 300px;
+    background-position: center;
+    background-size: cover;
+  }
+
+  .outreachContainer {
+    .masonryContainer {
+      width: 100%;
+
+      .outreachCard {
+        .cardContent {
+          display: flex;
+          flex-direction: column; /* stack image then text on narrow screens */
+          gap: 0.75rem;
+        }
+
+        .cardImage {
+          flex: 0 0 auto;
+          width: 100%;
+          overflow: visible;
+          display: block;
+
+          img {
+            width: 100%;
+            height: auto; /* preserve aspect ratio, no cropping */
+            object-fit: contain;
+            border-radius: 8px;
+          }
+        }
+
+        .textContent {
+          flex: 0 0 auto;
+          width: 100%;
+          padding: 0.75rem 0.5rem;
+
+          h1 {
+            font-size: 1.5rem;
+          }
+
+          p {
+            font-size: 0.95rem;
+            line-height: 1.4;
+          }
+
+          button, a {
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            padding: 0.75rem 1rem;
+            margin-top: 0.5rem;
+          }
+        }
+      }
+    }
   }
 
   .outreachContainer h1 {
@@ -199,7 +266,15 @@
         text-align: center;
         width: 100%;
         height: fit-content;
-        border-bottom: 50px solid $isoc-red;
+        border-bottom: 30px solid $isoc-red;
+        padding: 1rem; /* ensure top content has breathing room */
+        h1 {
+          font-size: 1.6rem;
+        }
+
+        p {
+          font-size: 0.95rem;
+        }
       }
 
       .pageIntroImage {
@@ -221,6 +296,31 @@
 
         border-right: none;
         border-left: none;
+
+        .cardImage {
+          overflow: visible;
+
+          img {
+            width: 100%;
+            height: auto;
+          }
+        }
+
+        .textContent {
+          h1 {
+            font-size: 1.25rem;
+          }
+
+          p {
+            font-size: 0.9rem;
+            line-height: 1.4;
+          }
+
+          button, a {
+            width: 100%;
+            padding: 0.6rem 1rem;
+          }
+        }
       }
     }
   }

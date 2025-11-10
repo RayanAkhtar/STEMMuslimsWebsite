@@ -78,7 +78,7 @@
       background-color: $stemm-blue;
       color: white;
       border-color: $stemm-blue;
-      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+
       transform: translateY(-2px);
     }
 
@@ -223,6 +223,11 @@
       flex-direction: column;
       gap: 8px;
     }
+
+    /* hide the mobile-only select on desktop by default; it will be enabled in mobile media queries */
+    .mobile_select {
+      display: none;
+    }
     
     .nav_item {
       padding: 10px 15px;
@@ -282,19 +287,25 @@
       padding: 8px 0px;
       margin: 0 0 12px 0;
       z-index: 60; /* ensure nav sits above content when sticky */
-      background: rgba(255,255,255,0.98);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.06);
-      border-bottom: 1px solid rgba(0,0,0,0.04);
+      background: transparent;
+      box-shadow: none;
+      border-bottom: none;
       overflow-y: hidden;
 
+      /* hide the horizontal pills on small screens; use the select instead */
       .nav_container {
-        flex-direction: row;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        padding: 4px 0;
-        gap: 0.5rem;
-        align-items: center;
-        height: 100%;
+        display: none;
+      }
+
+      .mobile_select {
+        display: block;
+        width: calc(100% - 32px);
+        margin: 6px 16px;
+        height: 36px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(0,0,0,0.08);
+        font-size: 0.95rem;
       }
 
       .nav_item {
@@ -367,21 +378,39 @@
     z-index: 10;
   }
   
+  /* hide the horizontal pill nav on small screens and show the mobile select */
   .nav_container {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    padding: 0.5rem 0;
+    display: none;
+  }
+
+  .side_nav .mobile_select {
+    display: block;
+    width: calc(100% - 32px);
+    margin: 8px 16px;
+    height: 44px; /* touch-friendly */
+    padding: 0 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(0,0,0,0.06);
     background: white;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    
-    &::-webkit-scrollbar {
-      height: 4px;
-    }
-    
-    &::-webkit-scrollbar-thumb {
-      background: $stemm-blue;
-      border-radius: 4px;
+    color: $stemm-darker-blue;
+    font-weight: 600;
+
+    box-shadow: none;
+    transition: border-color 0.12s ease, box-shadow 0.12s ease;
+
+    /* Add a subtle chevron arrow on the right using an inline SVG so it looks native */
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='8' viewBox='0 0 14 8'><path fill='%236a928d' d='M7 8L0 0h14z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 14px 8px;
+
+    -webkit-appearance: none;
+    appearance: none;
+
+    &:focus {
+      outline: none;
+      border-color: $stemm-blue;
+      box-shadow: 0 6px 18px rgba(106,146,141,0.12);
     }
   }
   

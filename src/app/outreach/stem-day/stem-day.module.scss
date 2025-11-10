@@ -108,13 +108,15 @@
         h1 {
           font-family: "Cinzel", "serif";
           color: $isoc-light-red;
-          font-size: 3.5rem;
+          /* responsive heading: large on desktop, smaller on mobile */
+          font-size: clamp(1.25rem, 4vw, 3.5rem);
           font-weight: 400;
         }
 
         p {
-          font-size: 0.9em;
-          line-height: 2em;
+          /* responsive paragraph sizing to avoid overflow on mobile */
+          font-size: clamp(0.95rem, 2.2vw, 1rem);
+          line-height: 1.6;
           font-weight: 300;
           padding-bottom: 1rem;
         }
@@ -143,6 +145,82 @@
   .contentContainer {
     h1 {
       font-size: 2rem;
+    }
+  }
+}
+
+/* Make text identical on desktop, but more readable on mobile */
+@media screen and (max-width: 900px) {
+  .stemDayContainer {
+    .masonryContainer {
+      width: 98%;
+    }
+
+    .outreachCard {
+        .cardContent {
+          flex-direction: column; /* ensure stacked layout on smaller screens */
+          width: 100%;
+        }
+
+        /* hide desktop image container on mobile to avoid duplicate or conflicting images */
+        .cardImageContainer {
+          display: none !important;
+          height: 0 !important;
+          overflow: hidden !important;
+          visibility: hidden !important;
+        }
+
+        /* also ensure any nested image elements are not displayed */
+        .cardImageContainer .cardImage,
+        .cardImageContainer img {
+          display: none !important;
+          visibility: hidden !important;
+          width: 0 !important;
+          height: 0 !important;
+        }
+
+      .textContent {
+        /* force full width on mobile to avoid appearing as half-width */
+        width: 100% !important;
+        flex: 1 1 auto !important;
+        min-width: 0 !important;
+        font-size: 1rem; /* slightly smaller base font */
+        padding: 1rem;
+
+        h1 {
+          font-size: 1rem; /* smaller heading on mobile */
+          line-height: 1.15;
+          margin-bottom: 0.5rem;
+        }
+
+        p {
+          font-size: 0.95rem;
+          line-height: 1.5;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .stemDayContainer {
+    .masonryContainer {
+      width: 98%;
+    }
+
+    .outreachCard {
+      .textContent {
+        padding: 0.75rem;
+
+        h1 {
+          font-size: 1rem;
+        }
+
+        p {
+          font-size: 0.95rem;
+          line-height: 1.45;
+        }
+      }
     }
   }
 }

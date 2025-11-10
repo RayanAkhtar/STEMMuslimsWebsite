@@ -220,6 +220,22 @@ const CommitteePage: React.FC = () => {
             
             <div className={styles.content_wrapper}>
                 <div className={styles.side_nav}>
+                    {/* Mobile: show a select dropdown instead of the horizontal scrollable pills */}
+                    <select
+                        className={styles.mobile_select}
+                        aria-label="Navigate committee sections"
+                        value={activeSection}
+                        onChange={(e) => {
+                            const id = e.target.value;
+                            setActiveSection(id);
+                            scrollToSection(id);
+                        }}
+                    >
+                        {availableSections.map(section => (
+                            <option key={section.id} value={section.id}>{section.title}</option>
+                        ))}
+                    </select>
+
                     <div className={styles.nav_container}>
                         {availableSections.map(section => (
                             <div 
