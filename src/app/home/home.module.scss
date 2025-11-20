@@ -3,34 +3,38 @@
 
 /* --------- Intro Section --------- */
 .container_intro {
+  /* Stack salaam image above the text using flex column */
   position: relative;
   width: 100%;
-  height: 100vh;
+  min-height: 70vh;
   overflow: hidden;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
+  padding-top: 4vh;
   background-image: url("/home-images/geometric-background.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  z-index: -1;
+  z-index: 0;
 
   @media (max-width: 768px) {
     background-image: url("/home-images/geometric-background.png");
   }
 
   .salaamImage {
-    position: absolute;
-    top: 5vh;
-    left: 50%;
-    transform: translateX(-50%);
+    /* Make the salaam image a normal flow element on top */
+    position: relative;
+    margin: 1rem 0 0.5rem 0;
     z-index: 1;
     text-align: center;
 
     img {
       width: clamp(150px, 60vw, 700px);
       height: auto;
+      display: block;
+      margin: 0 auto;
     }
   }
 
@@ -38,8 +42,8 @@
     position: relative;
     text-align: center;
     color: white;
-    z-index: 2;
-    margin-top: 15vh;
+    z-index: 0;
+    margin: 0.5rem 0 3rem 0;
     padding: 0 1rem;
 
     .heading {
@@ -64,7 +68,7 @@
 
   @media (max-width: 768px) {
     .salaamImage {
-      top: 3vh;
+      margin-top: 0.5rem;
 
       img {
         width: 80vw;
@@ -72,7 +76,7 @@
     }
 
     .overlay {
-      margin-top: 25vh;
+      margin-top: 1rem;
 
       .heading {
         font-size: 2rem;
@@ -86,7 +90,7 @@
 
   @media (max-width: 480px) {
     .overlay {
-      margin-top: 30vh;
+      margin-top: 1.5rem;
 
       .heading {
         font-size: 1.8rem;
