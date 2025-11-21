@@ -1,7 +1,44 @@
-import Link from 'next/link'
-import styles from './about.module.scss'
+'use client';
+
+import React, { useEffect, useState } from 'react';
+import styles from './about.module.scss';
+
+type Event = {
+    start: string;
+    end: string;
+    summary: string;
+    description: string;
+};
 
 export default function About() {
+    const [events, setEvents] = useState<Event[]>([]);
+
+    function formatDateWithSuffix(date: Date): string {
+        const day = date.getDate();
+        const suffix =
+            day % 10 === 1 && day !== 11 ? 'st' :
+            day % 10 === 2 && day !== 12 ? 'nd' :
+            day % 10 === 3 && day !== 13 ? 'rd' : 'th';
+        const month = date.toDateString().split(' ')[1];
+        const year = date.getFullYear();
+        return `${month} ${day}${suffix} ${year}`;
+    }
+
+    useEffect(() => {
+        async function fetchEvents() {
+            try {
+                const res = await fetch('/api/calendar');
+                const data: Event[] = await res.json();
+                console.log(data);
+                setEvents(data);
+            } catch (err) {
+                console.error("Error loading events", err);
+            }
+        }
+
+        fetchEvents();
+    }, []);
+
     return (
         <>
             <div className={styles.container_page}>
@@ -121,83 +158,19 @@ export default function About() {
                 </div>
 
                 <div className={styles.container_timeline}>
-                    <h1>Timeline of events: </h1>
-                    <div className={styles.events_block}>
-                        <div className={styles.event}>
-                            <h1>Oct 26th 2025 | Muslims in AI Networking Event</h1>
-                            <p>
-                            Jointly hosted by the Muslim Researchers' Network (MRN) and STEM Muslims 
-                            Imperial College London, this event is designed to bring together Muslim 
-                            researchers, students, academics, and professionals who share a passion for 
-                            Artificial Intelligence, in a relaxed and welcoming environment. Whether 
-                            you're deep into research or just getting started, this is your chance to 
-                            connect, learn, and collaborate. 
-                            </p>
-                        </div>
-                        <div className={styles.event}>
-                            <h1>Nov 15th 2024 | Startup Showcase</h1>
-                            <p>
-                            Discover 10 Student Startups. Get inspired by innovative ideas from fellow 
-                            students who are ready to make an impact. This is your chance to support 
-                            the next wave of changemakers. Meet experienced entrepreneurs and mentors 
-                            who can guide your journey. Build connections that could shape your future. 
-                            Participate in panels exploring the challenges and opportunities in 
-                            entrepreneurship. Exchange ideas and learn from those in industry.
-                            </p>
-                        </div>
-                        <div className={styles.event}>
-                            <h1>Dec 13th 2023 | Year 10/11 Science Competition</h1>
-                            <p>
-                            A day full of competitions involving Mathematics, Science and engineering problems. Students compete in teams of 4. 
-                            </p>
-                        </div>
-                        <div className={styles.event}>
-                            <h1>Jan 11th 2025 | Consulting Masterclass</h1>
-                            <p>
-                            Interview preperation, case study workshops and personalized feedback 
-                            </p>
-                        </div>
-                        <div className={styles.event}>
-                            <h1>Jan 25th 2025 | Working Abroad Webinar</h1>
-                            <p>
-                            Hear from inspiring Muslim professionals from Dubai, Singapore, Abu Dhabi, and Saudi Arabia! 
-                            Gain insights into their career journeys, learn how to succeed internationally, and ask your 
-                            questions live.
-                            </p>
-                        </div>
-                        <div className={styles.event}>
-                            <h1>Feb 4th 2025 | Nester Talk</h1>
-                            <p>
-                            Join Youness Abidou, CEO of Nester, for an insightful evening on Islamic 
-                            Finance!
-                            </p>
-                        </div>
-                        <div className={styles.event}>
-                            <h1>Feb 12th 2025 | Robotics Day</h1>
-                            <p>
-                            idek
-                            </p>
-                        </div>
-                        <div className={styles.event}>
-                            <h1>Feb 19th 2025 | Engineering STEMM Day</h1>
-                            <p>
-                            idek
-                            </p>
-                        </div>
-                        <div className={styles.event}>
-                            <h1>Feb 26th 2025 | Life Sciences STEMM Day</h1>
-                            <p>
-                            Inviting prospective Year 12 students to Imperial for a day of lab tours and 
-                            exciting workshops, as well as exclusive application guidance & tips! 
-                            </p>
-                        </div>
-                        <div className={styles.event}>
-                            <h1>Coming soon in the summer... | Careers Fair and Hackathon</h1>
-                            <p>
-                            idek 
-                            </p>
-                        </div>
-                    </div>
+                    <h2 className={styles.timelineHeader}>Upcoming Events</h2>
+                    {events.length > 0 ? (
+                        <ul className={styles.events_block}>
+                            {events.map((event, index) => (
+                                <div className={styles.event} key={index}>
+                                    <h1>{formatDateWithSuffix(new Date(event.start))} | {event.summary}</h1>
+                                    <p>{event.location.split(",")[0]}</p>
+                                </div>
+                            ))}
+                        </ul>
+                    ) : (
+                        <p>No upcoming events found.</p>
+                    )}
                 </div>
             </div>
         </>

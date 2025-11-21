@@ -109,7 +109,7 @@ export default function EventsPage() {
           </div>
         </div>
       </section>
-
+{/* 
       <section className={styles.timeline} ref={timelineRef}>
         <div className={styles.container}>
           <h2>Event Timeline</h2>
@@ -130,7 +130,7 @@ export default function EventsPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       <section className={styles.partners}>
         <div className={styles.container}>
