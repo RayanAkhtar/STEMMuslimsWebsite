@@ -8,6 +8,7 @@ type Event = {
     end: string;
     summary: string;
     description: string;
+    location: string;
 };
 
 export default function About() {
