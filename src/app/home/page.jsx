@@ -13,7 +13,6 @@ export default function HomePage() {
             <Mission />
             <Stats /> 
 
-            <Highlights />
             <SocialMedia />
             <PrayerRoomsServer />
         </div>
