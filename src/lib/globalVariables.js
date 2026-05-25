@@ -8,3 +8,12 @@ export const ical = "https://outlook.office365.com/owa/calendar/5640f1dbbca5432e
 export const linktree = "https://linktr.ee/stemmuslims"
 export const isoclink = "http://imperial.isoc.link"
 export const StemmLinkedin = "https://www.linkedin.com/company/stem-muslims-imperial-college-london"
+
+// Stripe Payment Link for quarter zip (set NEXT_PUBLIC_QUARTER_ZIP_STRIPE_PAYMENT_LINK in .env)
+export const quarterZipStripePaymentLink =
+  process.env.NEXT_PUBLIC_QUARTER_ZIP_STRIPE_PAYMENT_LINK ?? "";
+
+// Stripe Dashboard → Payment Link → After payment → Redirect to your website:
+// https://YOUR-DOMAIN/quarter-zip?payment=success
+// (Use http://localhost:3000/quarter-zip?payment=success for local testing)
+export const quarterZipPaymentSuccessPath = "/quarter-zip?payment=success";

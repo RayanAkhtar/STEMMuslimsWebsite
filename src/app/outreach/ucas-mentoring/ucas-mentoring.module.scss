@@ -1,5 +1,4 @@
 @import "../../../styles/globals.module.scss";
-@import url("https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap");
 
 @font-face {
@@ -27,7 +26,7 @@
   padding-top: 12rem; // Added padding to account for navbar
 
   h1 {
-    font-family: "Cinzel Decorative", serif;
+    font-family: var(--font-cinzel-decorative), serif;
     font-weight: 700;
     font-size: 3rem;
     padding: 0.5rem 1rem;
@@ -46,7 +45,7 @@
   h1 {
     font-size: 3rem;
     font-weight: 700;
-    font-family: "Cinzel Decorative", "serif";
+    font-family: var(--font-cinzel-decorative), serif;
     margin-top: 2rem;
     margin-bottom: 2rem;
     color: $isoc-bright-red;

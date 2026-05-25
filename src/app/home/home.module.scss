@@ -47,7 +47,7 @@
     padding: 0 1rem;
 
     .heading {
-      font-family: 'Cinzel Decorative', serif;
+      font-family: var(--font-cinzel-decorative), serif;
       font-weight: 700;
       font-size: clamp(2rem, 6vw, 5rem);
       margin: 0;
@@ -128,7 +128,7 @@
   }
 
   .rightHeading {
-    font-family: 'Cinzel Decorative', serif;
+    font-family: var(--font-cinzel-decorative), serif;
     font-weight: $h1-weight;
     font-size: $h1-size;
     margin-bottom: 1.5rem;
@@ -470,7 +470,7 @@
 
   .title {
     font-size: $h1-size;
-    font-family: 'Cinzel Decorative', serif;
+    font-family: var(--font-cinzel-decorative), serif;
     font-weight: $h1-weight;
     margin-bottom: 2rem;
     font-weight: $h1-weight;
@@ -490,7 +490,7 @@
 
     .number {
       font-size: $h1-size;
-      font-family: 'Cinzel Decorative', serif;
+      font-family: var(--font-cinzel-decorative), serif;
       font-weight: $h1-weight;
       margin: 0;
     }
@@ -515,7 +515,7 @@
   padding: 2rem 0;
 
   .heading {
-    font-family: 'Cinzel Decorative', serif;
+    font-family: var(--font-cinzel-decorative), serif;
     font-size: $h1-size;
     font-weight: $h1-weight;
     margin-bottom: 1rem;

@@ -14,6 +14,7 @@ const links = [
         ["Current Events", "/careers/events"],
         ["Careers Fair", "/careers/events/careers-fair"],
     ]],
+    ["Quarter Zip", "/quarter-zip"],
     ["Education", "/education", [
         ["Beyond Borders", "/education/beyond-borders"],
         
@@ -89,9 +90,8 @@ export default function Navbar() {
         setExpandedSubmenu(expandedSubmenu === index ? null : index);
     };
 
-    // Check if a link is active
     const isActive = (route: string) => {
-        if (route === '/home' && pathname === '/') return true;
+        if (route === "/home" && pathname === "/") return true;
         return pathname === route || pathname.startsWith(`${route}/`);
     };
 

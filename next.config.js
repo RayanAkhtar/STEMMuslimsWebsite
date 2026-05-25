@@ -1,6 +1,20 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  async redirects() {
+    return [
+      {
+        source: "/careers/hoodie",
+        destination: "/quarter-zip",
+        permanent: true,
+      },
+      {
+        source: "/hoodie",
+        destination: "/quarter-zip",
+        permanent: true,
+      },
+    ];
+  },
   images: {
     remotePatterns: [
       {

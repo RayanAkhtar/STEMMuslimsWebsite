@@ -1,5 +1,5 @@
 
-import { Inter } from "next/font/google";
+import { Cinzel_Decorative, Inter } from "next/font/google";
 import "../styles/globals.module.scss";
 import "../styles/globals.css";
 import { ReactNode } from "react";
@@ -11,7 +11,14 @@ import ScrollIndicator from '@/components/ScrollIndicator';
 const inter = Inter({
   subsets: ["latin"],
   preload: true,
-  display: "swap"
+  display: "swap",
+});
+
+const cinzelDecorative = Cinzel_Decorative({
+  weight: ["400", "700", "900"],
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-cinzel-decorative",
 });
 
 export const metadata = {
@@ -25,11 +32,11 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en">
+    <html lang="en" className={cinzelDecorative.variable}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
       </head>
-      <body className={inter.className} style={{margin: 0}}>
+      <body className={inter.className} style={{ margin: 0 }}>
         <Navbar />
         {children}
         <Footer />

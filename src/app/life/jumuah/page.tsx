@@ -1,22 +1,14 @@
 import React, { useState } from 'react';
 import styles from './jumuah.module.scss';
-import { Cinzel_Decorative } from 'next/font/google';
 import Link from 'next/link';
 import Image from 'next/image';
 import SKmap from './SKmap.png';
-
-const cinzel_decorative = Cinzel_Decorative({
-  weight: ['400', '700'],
-  subsets: ['latin'],
-});
-
-
 
 const JumahPage: React.FC = () => {
   return (
     <div className={styles.jumahContainer}>
       <section className={styles.item1}>
-        <h1 className={`${cinzel_decorative.className} ${styles.title}`}>
+        <h1 className={styles.title}>
           <b>JUMu’ah prayer</b>
         </h1>
         <h3 className={styles.h3}>
