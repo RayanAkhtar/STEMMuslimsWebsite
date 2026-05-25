@@ -13,11 +13,13 @@ import { isStripePaymentReturnSuccess } from "@/lib/quarterZipPayment";
 const QUARTER_ZIP_PATH = quarterZipPaymentSuccessPath.split("?")[0];
 
 const SIZE_ROWS = [
-  { size: "S", length: 65, chest: 53, shoulder: 46, sleeve: 61 },
-  { size: "M", length: 68, chest: 56, shoulder: 48, sleeve: 63 },
-  { size: "L", length: 71, chest: 59, shoulder: 50, sleeve: 65 },
-  { size: "XL", length: 74, chest: 62, shoulder: 52, sleeve: 67 },
-  { size: "XXL", length: 78, chest: 65, shoulder: 54, sleeve: 69 },
+  { size: "XS", chest: 49, bodyLength: 66, sleeve: 61 },
+  { size: "S", chest: 54, bodyLength: 68, sleeve: 63 },
+  { size: "M", chest: 59, bodyLength: 70, sleeve: 66 },
+  { size: "L", chest: 64, bodyLength: 72, sleeve: 68 },
+  { size: "XL", chest: 67, bodyLength: 74, sleeve: 69 },
+  { size: "XXL", chest: 71, bodyLength: 76, sleeve: 70 },
+  { size: "3XL", chest: 74, bodyLength: 78, sleeve: 71 },
 ] as const;
 
 function PaymentConfirmationModal({
@@ -140,27 +142,25 @@ function QuarterZipPageContent() {
         <section className={styles.sizingSection} aria-labelledby="sizing-heading">
           <h2 id="sizing-heading">Sizing</h2>
           <p className={styles.sizingNote}>
-            Measurements in cm, garment laid flat. Fits true to size with room
-            to layer — size down for a closer fit.
+            Measurements in cm. Body length taken from high point shoulder (HPS).
+            Fits true to size with room to layer — size down for a closer fit.
           </p>
           <div className={styles.tableWrapper}>
             <table className={styles.sizeTable}>
               <thead>
                 <tr>
                   <th scope="col">Size</th>
-                  <th scope="col">Length (A)</th>
-                  <th scope="col">Chest (B)</th>
-                  <th scope="col">Shoulder (C)</th>
-                  <th scope="col">Sleeve (D)</th>
+                  <th scope="col">Chest</th>
+                  <th scope="col">Body length (HPS)</th>
+                  <th scope="col">Sleeve length</th>
                 </tr>
               </thead>
               <tbody>
                 {SIZE_ROWS.map((row) => (
                   <tr key={row.size}>
                     <td>{row.size}</td>
-                    <td>{row.length}</td>
                     <td>{row.chest}</td>
-                    <td>{row.shoulder}</td>
+                    <td>{row.bodyLength}</td>
                     <td>{row.sleeve}</td>
                   </tr>
                 ))}
