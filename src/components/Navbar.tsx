@@ -10,14 +10,14 @@ const links = [
     ["Home", "/home"],
     ["About", "/about"],
     ["Our Committee", "/committee"],
+    ["Quarter Zip", "/quarter-zip"],
     ["Careers", "/careers", [
         ["Current Events", "/careers/events"],
         ["Careers Fair", "/careers/events/careers-fair"],
     ]],
-    ["Quarter Zip", "/quarter-zip"],
     ["Education", "/education", [
         ["Beyond Borders", "/education/beyond-borders"],
-        
+
     ]],
     ["Outreach", "/outreach", [
         ["STEM Day", "/outreach/stem-day"],

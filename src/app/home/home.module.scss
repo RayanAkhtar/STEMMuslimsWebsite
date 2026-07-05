@@ -517,6 +517,104 @@
   to { transform: translateY(0); opacity: 1; }
 }
 
+/* --------- Upcoming Events Section --------- */
+.container_upcoming {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+
+  .upcomingTitle {
+    font-family: var(--font-cinzel-decorative), serif;
+    font-weight: $h1-weight;
+    font-size: $h1-size;
+    text-align: center;
+    color: $stemm-deep-blue;
+    letter-spacing: 0.03em;
+    margin: 0 0 2.5rem;
+
+    &::after {
+      content: '';
+      display: block;
+      width: 56px;
+      height: 3px;
+      margin: 1rem auto 0;
+      border-radius: 2px;
+      background: linear-gradient(90deg, $stemm-blue, $isoc-gold);
+    }
+  }
+
+  .eventsTimeline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    border-left: 3px solid rgba($stemm-blue, 0.25);
+    margin-left: 0.5rem;
+  }
+
+  .eventItem {
+    position: relative;
+    display: flex;
+    align-items: baseline;
+    gap: 1.25rem;
+    padding: 0 0 2rem 1.75rem;
+
+    &:last-child {
+      padding-bottom: 0;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: -0.6rem;
+      top: 0.35rem;
+      width: 0.9rem;
+      height: 0.9rem;
+      border-radius: 50%;
+      background: $stemm-blue;
+      border: 3px solid $surface-card;
+      box-shadow: 0 0 0 3px rgba($isoc-gold, 0.4);
+    }
+
+    @media (max-width: 560px) {
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+  }
+
+  .eventDateBadge {
+    flex-shrink: 0;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    color: $isoc-gold;
+    text-transform: uppercase;
+    padding-top: 0.15rem;
+    min-width: 8.5rem;
+  }
+
+  .eventInfo {
+    h3 {
+      margin: 0;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: $stemm-deep-blue;
+    }
+
+    p {
+      margin: 0.25rem 0 0;
+      font-size: 0.95rem;
+      color: #6b7671;
+    }
+  }
+
+  .noEvents {
+    text-align: center;
+    color: #6b7671;
+    font-size: 1.05rem;
+  }
+}
+
 /* --------- Stats Section --------- */
 .container_stats {
   background-color: $stemm-deep-blue;
