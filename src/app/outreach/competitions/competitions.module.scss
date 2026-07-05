@@ -21,7 +21,7 @@
     font-family: var(--font-cinzel-decorative), serif;
     margin-top: 2rem;
     margin-bottom: 2rem;
-    color: $isoc-bright-red;
+    color: $stemm-blue;
   }
 
   hr {
@@ -121,7 +121,7 @@
 
         h1 {
           font-family: "Cinzel", "serif";
-          color: $isoc-light-red;
+          color: $stemm-blue;
           /* responsive heading */
           font-size: clamp(1.25rem, 4vw, 3.5rem);
           font-weight: 400;
@@ -247,7 +247,7 @@
 
   h1 {
     font-size: 3em;
-    color: $isoc-bright-red;
+    color: $stemm-blue;
   }
 
   summary {
