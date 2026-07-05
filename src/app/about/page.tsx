@@ -1,45 +1,50 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import Link from 'next/link';
 import styles from './about.module.scss';
 
-type Event = {
-    start: string;
-    end: string;
-    summary: string;
-    description: string;
-    location: string;
+type Stream = {
+    name: string;
+    href: string;
+    caption: string;
+    text: string;
+    points: string[];
+    images: string[];
+    eventTitle: string;
 };
 
+const streams: Stream[] = [
+    {
+        name: 'Careers',
+        href: '/careers',
+        caption: 'Empowering Future Leaders in STEMM',
+        text: 'Our career-focused initiatives equip students with the skills and networks they need to enter and excel in their chosen fields.',
+        points: ['Professional Development Workshops', 'Career Events', 'Networking Events'],
+        images: ['/careers/careersfair.jpg', '/careers/careersfair2.jpg'],
+        eventTitle: 'Annual Careers Fair',
+    },
+    {
+        name: 'Education',
+        href: '/education',
+        caption: 'Supporting Academic Success in STEMM',
+        text: 'Through tailored mentorship and resources, we aim to foster academic excellence and smooth the transition for Muslim students in STEM fields.',
+        points: ['Tutorials', 'Skill-building workshops', 'Department WhatsApp GCs', 'House Of Wisdom'],
+        images: ['/education/beyond-borders/image1.jpeg', '/education/beyond-borders/image2.jpeg'],
+        eventTitle: 'Beyond Borders',
+    },
+    {
+        name: 'Outreach',
+        href: '/outreach',
+        caption: 'Inspiring Future Generations and Building Community',
+        text: "We're committed to fostering a culture of knowledge-sharing and service through outreach and community initiatives.",
+        points: ['STEMM Day', 'UCAS Mentoring Scheme', 'Community Engagement and Upliftment'],
+        images: ['/Outreach/stemday/making_car_2.webp', '/Outreach/stemday/flight_sim_2.webp'],
+        eventTitle: 'STEM Day',
+    },
+];
+
 export default function About() {
-    const [events, setEvents] = useState<Event[]>([]);
-
-    function formatDateWithSuffix(date: Date): string {
-        const day = date.getDate();
-        const suffix =
-            day % 10 === 1 && day !== 11 ? 'st' :
-            day % 10 === 2 && day !== 12 ? 'nd' :
-            day % 10 === 3 && day !== 13 ? 'rd' : 'th';
-        const month = date.toDateString().split(' ')[1];
-        const year = date.getFullYear();
-        return `${month} ${day}${suffix} ${year}`;
-    }
-
-    useEffect(() => {
-        async function fetchEvents() {
-            try {
-                const res = await fetch('/api/calendar');
-                const data: Event[] = await res.json();
-                console.log(data);
-                setEvents(data);
-            } catch (err) {
-                console.error("Error loading events", err);
-            }
-        }
-
-        fetchEvents();
-    }, []);
-
     return (
         <>
             <div className={styles.container_page}>
@@ -81,97 +86,34 @@ export default function About() {
                         </p>
                     </div>
                 </div>
-                <div className={styles.container_key_areas}>
-                    
-                    <div className={styles.key_area}>
+                <div className={styles.container_streams}>
+                    {streams.map((stream) => (
+                        <section className={styles.stream} key={stream.name}>
+                            <Link href={stream.href} className={styles.stream_title}>
+                                <h1>{stream.name}</h1>
+                            </Link>
 
-                        <div className={styles.key_area_title}>
-                            <h1>Careers</h1>
-                        </div>
+                            <div className={styles.stream_caption}>{stream.caption}</div>
 
-                        <div className={styles.key_area_caption}>
-                            Empowering Future Leaders in STEMM
-                        </div>
+                            <div className={styles.stream_text}>{stream.text}</div>
 
-                        <div className={styles.key_area_text}>
-                            Our career-focused initiatives equip students with the skills and networks they need to enter and excel in their chosen fields.
-                        </div>
+                            <div className={styles.stream_points}>
+                                <ul>
+                                    {stream.points.map((point) => (
+                                        <li key={point}>{point}</li>
+                                    ))}
+                                </ul>
+                            </div>
 
-                        <div className={styles.key_area_points}>
-                            <ul>
-                                <li>Professional Development Workshops</li>
-                                <li>Career Events</li>
-                                <li>Networking Events</li>
-                            </ul>
-                        </div>
+                            <div className={styles.stream_images}>
+                                {stream.images.map((img) => (
+                                    <img key={img} src={img} alt={`${stream.name} — ${stream.eventTitle}`} />
+                                ))}
+                            </div>
 
-                    </div>
-
-                    <div className={styles.key_area}>
-
-                        <div className={styles.key_area_title}>
-                            <h1>Education</h1>
-                        </div>
-
-                        <div className={styles.key_area_caption}>
-                            Supporting Academic Success in STEMM
-                        </div>
-
-                        <div className={styles.key_area_text}>
-                            Through tailored mentorship and resources, we aim to foster academic excellence and smooth the transition for Muslim students in STEM fields.
-                        </div>
-
-                        <div className={styles.key_area_points}>
-                            <ul>
-                                <li>Tutorials</li>
-                                <li>Skill-building workshops</li>
-                                <li>Department WhatsApp GCs</li>
-                                <li>House Of Wisdom</li>
-                            </ul>
-                        </div>
-
-                    </div>
-
-                    <div className={styles.key_area}>
-
-                        <div className={styles.key_area_title}>
-                            <h1>Outreach</h1>
-                        </div>
-
-                        <div className={styles.key_area_caption}>
-                            Inspiring Future Generations and Building Community 
-                        </div>
-
-                        <div className={styles.key_area_text}>
-                            We're committed to fostering a culture of knowledge-sharing and service through outreach and community initiatives.
-                        </div>
-
-                        <div className={styles.key_area_points}>
-                            <ul>
-                                <li>STEMM Day</li>
-                                <li>UCAS Mentoring Scheme</li>
-                                <li>Community Engagement and Upliftment</li>
-                            </ul>
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div className={styles.container_timeline}>
-                    <h2 className={styles.timelineHeader}>Upcoming Events</h2>
-                    {events.length > 0 ? (
-                        <ul className={styles.events_block}>
-                            {events.map((event, index) => (
-                                <div className={styles.event} key={index}>
-                                    <h1>{formatDateWithSuffix(new Date(event.start))} | {event.summary}</h1>
-                                    <p>{event.location.split(",")[0]}</p>
-                                </div>
-                            ))}
-                        </ul>
-                    ) : (
-                        <p>No upcoming events found.</p>
-                    )}
+                            <div className={styles.stream_event}>{stream.eventTitle}</div>
+                        </section>
+                    ))}
                 </div>
             </div>
         </>
