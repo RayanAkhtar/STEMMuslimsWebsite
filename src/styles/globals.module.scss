@@ -21,8 +21,10 @@ $mobile-bp: 845px;
 $stone: #DCD5C3;
 $light-stone: #F9F4EF;
 
-$background-color: #FFFFFF;
-$text-color: #333333;
+// warm ivory canvas — pure white is reserved for elevated cards
+$background-color: #faf8f3;
+$surface-card: #ffffff;
+$text-color: #2e3733;
 
 // no need for fonts
 

@@ -119,32 +119,40 @@
 
 /* --------- Mission Section --------- */
 .container_mission {
-  display: flex;
-  flex-wrap: wrap;
   width: 100%;
-  height: auto;
+  padding: 5.5rem 2rem;
 
-  .rightSection {
-    flex: 1 1 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 5.5rem 2rem;
-    text-align: center;
-    box-sizing: border-box;
-    min-height: 10vh;
-    background-color: white;
-    color: $text-color;
-    max-width: 800px;
+  .missionGrid {
+    max-width: 1100px;
     margin: 0 auto;
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    gap: 3.5rem;
+    align-items: center;
+
+    @media (max-width: 845px) {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      text-align: center;
+    }
   }
 
-  .rightHeading {
+  .missionIntro {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.75rem;
+
+    @media (max-width: 845px) {
+      align-items: center;
+    }
+  }
+
+  .missionHeading {
     font-family: var(--font-cinzel-decorative), serif;
     font-weight: $h1-weight;
     font-size: $h1-size;
-    margin-bottom: 1.5rem;
+    margin: 0;
     color: $stemm-deep-blue;
     letter-spacing: 0.03em;
 
@@ -153,16 +161,32 @@
       display: block;
       width: 56px;
       height: 3px;
-      margin: 1rem auto 0;
+      margin: 1rem 0 0;
       border-radius: 2px;
       background: linear-gradient(90deg, $stemm-blue, $isoc-gold);
+
+      @media (max-width: 845px) {
+        margin: 1rem auto 0;
+      }
     }
   }
 
-  .rightText {
-    font-size: $text-size;
-    margin-bottom: 2rem;
-    line-height: 1.6;
+  .missionBody {
+    p {
+      font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+      line-height: 1.85;
+      color: $text-color;
+      margin: 0;
+      padding-left: 2rem;
+      border-left: 3px solid rgba($isoc-gold, 0.55);
+
+      @media (max-width: 845px) {
+        padding-left: 0;
+        border-left: none;
+        padding-top: 1.5rem;
+        border-top: 3px solid rgba($isoc-gold, 0.55);
+      }
+    }
   }
 }
 
@@ -526,15 +550,29 @@
 
   .statsContainer {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     flex-wrap: wrap;
-    gap: 2rem;
+    gap: 1.5rem;
+    max-width: 1150px;
+    margin: 0 auto;
   }
 
   .stat {
-    flex: 1 1 200px;
-    max-width: 250px;
+    flex: 1 1 220px;
+    max-width: 265px;
     text-align: center;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 18px;
+    padding: 2rem 1.5rem;
+    backdrop-filter: blur(6px);
+    transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+
+    &:hover {
+      transform: translateY(-6px);
+      background: rgba(255, 255, 255, 0.11);
+      border-color: rgba($isoc-gold-light, 0.5);
+    }
 
     .number {
       font-size: $h1-size;
@@ -595,52 +633,65 @@
   .socialMediaContainer {
     display: flex;
     justify-content: center;
-    gap: 4rem;
+    gap: 1.5rem;
     flex-wrap: wrap;
   }
 
   .socialMediaBox {
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    background-color: white;
+    gap: 0.9rem;
+    padding: 0.8rem 1.9rem 0.8rem 1rem;
+    border-radius: 999px;
+    background-color: $surface-card;
     border: 1px solid rgba($stemm-deep-blue, 0.12);
+    text-decoration: none;
     transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-    box-shadow: 0 6px 18px rgba($stemm-deep-blue, 0.12);
+    box-shadow: 0 6px 18px rgba($stemm-deep-blue, 0.1);
 
     &:hover {
-      transform: translateY(-6px);
-      border-color: rgba($stemm-blue, 0.5);
-      box-shadow: 0 14px 30px rgba($stemm-deep-blue, 0.2);
+      transform: translateY(-5px);
+      border-color: rgba($isoc-gold, 0.6);
+      box-shadow: 0 14px 30px rgba($stemm-deep-blue, 0.18);
     }
   }
 
   .iconBackground {
-    width: 100%;
-    height: 100%;
+    width: 52px;
+    height: 52px;
+    flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
+    background-color: rgba($stemm-blue, 0.08);
   }
 
   .icon {
-    width: 120%;
-    height: 120%;
+    width: 60%;
+    height: 60%;
     object-fit: contain;
+  }
+
+  .socialLabel {
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: $stemm-deep-blue;
+    letter-spacing: 0.01em;
   }
 
   @media (max-width: 600px) {
     .socialMediaContainer {
-      gap: 2rem;
+      gap: 1rem;
     }
 
     .socialMediaBox {
-      width: 100px;
-      height: 100px;
+      padding: 0.6rem 1.4rem 0.6rem 0.8rem;
+
+      .iconBackground {
+        width: 44px;
+        height: 44px;
+      }
     }
   }
 }
@@ -649,77 +700,127 @@
 /* --------- Prayer Location --------- */
 .container_directions {
   display: grid;
-  grid-template-columns: 1fr 1.5fr;
-  align-items: center;
-  height: 88vh;
-  min-height: 600px;
+  grid-template-columns: 1fr 1.2fr;
+  align-items: stretch;
+  max-width: 1150px;
+  margin: 1rem auto 5rem;
+  background: $surface-card;
+  border: 1px solid rgba($stemm-deep-blue, 0.08);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba($stemm-deep-blue, 0.12);
+
+  @media (max-width: 845px) {
+    grid-template-columns: 1fr;
+    margin: 1rem 1rem 3.5rem;
+  }
 
   .container_image {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+
+    a {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
 
     .img {
-      width: 29vw;
-      height: 27vw;
-      outline: 4px $stemm-blue solid;
-      outline-offset: 10px;
-      border-radius: 20px;
-      box-shadow: 0 12px 30px rgba(6, 95, 70, 0.15);
+      width: 100%;
+      height: 100%;
+      min-height: 320px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+
+      &:hover {
+        transform: scale(1.03);
+      }
     }
   }
 
   .container_arrange_info {
     display: flex;
-    padding-right: 1vw;
     align-items: center;
   }
 
   .container_info {
-    padding: 10px 20px 0 20px;
+    padding: clamp(1.75rem, 4vw, 3.25rem);
     display: flex;
     flex-direction: column;
-    row-gap: clamp(10px, 2vh, 15px);
-    text-align: right;
-
-    .heading {
-      font-weight: 400;
-      font-size: clamp(24px, 3vw, 64px);
-    }
+    row-gap: clamp(10px, 2vh, 16px);
+    text-align: left;
 
     .subheading {
       font-weight: 700;
-      font-size: clamp(20px, 2vw, 44px);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: $isoc-gold;
+      margin: 0;
+    }
+
+    .heading {
+      font-family: var(--font-cinzel-decorative), serif;
+      font-weight: 700;
+      font-size: clamp(1.6rem, 2.6vw, 2.4rem);
+      color: $stemm-deep-blue;
+      margin: 0;
+
+      &::after {
+        content: '';
+        display: block;
+        width: 48px;
+        height: 3px;
+        margin-top: 0.75rem;
+        border-radius: 2px;
+        background: linear-gradient(90deg, $stemm-blue, $isoc-gold);
+      }
     }
 
     .info_text {
-      margin: 0 1vw 0 0;
-      font-size: clamp(16px, 1.3vw, 34px);
+      margin: 0;
+      font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+      line-height: 1.7;
+      color: $text-color;
+
+      p {
+        margin: 0 0 0.6rem;
+      }
     }
 
     a {
-      color: rgb(22, 87, 171);
+      color: $stemm-blue;
       text-decoration: underline;
-      transition: all 0.1s ease-in-out;
+      text-underline-offset: 3px;
+      transition: color 0.15s ease-in-out;
 
       &:hover {
-        color: rgb(145, 38, 227);
+        color: $isoc-gold;
       }
     }
 
     .links {
-      margin-top: 5px;
+      margin-top: 0.75rem;
       display: flex;
 
       .redirectButton {
+        display: inline-block;
+        padding: 0.8rem 1.9rem;
+        border-radius: 999px;
+        background-image: linear-gradient(120deg, $stemm-blue, $stemm-darker-blue);
         color: white;
-        width: 40%;
+        font-weight: 700;
+        font-size: 0.9rem;
+        letter-spacing: 0.06em;
         text-decoration: none;
-        margin-left: auto;
+        box-shadow: 0 4px 14px rgba($stemm-deep-blue, 0.3);
+        transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
 
         &:hover {
-          color: $stemm-blue;
-          background-color: white;
+          color: white;
+          transform: translateY(-2px);
+          box-shadow: 0 8px 22px rgba($stemm-deep-blue, 0.4);
+          filter: brightness(1.1);
         }
       }
     }
@@ -738,24 +839,6 @@
       opacity: 1;
       transform: translateY(0);
       visibility: visible;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .container_mission {
-        height: 50vh;
-        flex-wrap: nowrap; 
-    
-        .leftSection,
-        .rightSection {
-          flex: 1 1 50%; 
-          min-height: 100%; 
-          padding: 2rem; 
-        }
-  
-      .leftList {
-        text-align: left;
-      }
     }
   }
 

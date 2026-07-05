@@ -14,7 +14,7 @@ export default function SocialMedia() {
         },
         {
             icon: "home-images/linktree-logo.svg",
-            label: "Custom",
+            label: "Linktree",
             link: "https://linktr.ee/stemmuslims",
         },
     ];
@@ -37,6 +37,7 @@ export default function SocialMedia() {
                         <div className={styles.iconBackground}>
                             <img src={icon} alt={label} className={styles.icon} />
                         </div>
+                        <span className={styles.socialLabel}>{label}</span>
                     </a>
                 ))}
             </div>

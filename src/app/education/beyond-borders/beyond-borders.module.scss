@@ -25,7 +25,7 @@
     left: 0;
     width: 100%;
     height: 100px;
-    background: linear-gradient(to top, white, transparent);
+    background: linear-gradient(to top, #faf8f3, transparent);
   }
   
   .heroContent {
@@ -100,7 +100,7 @@
 // Poster Section
 .posterSection {
   padding: 5rem 0;
-  background-color: #f9f9f9;
+  background-color: #f4efe6;
   
   .posterContainer {
     max-width: 1200px;
@@ -147,7 +147,7 @@
           display: block;
           width: 60px;
           height: 3px;
-          background-color: $stemm-lighter-blue;
+          background-color: $isoc-gold;
           margin-top: 0.5rem;
         }
       }
@@ -228,7 +228,7 @@
   }
   
   &:nth-child(even) {
-    background-color: #f9f9f9;
+    background-color: #f4efe6;
   }
   
   .container {
@@ -257,7 +257,7 @@
       display: block;
       width: 60px;
       height: 3px;
-      background-color: $stemm-lighter-blue;
+      background-color: $isoc-gold;
       margin-top: 0.5rem;
     }
   }
@@ -392,7 +392,7 @@
 
 // Kuramaa Section
 .kuramaaSection {
-  background-color: #f5f5f5;
+  background-color: #f4efe6;
   
   .kuramaaTagline {
     font-size: 1.3rem;
@@ -474,7 +474,7 @@
       &::before, &::after {
         content: '"';
         font-size: 1.5rem;
-        color: $stemm-lighter-blue;
+        color: $isoc-gold;
       }
     }
     
@@ -598,7 +598,7 @@
   }
   
   .volunteerBenefits {
-    background-color: #f5f5f5;
+    background-color: #f4efe6;
     border-radius: 10px;
     padding: 1.5rem;
     margin: 1.5rem 0;
@@ -707,7 +707,7 @@
 
 // Contact Section
 .contactSection {
-  background-color: #f9f9f9;
+  background-color: #f4efe6;
   padding: 5rem 0;
   text-align: center;
   
@@ -730,7 +730,7 @@
         display: block;
         width: 60px;
         height: 3px;
-        background-color: $stemm-lighter-blue;
+        background-color: $isoc-gold;
         margin: 0.5rem auto 0;
       }
     }
@@ -803,7 +803,7 @@
         &::before, &::after {
           content: '"';
           font-size: 2rem;
-          color: $stemm-lighter-blue;
+          color: $isoc-gold;
           position: absolute;
         }
         
@@ -883,7 +883,7 @@
         display: block;
         width: 60px;
         height: 3px;
-        background-color: $stemm-lighter-blue;
+        background-color: $isoc-gold;
         margin: 0.5rem auto 0;
       }
     }

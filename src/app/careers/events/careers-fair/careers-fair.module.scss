@@ -56,7 +56,7 @@
       left: 0;
       width: 100%;
       height: 100px;
-      background: linear-gradient(to top, white, transparent);
+      background: linear-gradient(to top, #faf8f3, transparent);
     }
     
     .heroContent {
@@ -78,7 +78,7 @@
         text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
         
         &:first-of-type {
-          color: $stemm-lighter-blue;
+          color: $isoc-gold-light;
           font-weight: bold;
         }
       }
@@ -103,14 +103,14 @@
       display: block;
       width: 80px;
       height: 4px;
-      background-color: $stemm-lighter-blue;
+      background-color: $isoc-gold-light;
       margin: 15px auto 0;
       border-radius: 2px;
     }
   }
   
   .countdown {
-    background-color: #f8f9fa;
+    background-color: #f4efe6;
     position: relative;
     
     &::before, &::after {
@@ -253,7 +253,7 @@
   }
   
   .employers {
-    background-color: #f8f9fa;
+    background-color: #f4efe6;
     text-align: center;
     
     p {
@@ -456,7 +456,7 @@
 
 .partners {
   padding: 5rem 0;
-  background: linear-gradient(to bottom, #f8f9fa, white);
+  background: linear-gradient(to bottom, #f4efe6, #faf8f3);
   
   .container {
     overflow: hidden;
@@ -481,12 +481,12 @@
     
     &::before {
       left: 0;
-      background: linear-gradient(to right, white, transparent);
+      background: linear-gradient(to right, #faf8f3, transparent);
     }
     
     &::after {
       right: 0;
-      background: linear-gradient(to left, white, transparent);
+      background: linear-gradient(to left, #faf8f3, transparent);
     }
   }
 

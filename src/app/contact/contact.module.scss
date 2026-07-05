@@ -1,185 +1,246 @@
 @import "../../styles/globals.module.scss";
-@import "../home/home.module.scss";
-
-
 
 .containerContact {
-    background: none;
+  width: 100%;
+  padding-bottom: 4rem;
 }
 
+/* ---------- Hero banner ---------- */
 .contactBackground {
-    @extend .container_intro;
-    background-image: url('/home-images/geometric-background.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    padding-bottom: 2rem;
+  position: relative;
+  width: 100%;
+  padding: 7rem 1.5rem 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: $stemm-deep-blue;
+  background-image:
+    linear-gradient(150deg, rgba($stemm-deep-blue, 0.95), rgba($stemm-darker-blue, 0.88) 60%, rgba($stemm-blue, 0.82)),
+    url("/home-images/geometric-background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-bottom: 2px solid rgba($isoc-gold, 0.55);
 }
 
 .headerBanner {
-    @extend .overlay;
-    padding: 2rem;
-    border-radius: 12px;
+  max-width: 700px;
 }
+
 .header {
-    @extend .heading;
+  font-family: var(--font-cinzel-decorative), serif;
+  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  color: white;
+  margin: 0;
+  letter-spacing: 0.03em;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.3);
 }
+
 .subheader {
-    @extend .subheading;
-}
-.whiteSection {
-    @extend .container_mission;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 12px;
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto;
-    max-height: 350px; /* Set a maximum height */
-    overflow: auto; /* Prevent content overflow */
-    margin: 0 auto;
-    box-sizing: border-box;
-    overflow: visible;
-}
-.message {
-    @extend .rightText;
-    font-size: 1.2rem;
-    color: #333;
-    margin-bottom: 2rem;
-}
-.socialIcons {
-    @extend .socialMediaContainer;
-    justify-content: center;
-    gap: 2rem;
-}
-.socialIcons img {
-    @extend .icon;
-    width: 80px;
-    height: 80px;
-    transition: transform 0.3s ease;
+  font-size: clamp(1rem, 2.2vw, 1.3rem);
+  color: rgba(255, 255, 255, 0.88);
+  margin: 0.9rem 0 0;
+  font-weight: 300;
+  letter-spacing: 0.03em;
 
-    &:hover {
-        transform: scale(1.2);
-    }
+  &::after {
+    content: '';
+    display: block;
+    width: 64px;
+    height: 3px;
+    margin: 1.25rem auto 0;
+    border-radius: 2px;
+    background: linear-gradient(90deg, $stemm-lighter-blue, $isoc-gold-light);
+  }
 }
-.emailsect {
-    @extend .container_socialMedia;
-    margin-top: 2rem;
-}
-.emailButton {
-    padding: 0.75rem 1.5rem;
-    background: $stemm-blue;
-    color: white;
-    border: 1px solid white; /* Thin outer border */
-    border-radius: 25px;
-    font-weight: 500;
-    cursor: pointer;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    position: relative;
 
-    &::before {
-        content: "";
-        position: absolute;
-        top: -6px;
-        left: -6px;
-        right: -6px;
-        bottom: -6px;
-        border: 1px solid white; /* Thin second ring */
-        border-radius: 30px;
-        z-index: -1;
-    }
-
-    &:hover {
-        background: $stemm-lighter-blue;
-        box-shadow: 0 4px 12px rgba($stemm-blue, 0.2);
-        transform: translateY(-2px); /* Sleek hover effect */
-    }
-
-    @media (max-width: 480px) {
-        padding: 0.5rem 1rem;
-        font-size: 0.9rem;
-    }
-}
-.footerLink {
-    @extend .newsletter;
-    margin-top: 2rem;
-}
-.footerLink a {
-    @extend .newsletterLink;
-}
+/* ---------- Feedback buttons (in hero) ---------- */
 .feedbackButtons {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
 }
 
 .feedbackButton {
-    padding: 0.75rem 1.5rem;
-    background: $stemm-blue;
-    color: white;
-    border: 1px solid white; /* Thin outer border */
-    border-radius: 25px;
-    font-weight: 500;
-    cursor: pointer;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    position: relative;
+  padding: 0.75rem 1.6rem;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.2s ease, background 0.2s ease;
 
-    &::before {
-        content: "";
-        position: absolute;
-        top: -6px;
-        left: -6px;
-        right: -6px;
-        bottom: -6px;
-        border: 1px solid white; /* Thin second ring */
-        border-radius: 30px;
-        z-index: -1;
-    }
-
-    &:hover {
-        background: $stemm-lighter-blue;
-        box-shadow: 0 4px 12px rgba($stemm-blue, 0.2);
-        transform: translateY(-2px);
-    }
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+  }
 }
 
+/* ---------- Get in Touch card ---------- */
+.whiteSection {
+  max-width: 720px;
+  margin: -2.5rem auto 0;
+  position: relative;
+  z-index: 1;
+  background: $surface-card;
+  border: 1px solid rgba($stemm-deep-blue, 0.08);
+  border-radius: 20px;
+  padding: 2.75rem 2rem;
+  text-align: center;
+  box-shadow: 0 16px 40px rgba($stemm-deep-blue, 0.12);
 
-@media (max-width: 768px) {
-    .containerContact {
-        padding: 3rem 0rem;
-    }
+  @media (max-width: 600px) {
+    margin: -2rem 1rem 0;
+    padding: 2rem 1.25rem;
+  }
+}
 
-    .contactBackground {
-        text-align: center;
-    }
+.cardHeading {
+  font-family: var(--font-cinzel-decorative), serif;
+  font-weight: 700;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: $stemm-deep-blue;
+  margin: 0 0 1rem;
 
-    .headerBanner {
-        margin-bottom: 1rem;
-    }
+  &::after {
+    content: '';
+    display: block;
+    width: 48px;
+    height: 3px;
+    margin: 0.85rem auto 0;
+    border-radius: 2px;
+    background: linear-gradient(90deg, $stemm-blue, $isoc-gold);
+  }
+}
 
-    .whiteSection {
-        padding: 1rem;
-    }
+.message {
+  font-size: clamp(1rem, 1.3vw, 1.15rem);
+  line-height: 1.7;
+  color: $text-color;
+  margin: 0 auto 1.75rem;
+  max-width: 520px;
+}
 
-    .emailsect {
-        margin: 1rem 0;
-    }
+.buttonRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
 
-    .feedbackButtons {
-        flex-direction: column;
-        gap: 2.5rem;
-    }
+.emailButton {
+  display: inline-block;
+  padding: 0.85rem 1.75rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
 
-    .socialIcons {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 1rem;
-    }
+/* solid emerald primary */
+.emailPrimary {
+  background-image: linear-gradient(120deg, $stemm-blue, $stemm-darker-blue);
+  color: white;
+  box-shadow: 0 4px 14px rgba($stemm-deep-blue, 0.3);
 
-    .socialMediaBox {
-        width: 50px;
-        height: 50px;
-    }
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba($stemm-deep-blue, 0.4);
+    filter: brightness(1.1);
+  }
+}
+
+/* outlined secondary */
+.emailSecondary {
+  background: transparent;
+  color: $stemm-darker-blue;
+  border: 2px solid rgba($stemm-blue, 0.5);
+
+  &:hover {
+    transform: translateY(-2px);
+    border-color: $stemm-blue;
+    background: rgba($stemm-blue, 0.06);
+  }
+}
+
+/* ---------- Our Socials ---------- */
+.socialSection {
+  text-align: center;
+  padding: 3.5rem 1.5rem 0;
+}
+
+.sectionHeading {
+  font-family: var(--font-cinzel-decorative), serif;
+  font-weight: 700;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: $stemm-deep-blue;
+  margin: 0 0 2rem;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 48px;
+    height: 3px;
+    margin: 0.85rem auto 0;
+    border-radius: 2px;
+    background: linear-gradient(90deg, $stemm-blue, $isoc-gold);
+  }
+}
+
+.socialIcons {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.socialLink {
+  text-decoration: none;
+}
+
+.socialMediaBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background-color: $surface-card;
+  border: 1px solid rgba($stemm-deep-blue, 0.12);
+  box-shadow: 0 8px 20px rgba($stemm-deep-blue, 0.1);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+
+  &:hover {
+    transform: translateY(-6px);
+    border-color: rgba($isoc-gold, 0.6);
+    box-shadow: 0 16px 32px rgba($stemm-deep-blue, 0.18);
+  }
+}
+
+.icon {
+  width: 46px;
+  height: 46px;
+  object-fit: contain;
+}
+
+@media (max-width: 480px) {
+  .socialMediaBox {
+    width: 72px;
+    height: 72px;
+  }
+
+  .icon {
+    width: 40px;
+    height: 40px;
+  }
 }

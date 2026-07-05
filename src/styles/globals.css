@@ -9,16 +9,38 @@
   --stemm-deep-blue: #064e3b;
   --isoc-gold: #b08d4a;
   --isoc-gold-light: #cdb178;
+  --surface: #faf8f3;
+  --text-main: #2e3733;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* clip (not hidden) prevents sideways scroll without breaking position: sticky */
+  overflow-x: clip;
 }
 
 body {
-  @apply bg-white text-gray-800;
+  margin: 0;
+  max-width: 100%;
+  overflow-x: clip;
+  background-color: var(--surface);
+  color: var(--text-main);
+}
+
+/* media should never force the page wider than its column */
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
 }
 
 ::selection {
