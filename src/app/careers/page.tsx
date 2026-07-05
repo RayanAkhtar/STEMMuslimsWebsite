@@ -12,24 +12,24 @@ interface ChartDataPoint {
 }
 
 const povertyData: ChartDataPoint[] = [
-  { name: 'Muslim', value: 50, fill: '#00A896' },
-  { name: 'Sikh', value: 27, fill: '#6a928d' },
-  { name: 'Hindu', value: 22, fill: '#6a928d' },
-  { name: 'Other', value: 20, fill: '#6a928d' },
-  { name: 'Catholic', value: 19, fill: '#6a928d' },
-  { name: 'No religion', value: 18, fill: '#6a928d' },
-  { name: 'Buddhist', value: 17, fill: '#6a928d' },
-  { name: 'Christian', value: 16, fill: '#6a928d' },
-  { name: 'Anglican', value: 14, fill: '#6a928d' },
+  { name: 'Muslim', value: 50, fill: '#047857' },
+  { name: 'Sikh', value: 27, fill: '#b8c7c1' },
+  { name: 'Hindu', value: 22, fill: '#b8c7c1' },
+  { name: 'Other', value: 20, fill: '#b8c7c1' },
+  { name: 'Catholic', value: 19, fill: '#b8c7c1' },
+  { name: 'No religion', value: 18, fill: '#b8c7c1' },
+  { name: 'Buddhist', value: 17, fill: '#b8c7c1' },
+  { name: 'Christian', value: 16, fill: '#b8c7c1' },
+  { name: 'Anglican', value: 14, fill: '#b8c7c1' },
 ].sort((a, b) => b.value - a.value); // Sort by value descending
 
 const wealthData: ChartDataPoint[] = [
-  { name: 'Jewish', value: 312500, fill: '#6a928d' },
-  { name: 'Hindu', value: 277400, fill: '#6a928d' },
-  { name: 'Christian', value: 164000, fill: '#6a928d' },
-  { name: 'No religion', value: 160300, fill: '#6a928d' },
-  { name: 'Any other', value: 67200, fill: '#6a928d' },
-  { name: 'Muslim', value: 20500, fill: '#00A896' },
+  { name: 'Jewish', value: 312500, fill: '#b8c7c1' },
+  { name: 'Hindu', value: 277400, fill: '#b8c7c1' },
+  { name: 'Christian', value: 164000, fill: '#b8c7c1' },
+  { name: 'No religion', value: 160300, fill: '#b8c7c1' },
+  { name: 'Any other', value: 67200, fill: '#b8c7c1' },
+  { name: 'Muslim', value: 20500, fill: '#047857' },
 ].sort((a, b) => b.value - a.value); // Sort by value descending
 
 const CustomTooltip = ({ active, payload, label }: any) => {

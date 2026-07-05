@@ -1,9 +1,27 @@
 
 /* Custom styles */
+:root {
+  /* Brand palette — kept in sync with globals.module.scss */
+  --stemm-blue: #047857;
+  --stemm-light-blue: #059669;
+  --stemm-lighter-blue: #10b981;
+  --stemm-darker-blue: #065f46;
+  --stemm-deep-blue: #064e3b;
+  --isoc-gold: #b08d4a;
+  --isoc-gold-light: #cdb178;
+}
+
 html {
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
   @apply bg-white text-gray-800;
-} 
+}
+
+::selection {
+  background-color: var(--stemm-blue);
+  color: #ffffff;
+}
