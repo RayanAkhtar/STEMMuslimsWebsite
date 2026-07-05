@@ -1,30 +1,33 @@
-@import "./globals.module.scss"; 
+@import "./globals.module.scss";
 
 .button {
-
-    
     max-width: 1200px;
-    padding: 20px 50px;
-    border-radius: 50px;
+    padding: 0.9rem 2.25rem;
+    border-radius: 999px;
     background-color: $stemm-blue;
+    background-image: linear-gradient(120deg, $stemm-blue, $stemm-darker-blue);
     color: white;
     cursor: pointer;
-    font-size: clamp(20px, 1.6vw, 34px);
-    font-weight: bolder;
-    border: .1rem solid $stemm-blue;
-    transition: background-color 0.2s;
+    font-size: clamp(16px, 1.1vw, 20px);
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    border: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
     text-align: center;
 
-
     text-decoration: none;
-    box-shadow: inset 0 0 0 8px white; // Inner border
+    box-shadow: 0 4px 14px rgba(6, 78, 59, 0.3);
 
     &:hover {
-        background-color: $background-color;
-        color: $stemm-blue;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 22px rgba(6, 78, 59, 0.4);
+        filter: brightness(1.1);
     }
 
-    
+    &:active {
+        transform: translateY(0);
+        box-shadow: 0 3px 10px rgba(6, 78, 59, 0.3);
+    }
 }
 
 // do we need other variants?

@@ -7,7 +7,9 @@
       "PowerShell(npm update)",
       "PowerShell(npm audit 2>&1)",
       "PowerShell(npm update next axios framer-motion sass bootstrap prettier postcss autoprefixer recharts react-responsive-masonry \"@headlessui/react\" react-player \"@types/node\" \"@types/react\" \"@types/react-dom\" \"@types/react-responsive-masonry\" \"@fortawesome/fontawesome-svg-core\" \"@fortawesome/free-brands-svg-icons\" \"@fortawesome/free-solid-svg-icons\")",
-      "PowerShell(npm run build 2>&1)"
+      "PowerShell(npm run build 2>&1)",
+      "Bash(npm run *)",
+      "PowerShell(Get-Process node -ErrorAction SilentlyContinue)"
     ]
   }
 }
