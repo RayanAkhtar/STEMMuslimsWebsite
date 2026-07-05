@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import styles from "./home.module.scss";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
 import Image from "next/image";
 
 type EventItem = {
@@ -74,7 +74,7 @@ export default function Carousel({ events }: { events: EventItem[] }) {
     };
 
     // Variants for animations
-    const slideVariants = {
+    const slideVariants: Variants = {
         enter: (direction: number) => ({
             x: direction > 0 ? 1000 : -1000,
             opacity: 0,
