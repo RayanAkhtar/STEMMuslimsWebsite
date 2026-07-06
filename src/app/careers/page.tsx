@@ -12,7 +12,7 @@ interface ChartDataPoint {
 }
 
 const povertyData: ChartDataPoint[] = [
-  { name: 'Muslim', value: 50, fill: '#047857' },
+  { name: 'Muslim', value: 50, fill: '#048560' },
   { name: 'Sikh', value: 27, fill: '#b8c7c1' },
   { name: 'Hindu', value: 22, fill: '#b8c7c1' },
   { name: 'Other', value: 20, fill: '#b8c7c1' },
@@ -29,7 +29,7 @@ const wealthData: ChartDataPoint[] = [
   { name: 'Christian', value: 164000, fill: '#b8c7c1' },
   { name: 'No religion', value: 160300, fill: '#b8c7c1' },
   { name: 'Any other', value: 67200, fill: '#b8c7c1' },
-  { name: 'Muslim', value: 20500, fill: '#047857' },
+  { name: 'Muslim', value: 20500, fill: '#048560' },
 ].sort((a, b) => b.value - a.value); // Sort by value descending
 
 const CustomTooltip = ({ active, payload, label }: any) => {

@@ -36,7 +36,7 @@
   width: 100%;
   overflow-x: hidden;
   .hero {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
                       linear-gradient(rgba(0, 168, 150, 0.2), rgba(0, 168, 150, 0.2)),
                       url('/careers/careersfair.jpg');
     background-size: cover;
@@ -355,7 +355,7 @@
         transition: all 0.3s ease;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         animation: pulse 2s infinite;
-        
+
         &:hover {
           background-color: $stemm-darker-blue;
           transform: translateY(-3px);
