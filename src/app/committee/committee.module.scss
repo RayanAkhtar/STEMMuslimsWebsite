@@ -243,6 +243,18 @@
     align-items: stretch;
   }
 
+  /* flex-wrap variant so an incomplete last row stays centred */
+  .centered_members {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .member {
+      width: 265px;
+      max-width: 100%;
+    }
+  }
+
   /* ---------- Member card ---------- */
   .member {
     box-sizing: border-box;

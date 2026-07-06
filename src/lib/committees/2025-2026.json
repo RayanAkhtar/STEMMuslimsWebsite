@@ -162,6 +162,76 @@
         "year": "3rd",
         "email": "zainab.bangee23@imperial.ac.uk",
         "LinkedIn": "https://www.linkedin.com/in/zainabbangee"
+    },
+    "Ziyad Malik": {
+        "role": "Haqqathon Head",
+        "course": "MEng Materials Science and Engineering",
+        "year": "2nd",
+        "email": "zm624@ic.ac.uk",
+        "LinkedIn": "https://www.linkedin.com/in/ziyadmalik/"
+    },
+    "Ishmal Hussain": {
+        "role": "Haqqathon Team",
+        "course": "BSc Medical Bioscience",
+        "year": "2nd",
+        "email": "ifh24@ic.ac.uk",
+        "LinkedIn": "https://www.linkedin.com/in/ishmal-hussain-9b58a8382/"
+    },
+    "Ruhan": {
+        "role": "Haqqathon Team",
+        "course": "MSci Maths",
+        "year": "3rd",
+        "email": "rm1023@ic.ac.uk",
+        "LinkedIn": "https://www.linkedin.com/in/ruhan-mannan-1b772b248/"
+    },
+    "Aydin Aslam-Denn": {
+        "role": "Fresher Rep",
+        "course": "Materials Science and Engineering",
+        "year": "1st",
+        "email": "aa8725@ic.ac.uk",
+        "LinkedIn": "https://www.linkedin.com/in/ayd%C4%B1n-a-1b6043270/"
+    },
+    "Ayan Butt": {
+        "role": "Fresher Rep",
+        "course": "Economics, Finance and Data Science",
+        "year": "1st",
+        "email": "aab525@ic.ac.uk",
+        "LinkedIn": "https://www.linkedin.com/in/ayanbutt/"
+    },
+    "Javeria Saeed": {
+        "role": "Fresher Rep",
+        "course": "Materials",
+        "year": "1st",
+        "email": "js4625@ic.ac.uk",
+        "LinkedIn": "https://www.linkedin.com/in/javeria-saeed-317376237/"
+    },
+    "Adham Hegazy": {
+        "role": "Fresher Rep",
+        "course": "Electrical and Electronic Engineering",
+        "year": "1st",
+        "email": "ah5725@ic.ac.uk",
+        "LinkedIn": "https://www.linkedin.com/in/adham-hegazy-028867315/"
+    },
+    "Zakariyah Bello": {
+        "role": "Fresher Rep",
+        "course": "Computing",
+        "year": "1st",
+        "email": "zab25@ic.ac.uk",
+        "LinkedIn": "https://www.linkedin.com/in/zakariyah-bello/"
+    },
+    "Yusra Ali": {
+        "role": "Fresher Rep",
+        "course": "Design Engineering",
+        "year": "1st",
+        "email": "yaa625@ic.ac.uk",
+        "LinkedIn": "https://www.linkedin.com/in/yusra-ali-565b092b0/"
+    },
+    "Uthman Arslan Zakiuddin": {
+        "role": "Fresher Rep",
+        "course": "Design Engineering",
+        "year": "1st",
+        "email": "uz25@ic.ac.uk",
+        "LinkedIn": "https://www.linkedin.com/in/mohammed-zakiuddin-stemm/"
     }
   }
 }

@@ -53,6 +53,7 @@ const sections = [
     { id: "events", title: "Events Team" },
     { id: "academic", title: "Academic Team" },
     { id: "how", title: "House of Wisdom" },
+    { id: "haqqathon", title: "Haqqathon Team" },
     { id: "freshers", title: "Fresher Representatives" }
 ];
 
@@ -143,6 +144,7 @@ const CommitteePage: React.FC = () => {
         return (role.includes('careers') || role.includes('career')) && !role.includes('vice president');
     });
     const generalCommittee = Object.entries(members).filter(([_, details]) => details.role.includes("General"));
+    const haqqathonTeam = Object.entries(members).filter(([_, details]) => details.role.includes("Haqqathon"));
     const fresherReps = Object.entries(members).filter(([_, details]) => details.role.includes("Fresher"));
 
     // Map section ids to their entries so we can hide empty sections
@@ -160,6 +162,7 @@ const CommitteePage: React.FC = () => {
         treasury: treasuryTeam,
         tech: techTeam,
         general: generalCommittee,
+        haqqathon: haqqathonTeam,
         freshers: fresherReps,
     };
 
@@ -285,7 +288,7 @@ const CommitteePage: React.FC = () => {
                                         className={styles.section}
                                     >
                                         <h2 className={styles.section_title}>{section.title}</h2>
-                                        <div className={isLeadership ? styles.committee_head : styles.committee_members}>
+                                        <div className={isLeadership ? styles.committee_head : `${styles.committee_members} ${section.id === 'freshers' ? styles.centered_members : ''}`}>
                                             {entries.map(([name, details]) => (
                                                 <MemberCard
                                                     key={name}
