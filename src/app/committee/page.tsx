@@ -37,7 +37,7 @@ interface LinkedInButtonProps {
     linkedin: string;
 }
 
-// Define sections for navigation (display order)
+// Define sections (display order)
 const sections = [
     { id: "leadership", title: "Leadership" },
     { id: "vice-presidents", title: "Vice Presidents" },
@@ -118,7 +118,9 @@ const CommitteePage: React.FC = () => {
     const members = (committeeData && committeeData.members) ? committeeData.members : {} as PeopleDetails;
     const [activeSection, setActiveSection] = useState("leadership");
     const sectionRefs = useRef<{[key: string]: HTMLDivElement | null}>({});
-    
+    const pillRefs = useRef<{[key: string]: HTMLButtonElement | null}>({});
+
+
     // Group members by their roles
     const vicePresidents = Object.entries(members).filter(([_, details]) => details.role.includes("Vice President"));
     const secretaries = Object.entries(members).filter(([_, details]) => details.role.includes("Secretary"));
@@ -161,12 +163,33 @@ const CommitteePage: React.FC = () => {
         freshers: fresherReps,
     };
 
-    // Precompute which sections have members
-    const availableSections = sections.filter(s => (sectionEntries[s.id] && sectionEntries[s.id].length > 0));
+    const is2024 = selectedFile.startsWith('2024');
 
-    // Scroll event handler to update active section
+    // Year-specific title tweaks (2024-25 had a single tech lead)
+    const displaySections = is2024
+        ? sections.map(s => (s.id === 'tech' ? { ...s, title: 'Tech Lead' } : s))
+        : sections;
+
+    // Precompute which sections have members
+    const availableSections = displaySections.filter(s => (sectionEntries[s.id] && sectionEntries[s.id].length > 0));
+
+    // Small sections that share a row on desktop (per year)
+    const rowGroups: string[][] = is2024
+        ? [["secretaries", "tech"], ["how", "academic"], ["outreach", "events"]]
+        : [["secretaries", "tech"], ["careers", "education", "outreach"]];
+
+    const sectionRows: Array<typeof availableSections> = [];
+    const placed = new Set<string>();
+    for (const section of availableSections) {
+        if (placed.has(section.id)) continue;
+        const group = rowGroups.find(g => g.includes(section.id));
+        const row = group ? group.flatMap(id => availableSections.filter(s => s.id === id)) : [section];
+        row.forEach(s => placed.add(s.id));
+        sectionRows.push(row);
+    }
+
+    // Track which section is in view so the pill bar can highlight it
     useEffect(() => {
-        // If the current activeSection is not available, set it to the first available one
         if (availableSections.length > 0 && !availableSections.find(s => s.id === activeSection)) {
             setActiveSection(availableSections[0].id);
         }
@@ -192,11 +215,24 @@ const CommitteePage: React.FC = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, [availableSections, activeSection]);
 
+    // Keep the active pill visible by scrolling only the bar itself,
+    // never the window (scrollIntoView would also scroll the page)
+    useEffect(() => {
+        const pill = pillRefs.current[activeSection];
+        const bar = pill?.parentElement;
+        if (pill && bar) {
+            bar.scrollTo({
+                left: pill.offsetLeft - (bar.clientWidth - pill.clientWidth) / 2,
+                behavior: 'smooth'
+            });
+        }
+    }, [activeSection]);
+
     const scrollToSection = (id: string) => {
         const element = sectionRefs.current[id];
         if (element) {
             window.scrollTo({
-                top: element.offsetTop - 100,
+                top: element.offsetTop - 140,
                 behavior: 'smooth'
             });
         }
@@ -219,65 +255,54 @@ const CommitteePage: React.FC = () => {
                 </div>
             </div>
             
-            <div className={styles.content_wrapper}>
-                <div className={styles.side_nav}>
-                    {/* Mobile: show a select dropdown instead of the horizontal scrollable pills */}
-                    <select
-                        className={styles.mobile_select}
-                        aria-label="Navigate committee sections"
-                        value={activeSection}
-                        onChange={(e) => {
-                            const id = e.target.value;
-                            setActiveSection(id);
-                            scrollToSection(id);
-                        }}
-                    >
-                        {availableSections.map(section => (
-                            <option key={section.id} value={section.id}>{section.title}</option>
-                        ))}
-                    </select>
-
-                    <div className={styles.nav_container}>
-                        {availableSections.map(section => (
-                            <div 
-                                key={section.id}
-                                className={`${styles.nav_item} ${activeSection === section.id ? styles.active : ''}`}
-                                onClick={() => scrollToSection(section.id)}
-                            >
-                                {section.title}
-                            </div>
-                        ))}
-                    </div>
+            <div className={styles.section_nav}>
+                <div className={styles.section_nav_inner}>
+                    {availableSections.map(section => (
+                        <button
+                            key={section.id}
+                            ref={(el) => { pillRefs.current[section.id] = el }}
+                            className={`${styles.section_pill} ${activeSection === section.id ? styles.active_pill : ''}`}
+                            onClick={() => scrollToSection(section.id)}
+                        >
+                            {section.title}
+                        </button>
+                    ))}
                 </div>
-                
+            </div>
+
+            <div className={styles.content_wrapper}>
                 <div className={styles.main_content}>
-                    {availableSections.map(section => {
-                        const entries = sectionEntries[section.id] || [];
-                        const isLeadership = section.id === 'leadership';
-                        return (
-                            <div
-                                key={section.id}
-                                ref={(el) => { sectionRefs.current[section.id] = el }}
-                                id={section.id}
-                                className={styles.section}
-                            >
-                                <h2 className={styles.section_title}>{section.title}</h2>
-                                <div className={isLeadership ? styles.committee_head : styles.committee_members}>
-                                    {entries.map(([name, details]) => (
-                                        <MemberCard
-                                            key={name}
-                                            name={name}
-                                            role={details.role}
-                                            course={details.course}
-                                            year={details.year}
-                                            email={details.email}
-                                            linkedin={details.LinkedIn}
-                                        />
-                                    ))}
-                                </div>
-                            </div>
-                        );
-                    })}
+                    {sectionRows.map(row => (
+                        <div key={row[0].id} className={styles.section_row}>
+                            {row.map(section => {
+                                const entries = sectionEntries[section.id] || [];
+                                const isLeadership = section.id === 'leadership';
+                                return (
+                                    <div
+                                        key={section.id}
+                                        ref={(el) => { sectionRefs.current[section.id] = el }}
+                                        id={section.id}
+                                        className={styles.section}
+                                    >
+                                        <h2 className={styles.section_title}>{section.title}</h2>
+                                        <div className={isLeadership ? styles.committee_head : styles.committee_members}>
+                                            {entries.map(([name, details]) => (
+                                                <MemberCard
+                                                    key={name}
+                                                    name={name}
+                                                    role={details.role}
+                                                    course={details.course}
+                                                    year={details.year}
+                                                    email={details.email}
+                                                    linkedin={details.LinkedIn}
+                                                />
+                                            ))}
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    ))}
                 </div>
             </div>
         </div>

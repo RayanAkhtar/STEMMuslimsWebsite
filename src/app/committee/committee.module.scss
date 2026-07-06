@@ -1,16 +1,5 @@
 @import "../../styles/globals.module.scss";
 
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -99,6 +88,60 @@
     }
   }
 
+  /* ---------- Sticky section pill bar ---------- */
+  .section_nav {
+    position: sticky;
+    top: 66px;
+    z-index: 60;
+    width: 100%;
+    background: rgba($surface-card, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba($stemm-deep-blue, 0.08);
+    box-shadow: 0 6px 18px rgba($stemm-deep-blue, 0.06);
+
+    .section_nav_inner {
+      display: flex;
+      gap: 0.5rem;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0.65rem 1.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+
+    .section_pill {
+      flex-shrink: 0;
+      background: transparent;
+      color: #55605b;
+      border: 1px solid rgba($stemm-deep-blue, 0.14);
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.88rem;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all 0.18s ease-in-out;
+
+      &:hover {
+        background: rgba($stemm-blue, 0.08);
+        color: $stemm-darker-blue;
+        border-color: rgba($stemm-blue, 0.35);
+      }
+    }
+
+    .active_pill {
+      background-color: $stemm-blue;
+      color: white;
+      border-color: $stemm-blue;
+      box-shadow: 0 4px 12px rgba($stemm-blue, 0.3);
+    }
+  }
+
   /* ---------- Layout ---------- */
   .content_wrapper {
     display: flex;
@@ -110,62 +153,48 @@
     position: relative;
   }
 
-  /* ---------- Side navigation rail ---------- */
-  .side_nav {
-    position: sticky;
-    top: 110px;
-    height: fit-content;
-    max-height: calc(100vh - 140px);
-    width: 250px;
-    flex-shrink: 0;
-    overflow-y: auto;
-    overflow-x: hidden;
-    background: $surface-card;
-    border: 1px solid rgba($stemm-deep-blue, 0.08);
-    border-radius: 16px;
-    padding: 0.9rem;
-    box-shadow: 0 8px 24px rgba($stemm-deep-blue, 0.07);
-    animation: slideIn 0.7s ease-out forwards;
-
-    .nav_container {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .mobile_select {
-      display: none;
-    }
-
-    .nav_item {
-      padding: 9px 14px;
-      border-left: 3px solid transparent;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.18s ease;
-      font-weight: 500;
-      font-size: 0.95rem;
-      color: #55605b;
-
-      &:hover {
-        background-color: rgba($stemm-blue, 0.06);
-        color: $stemm-darker-blue;
-        transform: translateX(2px);
-      }
-
-      &.active {
-        border-left-color: $isoc-gold;
-        color: $stemm-darker-blue;
-        font-weight: 700;
-        background-color: rgba($stemm-blue, 0.08);
-      }
-    }
-  }
-
   .main_content {
     flex: 1;
     min-width: 0;
     animation: fadeInUp 0.8s ease-out;
+  }
+
+  /* ---------- Section rows (small sections share a line) ---------- */
+  .section_row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0 2.5rem;
+
+    > .section {
+      flex: 1 1 280px;
+      min-width: 0;
+    }
+
+    /* two-up rows: size each section to its cards so both
+       groups sit together near the middle of the page */
+    @media (min-width: 846px) {
+      > .section:first-child:nth-last-child(2),
+      > .section:first-child:nth-last-child(2) ~ .section {
+        flex: 0 1 auto;
+        display: flex;
+        flex-direction: column;
+
+        /* grow to the row height so cards in both sections match */
+        .committee_members {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          align-items: stretch;
+          gap: 1.5rem;
+          flex: 1;
+
+          .member {
+            width: 250px;
+          }
+        }
+      }
+    }
   }
 
   /* ---------- Sections (each section centered) ---------- */
@@ -331,52 +360,18 @@
       padding: 6rem 1rem 2.5rem;
     }
 
+    .section_nav {
+      top: 58px;
+
+      .section_nav_inner {
+        padding: 0.55rem 1rem;
+      }
+    }
+
     .content_wrapper {
       flex-direction: column;
       padding: 1.25rem 1rem 3rem;
       gap: 1.25rem;
-    }
-
-    .side_nav {
-      position: sticky;
-      top: 70px;
-      width: 100%;
-      max-height: none;
-      padding: 0.5rem;
-      z-index: 60;
-      border-radius: 999px;
-
-      .nav_container {
-        display: none;
-      }
-
-      .mobile_select {
-        display: block;
-        width: 100%;
-        height: 44px;
-        padding: 0 42px 0 16px;
-        border-radius: 999px;
-        border: 1px solid rgba($stemm-deep-blue, 0.12);
-        background-color: $surface-card;
-        color: $stemm-darker-blue;
-        font-weight: 600;
-        font-size: 0.95rem;
-        transition: border-color 0.12s ease, box-shadow 0.12s ease;
-
-        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='8' viewBox='0 0 14 8'><path fill='%23047857' d='M7 8L0 0h14z'/></svg>");
-        background-repeat: no-repeat;
-        background-position: right 16px center;
-        background-size: 14px 8px;
-
-        -webkit-appearance: none;
-        appearance: none;
-
-        &:focus {
-          outline: none;
-          border-color: $stemm-blue;
-          box-shadow: 0 6px 18px rgba($stemm-blue, 0.15);
-        }
-      }
     }
 
     .main_content {
