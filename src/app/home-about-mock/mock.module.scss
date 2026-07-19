@@ -1,0 +1,19 @@
+@import "../../styles/globals.module.scss";
+
+/* Floating badge marking this page as a throwaway mock */
+.mockBadge {
+    position: fixed;
+    bottom: 1rem;
+    left: 1rem;
+    z-index: 1100;
+    background: rgba($stemm-deep-blue, 0.92);
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 0.45rem 1rem;
+    border-radius: 999px;
+    border: 1px solid rgba($isoc-gold-light, 0.6);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+    pointer-events: none;
+}

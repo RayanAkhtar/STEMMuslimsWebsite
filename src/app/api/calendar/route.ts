@@ -1,5 +1,8 @@
 import ical from "node-ical";
-import { parse } from "path";
+
+// Cache the calendar feed for 5 minutes so repeat visits are instant
+// instead of re-fetching + re-parsing the external ICS on every request.
+export const revalidate = 300;
 
 export async function GET() {
   try {
@@ -8,13 +11,12 @@ export async function GET() {
       throw new Error("Environment variable CALENDAR_LINK is not defined.");
     }
 
-    const response = await fetch(icsUrl);
+    const response = await fetch(icsUrl, { next: { revalidate: 300 } });
     const icsText = await response.text();
 
     const parsed = ical.parseICS(icsText);
 
     // Convert parsed events to array
-    console.log(parsed);
     const now = new Date();
     const events = Object.values(parsed)
       .filter(

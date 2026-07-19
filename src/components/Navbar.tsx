@@ -24,8 +24,9 @@ const links = [
         ["Competitions", "/outreach/competitions"],
         ["Subscribe", "/outreach/subscribe"],
     ]],
-    ["Contact", "/contact"],
 ];
+
+const ctaLink = ["Contact", "/contact"] as const;
 
 export default function Navbar() {
     const [menuActive, setMenuActive] = useState(false);
@@ -90,16 +91,6 @@ export default function Navbar() {
         setExpandedSubmenu(expandedSubmenu === index ? null : index);
     };
 
-    const isActive = (route: string) => {
-        if (route === "/home" && pathname === "/") return true;
-        return pathname === route || pathname.startsWith(`${route}/`);
-    };
-
-    // Check if a dropdown item is active
-    const isDropdownActive = (items: string[][]) => {
-        return items.some(([_, route]) => isActive(route));
-    };
-
     return (
         <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`} ref={navRef}>
             <div className={styles.navbarBody}>
@@ -128,12 +119,12 @@ export default function Navbar() {
                     <span></span>
                 </button>
 
-                {/* Desktop & Mobile Menu */}
+                {/* Desktop & Mobile Menu (centered links) */}
                 <div className={`${styles.navMenu} ${menuActive ? styles.active : ""}`}>
                     {links.map(([titleName, titleRoute, dropdownItems], index) => (
                         dropdownItems === undefined ? (
 
-                            <div key={String(titleRoute)} className={`${styles.navItem} ${isActive(titleRoute as string) ? styles.active : ""}`}>
+                            <div key={String(titleRoute)} className={styles.navItem}>
                                 <Link href={titleRoute as string} className={styles.navLink}>
                                     {titleName}
                                 </Link>
@@ -141,10 +132,7 @@ export default function Navbar() {
                         ) : (
                             <div 
                                 key={String(titleRoute)} 
-
-                                className={`${styles.navItem} ${styles.hasDropdown} ${
-                                    isActive(titleRoute as string) || isDropdownActive(dropdownItems as string[][]) ? styles.active : ""
-                                }`}
+                                className={`${styles.navItem} ${styles.hasDropdown}`}
                             >
                                 <Link href={titleRoute as string} className={styles.navLink}>
                                     {titleName}
@@ -166,19 +154,35 @@ export default function Navbar() {
                                     </svg>
                                 </button>
                                 <div className={`${styles.dropdownContent} ${expandedSubmenu === index ? styles.show : ''}`}>
-                                    {(dropdownItems as string[][]).map(([itemName, itemRoute]) => (
-                                        <Link 
-                                            key={itemRoute} 
-                                            href={itemRoute} 
-                                            className={`${styles.dropdownItem} ${isActive(itemRoute) ? styles.active : ""}`}
-                                        >
-                                            {itemName}
-                                        </Link>
-                                    ))}
+                                    <div className={styles.dropdownInner}>
+                                        {(dropdownItems as string[][]).map(([itemName, itemRoute]) => (
+                                            <Link 
+                                                key={itemRoute} 
+                                                href={itemRoute} 
+                                                className={styles.dropdownItem}
+                                            >
+                                                {itemName}
+                                            </Link>
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
                         )
                     ))}
+
+                    {/* Contact CTA inside slide-in menu (mobile) */}
+                    <div className={`${styles.navItem} ${styles.contactMobile}`}>
+                        <Link href={ctaLink[1]} className={styles.navLink}>
+                            {ctaLink[0]}
+                        </Link>
+                    </div>
+                </div>
+
+                {/* Contact CTA pill (desktop) */}
+                <div className={styles.navActions}>
+                    <Link href={ctaLink[1]} className={styles.ctaButton}>
+                        {ctaLink[0]}
+                    </Link>
                 </div>
             </div>
         </nav>
