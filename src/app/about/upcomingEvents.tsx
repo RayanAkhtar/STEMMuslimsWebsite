@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import styles from "./home.module.scss";
+import styles from "./landing.module.scss";
 
 type Event = {
     start: string;

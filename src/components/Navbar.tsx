@@ -7,7 +7,6 @@ import { usePathname } from "next/navigation";
 import styles from "./Navbar.module.scss";
 
 const links = [
-    ["Home", "/home"],
     ["About", "/about"],
     ["Our Committee", "/committee"],
     ["Quarter Zip", "/quarter-zip"],
@@ -94,7 +93,7 @@ export default function Navbar() {
     return (
         <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`} ref={navRef}>
             <div className={styles.navbarBody}>
-                <Link href="/home" className={styles.logoContainer}>
+                <Link href="/about" className={styles.logoContainer}>
                     <div className={styles.logoWrapper}>
                         <Image 
                             src="/svgstemuslims.svg" 

@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { useInView } from "react-intersection-observer";
-import styles from "./home.module.scss";
+import styles from "./landing.module.scss";
 import CountUp from "react-countup";
 
 const statsData = [
