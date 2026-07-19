@@ -1,4 +1,4 @@
-import styles from "./home.module.scss";
+import styles from "./landing.module.scss";
 
 export default function SocialMedia() {
     const socialMediaLinks = [

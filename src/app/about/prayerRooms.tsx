@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import styles from "./home.module.scss";
+import styles from "./landing.module.scss";
 import Logo from "../../../public/ISoc.svg";
 import Link from "next/link";
 import { isoclink } from "@/lib/globalVariables";
@@ -48,7 +48,8 @@ export default function PrayerRoomsServer() {
             src={locations[0].imgLink || Logo}
             width={imgDimensions.width}
             height={imgDimensions.height}
-            alt="logo"
+            sizes="(max-width: 845px) 100vw, 520px"
+            alt="Map of prayer room locations in South Kensington"
           />
         </Link>
       </div>
