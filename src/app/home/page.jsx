@@ -6,7 +6,6 @@ import Stats from './stats.tsx';
 import SocialMedia from './socialMedia.tsx';
 import PrayerRoomsServer from './prayerRooms';
 import UpcomingEvents from './upcomingEvents.tsx';
-export const dynamic = 'force-dynamic';
 export default function HomePage() {
     return (
         <div>

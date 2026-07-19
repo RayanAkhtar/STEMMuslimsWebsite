@@ -24,15 +24,18 @@ function formatDateWithSuffix(date: Date): string {
 
 export default function UpcomingEvents() {
     const [events, setEvents] = useState<Event[]>([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         async function fetchEvents() {
             try {
                 const res = await fetch("/api/calendar");
                 const data: Event[] = await res.json();
-                setEvents(data);
+                setEvents(Array.isArray(data) ? data : []);
             } catch (err) {
                 console.error("Error loading events", err);
+            } finally {
+                setLoading(false);
             }
         }
         fetchEvents();
@@ -41,7 +44,19 @@ export default function UpcomingEvents() {
     return (
         <section className={styles.container_upcoming}>
             <h2 className={styles.upcomingTitle}>Upcoming Events</h2>
-            {events.length > 0 ? (
+            {loading ? (
+                <ul className={styles.eventsTimeline} aria-hidden="true">
+                    {Array.from({ length: 3 }).map((_, index) => (
+                        <li className={`${styles.eventItem} ${styles.eventSkeleton}`} key={index}>
+                            <div className={`${styles.eventDateBadge} ${styles.skeletonBlock}`} />
+                            <div className={styles.eventInfo}>
+                                <h3 className={`${styles.skeletonBlock} ${styles.skeletonTitle}`} />
+                                <p className={`${styles.skeletonBlock} ${styles.skeletonLine}`} />
+                            </div>
+                        </li>
+                    ))}
+                </ul>
+            ) : events.length > 0 ? (
                 <ul className={styles.eventsTimeline}>
                     {events.map((event, index) => (
                         <li className={styles.eventItem} key={index}>
