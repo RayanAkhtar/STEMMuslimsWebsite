@@ -32,8 +32,8 @@ const StemDayMasonry = () => {
         <StemDayCard
           title="Explore, Innovate, and Experience Imperial"
           text={desc}
-          imageSrc1="/Outreach/stemday/making_car_2.webp"
-          imageSrc2="/Outreach/stemday/flight_sim_2.webp"
+          imageSrc1="/outreach/stem-day/making_car_2.webp"
+          imageSrc2="/outreach/stem-day/flight_sim_2.webp"
         />
       </Masonry>
     </ResponsiveMasonry>

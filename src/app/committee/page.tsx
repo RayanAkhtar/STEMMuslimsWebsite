@@ -46,14 +46,19 @@ const sections = [
     { id: "careers", title: "Careers" },
     { id: "education", title: "Education" },
     { id: "outreach", title: "Outreach" },
+    { id: "stemnet", title: "STEMnet" },
+    { id: "alumni", title: "Alumni Liaison" },
     { id: "publicity", title: "Publicity & SM" },
+    { id: "social", title: "Social Media" },
     { id: "treasury", title: "Treasury & Sponsorship" },
+    { id: "sponsorship", title: "Sponsorship" },
     { id: "general", title: "General Committee" },
     // additional sections kept for prior years' data
     { id: "events", title: "Events Team" },
     { id: "academic", title: "Academic Team" },
     { id: "how", title: "House of Wisdom" },
     { id: "haqqathon", title: "Haqqathon Team" },
+    { id: "hackathon", title: "Hackathon" },
     { id: "freshers", title: "Fresher Representatives" }
 ];
 
@@ -137,7 +142,20 @@ const CommitteePage: React.FC = () => {
         return role.includes('outreach') && !role.includes('vice president');
     });
     const publicityTeam = Object.entries(members).filter(([_, details]) => details.role.includes("Publicity"));
-    const treasuryTeam = Object.entries(members).filter(([_, details]) => details.role.includes("Treasury"));
+    const socialMediaTeam = Object.entries(members).filter(([_, details]) => (details.role || '').toLowerCase().includes('social media'));
+    // "Treasurer" (2022-23) and "Treasury & Sponsorship Officer" (2024-25) share this section
+    const treasuryTeam = Object.entries(members).filter(([_, details]) => {
+        const role = (details.role || '').toLowerCase();
+        return role.includes('treasury') || role.includes('treasurer');
+    });
+    const alumniTeam = Object.entries(members).filter(([_, details]) => (details.role || '').toLowerCase().includes('alumni'));
+    // years that list sponsorship separately; "Treasury & Sponsorship" stays in its own section
+    const sponsorshipTeam = Object.entries(members).filter(([_, details]) => {
+        const role = (details.role || '').toLowerCase();
+        return role.includes('sponsorship') && !role.includes('treasury');
+    });
+    const stemnetTeam = Object.entries(members).filter(([_, details]) => (details.role || '').toLowerCase().includes('stemnet'));
+    const hackathonTeam = Object.entries(members).filter(([_, details]) => (details.role || '').toLowerCase().includes('hackathon'));
     const techTeam = Object.entries(members).filter(([_, details]) => details.role.includes("Tech"));
     const careersTeam = Object.entries(members).filter(([_, details]) => {
         const role = (details.role || '').toLowerCase();
@@ -158,19 +176,31 @@ const CommitteePage: React.FC = () => {
     education: educationTeam,
         how: houseOfWisdom,
         outreach: outreachTeam,
+        stemnet: stemnetTeam,
+        alumni: alumniTeam,
         publicity: publicityTeam,
+        social: socialMediaTeam,
         treasury: treasuryTeam,
+        sponsorship: sponsorshipTeam,
         tech: techTeam,
         general: generalCommittee,
         haqqathon: haqqathonTeam,
+        hackathon: hackathonTeam,
         freshers: fresherReps,
     };
 
     const is2024 = selectedFile.startsWith('2024');
+    const is2023 = selectedFile.startsWith('2023');
+    const is2022 = selectedFile.startsWith('2022');
+    const is2025 = selectedFile.startsWith('2025');
 
-    // Year-specific title tweaks (2024-25 had a single tech lead)
+    // Year-specific title tweaks: 2024-25 had a single tech lead; 2022-23
+    // listed sponsorship separately and had a single publicity head
+    const titles2022: Record<string, string> = { treasury: 'Treasury', publicity: 'Publicity Head' };
     const displaySections = is2024
         ? sections.map(s => (s.id === 'tech' ? { ...s, title: 'Tech Lead' } : s))
+        : is2022
+        ? sections.map(s => (titles2022[s.id] ? { ...s, title: titles2022[s.id] } : s))
         : sections;
 
     // Precompute which sections have members
@@ -179,6 +209,10 @@ const CommitteePage: React.FC = () => {
     // Small sections that share a row on desktop (per year)
     const rowGroups: string[][] = is2024
         ? [["secretaries", "tech"], ["how", "academic"], ["outreach", "events"]]
+        : is2023
+        ? [["secretaries", "events"], ["academic", "general"], ["outreach", "stemnet", "hackathon"], ["publicity", "social", "sponsorship"]]
+        : is2022
+        ? [["secretaries", "events"], ["treasury", "sponsorship"], ["outreach", "alumni", "publicity"]]
         : [["secretaries", "tech"], ["careers", "education", "outreach"]];
 
     const sectionRows: Array<typeof availableSections> = [];
@@ -242,7 +276,7 @@ const CommitteePage: React.FC = () => {
     };
 
     return (
-        <div className={styles.committee_page}>
+        <div className={`${styles.committee_page} ${(is2022 || is2023) ? styles.retro : ''} ${is2022 ? styles.mono : ''} ${is2024 ? styles.transitional : ''} ${is2025 ? styles.heritage : ''}`}>
             <div className={styles.header}>
                 <p>Meet Our Committee {selectedFile ? selectedFile.replace('.json','') : ''}</p>
                 <div className={styles.file_buttons}>
@@ -322,22 +356,23 @@ const getInitials = (name: string) =>
         .toUpperCase();
 
 const MemberCard: React.FC<HeadMemberProps> = ({ name, role, year, course, email, linkedin }) => {
+    const meta = [year ? `${year} Year` : '', course].filter(Boolean).join(' ');
     return (
         <div className={styles.member}>
             <div className={styles.info_div}>
                 <div className={styles.avatar} aria-hidden="true">{getInitials(name)}</div>
                 <p className={styles.member_name}>{name}</p>
                 <p className={styles.member_role}>{role}</p>
-                <p className={styles.member_meta}>
-                    {year} Year {course}
-                </p>
-                <div className={styles.card_contact}>
-                    <span className={styles.contact_label}>Get in Touch</span>
-                    <div className={styles.icons}>
-                        <MailButton email={email} />
-                        {linkedin && <LinkedInButton linkedin={linkedin} />}
+                {meta && <p className={styles.member_meta}>{meta}</p>}
+                {(email || linkedin) && (
+                    <div className={styles.card_contact}>
+                        <span className={styles.contact_label}>Get in Touch</span>
+                        <div className={styles.icons}>
+                            {email && <MailButton email={email} />}
+                            {linkedin && <LinkedInButton linkedin={linkedin} />}
+                        </div>
                     </div>
-                </div>
+                )}
             </div>
         </div>
     );

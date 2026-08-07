@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import styles from "./landing.module.scss";
-import Logo from "../../../public/ISoc.svg";
+import Logo from "../../../public/shared/ISoc.svg";
 import Link from "next/link";
 import { isoclink } from "@/lib/globalVariables";
 
@@ -24,7 +24,7 @@ const locations: Location[] = [
       "<strong>Please note:</strong> These rooms are for Imperial student and staff use only. For external visitors, please contact the ISoc committee.",
     ],
     videoLink: "https://youtu.be/3R290Pn7QCc",
-    imgLink: "/life/SKmap.png",
+    imgLink: "/life/prayer-rooms/SKmap.png",
     imgRedirect: "https://maps.app.goo.gl/f17ndS1fm4kyUtmR8",
   },
 ];

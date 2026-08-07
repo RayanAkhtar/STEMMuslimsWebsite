@@ -11,11 +11,11 @@
   overflow: hidden;
   display: flex;
   align-items: center;
-  padding: calc(64px + 2.5rem) 2rem 4rem;
+  padding: calc(64px + clamp(1rem, 3.5vh, 2.5rem)) 2rem clamp(2rem, 5vh, 4rem);
   background-color: $stemm-deep-blue;
   background-image:
     linear-gradient(100deg, rgba($stemm-deep-blue, 0.98) 30%, rgba($stemm-darker-blue, 0.9) 55%, rgba($stemm-blue, 0.6) 100%),
-    url("/home-images/geometric-background.png");
+    url("/shared/geometric-background.png");
   background-size: cover;
   background-position: center right;
   background-repeat: no-repeat;
@@ -54,8 +54,10 @@
 
   .salaamImage {
     /* full-line calligraphy: spans the entire text column;
-       the svg carries ~14% baked-in vertical padding, cropped via negative margins */
-    margin: -11% 0 -12%;
+       the svg's ink only occupies the middle ~16% of its canvas (y 41.7%–57.5%),
+       so the blank bands are cropped via negative margins — leaving ~7% breathing
+       room either side — to keep the hero above the fold */
+    margin: -29% 0 -29.5%;
     visibility: hidden;
     animation: driftUp 0.9s ease-out 0.05s forwards;
 
@@ -92,7 +94,7 @@
     font-family: var(--font-cormorant-garamond), serif;
     font-weight: 700;
     font-size: clamp(2rem, 3.5vw, 3.1rem);
-    margin: 1.1rem 0 0;
+    margin: clamp(0.6rem, 1.6vh, 1.1rem) 0 0;
     color: white;
     line-height: 1.16;
     text-shadow: 0 2px 14px rgba(0, 0, 0, 0.25);
@@ -102,7 +104,7 @@
 
   .subheading {
     font-size: clamp(1.02rem, 1.35vw, 1.25rem);
-    margin: 1.4rem 0 0;
+    margin: clamp(0.8rem, 2vh, 1.4rem) 0 0;
     max-width: 36rem;
     color: rgba(255, 255, 255, 0.85);
     letter-spacing: 0.01em;
@@ -113,7 +115,7 @@
   }
 
   .heroActions {
-    margin-top: 2.25rem;
+    margin-top: clamp(1.25rem, 3vh, 2.25rem);
     visibility: hidden;
     animation: driftUp 0.9s ease-out 0.55s forwards;
   }
@@ -399,7 +401,7 @@
   background-color: $stemm-deep-blue;
   background-image:
     linear-gradient(120deg, rgba($stemm-deep-blue, 0.95), rgba($stemm-darker-blue, 0.88) 55%, rgba($stemm-blue, 0.82)),
-    url("/home-images/geometric-background.png");
+    url("/shared/geometric-background.png");
   background-size: cover;
   background-position: center top;
   color: white;
@@ -438,18 +440,12 @@
     flex: 1 1 220px;
     max-width: 265px;
     text-align: center;
-    background: rgba(255, 255, 255, 0.07);
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    border-radius: 18px;
+    /* static card: these are figures, not controls, so they carry
+       no hover affordance and no frosted-glass effect */
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 12px;
     padding: 2rem 1.5rem;
-    backdrop-filter: blur(6px);
-    transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
-
-    &:hover {
-      transform: translateY(-6px);
-      background: rgba(255, 255, 255, 0.11);
-      border-color: rgba($isoc-gold-light, 0.5);
-    }
 
     .number {
       font-size: $h1-size;

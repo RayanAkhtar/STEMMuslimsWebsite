@@ -1,8 +1,8 @@
 "use client";
 import React,{ useState } from 'react';
 import Image from 'next/image';
-import Roots from "../../../../public/Tarbiyyah/roots.png";
-import Quran from "../../../../public/Tarbiyyah/quran_new.png";
+import Roots from "../../../../public/life/tarbiyyah/roots.png";
+import Quran from "../../../../public/life/tarbiyyah/quran_new.png";
 import styles from './tarbiyyah.module.scss';
 
 const TarbiyyahPage: React.FC = () => {

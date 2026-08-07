@@ -409,7 +409,9 @@
     margin: 1.5rem 0;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
     border-left: 4px solid #917849;
-    
+    /* the dot below is the bullet; suppress the default marker */
+    list-style: none;
+
     li {
       margin-bottom: 0.8rem;
       position: relative;

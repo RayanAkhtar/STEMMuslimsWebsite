@@ -5,29 +5,29 @@ import styles from './careers-fair.module.scss';
 import Image from 'next/image';
 
 const topRowLogos = [
-  '/careers/logos/anterior.svg',
-  '/careers/logos/anterior.svg',
-  '/careers/logos/anterior.svg',
-  '/careers/logos/anterior.svg',
-  '/careers/logos/anterior.svg',
+  '/careers/sponsors/anterior.svg',
+  '/careers/sponsors/anterior.svg',
+  '/careers/sponsors/anterior.svg',
+  '/careers/sponsors/anterior.svg',
+  '/careers/sponsors/anterior.svg',
   // Duplicate for infinite scroll
-  '/careers/logos/anterior.svg',
-  '/careers/logos/anterior.svg',
-  '/careers/logos/anterior.svg',
-  '/careers/logos/anterior.svg',
-  '/careers/logos/anterior.svg'
+  '/careers/sponsors/anterior.svg',
+  '/careers/sponsors/anterior.svg',
+  '/careers/sponsors/anterior.svg',
+  '/careers/sponsors/anterior.svg',
+  '/careers/sponsors/anterior.svg'
 ];
 
 const bottomRowLogos = [
-  '/careers/logos/anterior.svg',
-  '/careers/logos/anterior.svg',
-  '/careers/logos/anterior.svg',
-  '/careers/logos/anterior.svg',
+  '/careers/sponsors/anterior.svg',
+  '/careers/sponsors/anterior.svg',
+  '/careers/sponsors/anterior.svg',
+  '/careers/sponsors/anterior.svg',
   // Duplicate for infinite scroll
-  '/careers/logos/anterior.svg',
-  '/careers/logos/anterior.svg',
-  '/careers/logos/anterior.svg',
-  '/careers/logos/anterior.svg'
+  '/careers/sponsors/anterior.svg',
+  '/careers/sponsors/anterior.svg',
+  '/careers/sponsors/anterior.svg',
+  '/careers/sponsors/anterior.svg'
 ];
 
 export default function CareersFairPage() {

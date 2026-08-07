@@ -64,7 +64,7 @@ function StemDayMasonry() {
         <MainContent
           title="Description goes here"
           description="Description..."
-          imageSrc="/Outreach/stemDay.jpg"
+          imageSrc="/outreach/stem-day/stemDay.jpg"
         />
       </Masonry>
     </ResponsiveMasonry>
@@ -138,7 +138,7 @@ const Masonry = dynamic(
 //                 <StemDayCard
 //                 title = "Description goes here"
 //                 text = "Description..."
-//                 imageSrc="/Outreach/stemDay.jpg"
+//                 imageSrc="/outreach/stem-day/stemDay.jpg"
 //                 />
 
 //             </Masonry>

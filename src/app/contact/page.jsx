@@ -47,12 +47,12 @@ export default function ContactUs() {
                 <div className={styles.socialIcons}>
                     <a href="https://www.instagram.com/stem.muslims/" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
                         <div className={styles.socialMediaBox}>
-                            <img src="/socials-icon/instagram.png" alt="Instagram" className={styles.icon} />
+                            <img src="/shared/socials/instagram.png" alt="Instagram" className={styles.icon} />
                         </div>
                     </a>
                     <a href="https://www.linkedin.com/company/stem-muslims-imperial-college-london" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
                         <div className={styles.socialMediaBox}>
-                            <img src="/socials-icon/linkedin.png" alt="LinkedIn" className={styles.icon} />
+                            <img src="/shared/socials/linkedin.png" alt="LinkedIn" className={styles.icon} />
                         </div>
                     </a>
                 </div>

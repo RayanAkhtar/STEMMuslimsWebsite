@@ -1,0 +1,181 @@
+{
+    "heads": {
+        "Nabil Ahmed": {
+            "role": "Head Brother",
+            "course": "Aeronautical Engineering",
+            "year": "3rd",
+            "email": "",
+            "LinkedIn": ""
+        },
+        "Tabiya Syed": {
+            "role": "Head Sister",
+            "course": "Materials Science and Engineering",
+            "year": "3rd",
+            "email": "",
+            "LinkedIn": ""
+        }
+    },
+    "members": {
+        "Aisha Shah": {
+            "role": "Vice President of Outreach",
+            "course": "Electronic and Information Engineering",
+            "year": "3rd",
+            "email": "",
+            "LinkedIn": ""
+        },
+        "Rayyan Islam": {
+            "role": "Vice President of Education",
+            "course": "Civil Engineering",
+            "year": "3rd",
+            "email": "",
+            "LinkedIn": ""
+        },
+        "Majd Yousof": {
+            "role": "Vice President of Careers",
+            "course": "Civil Engineering",
+            "year": "3rd",
+            "email": "",
+            "LinkedIn": ""
+        },
+        "Maria Chadli": {
+            "role": "Secretary of Logistics",
+            "course": "Civil & Environmental Engineering",
+            "year": "2nd",
+            "email": "",
+            "LinkedIn": ""
+        },
+        "Ifaz Uddin": {
+            "role": "Secretary of Comms",
+            "course": "Joint Maths & Computing",
+            "year": "2nd",
+            "email": "",
+            "LinkedIn": ""
+        },
+        "Suleyman Bihi": {
+            "role": "Events Head Brother",
+            "course": "Materials",
+            "year": "3rd",
+            "email": "",
+            "LinkedIn": ""
+        },
+        "Nadirah Shofique": {
+            "role": "Events Head Sister",
+            "course": "Medicine",
+            "year": "4th",
+            "email": "",
+            "LinkedIn": ""
+        },
+        "Hasnat Chowdhury": {
+            "role": "Hackathon Lead",
+            "course": "Electrical and Electronic Inf.",
+            "year": "3rd",
+            "email": "",
+            "LinkedIn": ""
+        },
+        "Mohamed Sharif": {
+            "role": "Outreach Officer",
+            "course": "Computing",
+            "year": "2nd",
+            "email": "",
+            "LinkedIn": ""
+        },
+        "Tanvir Ahmed": {
+            "role": "Academic Head Brother",
+            "course": "Civil Engineering",
+            "year": "3rd",
+            "email": "",
+            "LinkedIn": ""
+        },
+        "Margarita Mordvina": {
+            "role": "Academic Head Sister",
+            "course": "Mechanical Engineering",
+            "year": "4th",
+            "email": "",
+            "LinkedIn": ""
+        },
+        "Mohamed Suleiman": {
+            "role": "Publicity Officer",
+            "course": "Mechanical Engineering",
+            "year": "2nd",
+            "email": "",
+            "LinkedIn": ""
+        },
+        "Masuma Ahmed": {
+            "role": "Social Media Head",
+            "course": "Physics",
+            "year": "",
+            "email": "",
+            "LinkedIn": ""
+        },
+        "Umer Qureshi": {
+            "role": "STEMnet Manager",
+            "course": "Mechanical Engineering",
+            "year": "3rd",
+            "email": "",
+            "LinkedIn": ""
+        },
+        "Saad Khan": {
+            "role": "Sponsorship Officer",
+            "course": "Chemistry",
+            "year": "2nd",
+            "email": "",
+            "LinkedIn": ""
+        },
+        "Wadoud Charbak": {
+            "role": "General Committee",
+            "course": "Physics",
+            "year": "3rd",
+            "email": "",
+            "LinkedIn": ""
+        },
+        "Mohammed Tayyab": {
+            "role": "General Committee",
+            "course": "Electronic and Information Engineering",
+            "year": "2nd",
+            "email": "",
+            "LinkedIn": ""
+        },
+        "Osa Eruogun": {
+            "role": "Fresher Rep",
+            "course": "Chemical Engineering",
+            "year": "1st",
+            "email": "",
+            "LinkedIn": ""
+        },
+        "Muhaimin Fathima": {
+            "role": "Fresher Rep",
+            "course": "Chemistry",
+            "year": "1st",
+            "email": "",
+            "LinkedIn": ""
+        },
+        "Dawud Khan": {
+            "role": "Fresher Rep",
+            "course": "Electrical and Electronic Engineering",
+            "year": "1st",
+            "email": "",
+            "LinkedIn": ""
+        },
+        "Amira Sheikmohamud": {
+            "role": "Fresher Rep",
+            "course": "Mechanical Engineering",
+            "year": "1st",
+            "email": "",
+            "LinkedIn": ""
+        },
+        "Izmal Mohammed Farroukh": {
+            "role": "Fresher Rep",
+            "course": "Chemical Engineering",
+            "year": "1st",
+            "email": "",
+            "LinkedIn": ""
+        },
+        "Zaynah Hanif": {
+            "role": "Fresher Rep",
+            "course": "Ecology and Environmental Biology BSc",
+            "year": "1st",
+            "email": "",
+            "LinkedIn": ""
+        }
+    }
+}
