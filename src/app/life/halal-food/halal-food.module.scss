@@ -1,11 +1,5 @@
 @import 'src/styles/globals.module.scss';
 
-
-@font-face {
-    font-family: "montserrat";
-    src: url("/fonts/Montserrat/Montserrat-VariableFont_wght.ttf") format("truetype");
-}
-
 .pageContainer {
     padding-top: 100px;
     width: 100vw;
@@ -13,7 +7,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-family: "montserrat";
     scroll-behavior: smooth;
 
     h1 {
@@ -51,7 +44,6 @@
     text-align: center;
     margin-top: 0.5rem;
 
-    font-family: "montserrat";
     font-size: 1rem;
 
     border: 0.5em solid $stemm-lighter-blue;

@@ -1,12 +1,4 @@
 @import "../../../styles/globals.module.scss";
-@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap");
-
-@font-face {
-  font-family: "Montserrat";
-  src: url("/fonts/Montserrat/Montserrat-VariableFont_wght.ttf")
-    format("truetype");
-  font-display: swap;
-}
 
 .contentContainer {
   width: 100%;
@@ -20,13 +12,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-family: "Montserrat", sans-serif;
   color: white;
   padding: 2rem;
   padding-top: 12rem; // Added padding to account for navbar
 
   h1 {
-    font-family: var(--font-cinzel-decorative), serif;
+    font-family: var(--font-cormorant-garamond), serif;
     font-weight: 700;
     font-size: 3rem;
     padding: 0.5rem 1rem;
@@ -45,7 +36,7 @@
   h1 {
     font-size: 3rem;
     font-weight: 700;
-    font-family: var(--font-cinzel-decorative), serif;
+    font-family: var(--font-cormorant-garamond), serif;
     margin-top: 2rem;
     margin-bottom: 2rem;
     color: $stemm-blue;
@@ -75,7 +66,7 @@
         font-size: 1.3rem;
 
         h1 {
-          font-family: 'Cinzel','serif';
+          font-family: var(--font-cormorant-garamond), serif;
           color: $stemm-blue;
           font-size: 3.5rem;
           font-weight: 400;
@@ -102,7 +93,7 @@
   p {
     margin-bottom: 1rem;
     text-align: center;
-    font-family: "Cinzel", "serif";
+    font-family: var(--font-cormorant-garamond), serif;
     font-size: 1.5em;
     padding: 4rem;
   }
@@ -157,7 +148,6 @@
 
     p {
       font-size: 2.1vh;
-      font-family: "serif";
       font-weight: 300;
       margin: 0; /* Remove default margin for better alignment */
     }

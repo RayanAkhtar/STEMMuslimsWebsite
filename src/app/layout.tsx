@@ -1,5 +1,5 @@
 
-import { Cinzel_Decorative, Inter } from "next/font/google";
+import { Cormorant_Garamond, Inter } from "next/font/google";
 import "../styles/globals.module.scss";
 import "../styles/globals.css";
 import { ReactNode } from "react";
@@ -14,11 +14,11 @@ const inter = Inter({
   display: "swap",
 });
 
-const cinzelDecorative = Cinzel_Decorative({
-  weight: ["400", "700", "900"],
+const cormorantGaramond = Cormorant_Garamond({
+  weight: ["400", "600", "700"],
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-cinzel-decorative",
+  variable: "--font-cormorant-garamond",
 });
 
 export const metadata = {
@@ -32,7 +32,7 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en" className={cinzelDecorative.variable}>
+    <html lang="en" className={cormorantGaramond.variable}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
       </head>
