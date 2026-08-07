@@ -92,7 +92,7 @@ export default function EducationPage() {
           </div>
           <div className={styles.imageContainer}>
             <Image 
-              src="/Outreach/stemDay.jpg" 
+              src="/outreach/stem-day/stemDay.jpg" 
               alt="Lecturer teaching students" 
               width={500} 
               height={350}
@@ -113,7 +113,7 @@ export default function EducationPage() {
         <div className={styles.container}>
           <div className={styles.imageContainer}>
             <Image 
-              src="/education/tutorial.jpeg" 
+              src="/education/tutorials/tutorial.jpeg" 
               alt="Tutorial session" 
               width={500} 
               height={350}
@@ -183,7 +183,7 @@ export default function EducationPage() {
           </div>
           <div className={styles.imageContainer}>
             <Image 
-              src="/education/tutorial2.jpeg" 
+              src="/education/tutorials/tutorial2.jpeg" 
               alt="Academic representative helping students" 
               width={500} 
               height={350}
@@ -204,7 +204,7 @@ export default function EducationPage() {
         <div className={styles.container}>
           <div className={styles.imageContainer}>
             <Image 
-              src="/education/education-hero.jpeg" 
+              src="/education/hero/education-hero.jpeg" 
               alt="STEM Muslims event" 
               width={500} 
               height={350}
@@ -215,7 +215,7 @@ export default function EducationPage() {
           <div className={styles.content}>
             <h2>Events & Opportunities</h2>
             <p>
-              We host events like Muslims in AI and the STEM M Spotlight, which focus on research 
+              We host events like Muslims in AI and the STEMM Spotlight, which focus on research 
               and internships to help students improve their chances of securing valuable 
               opportunities in both areas.
             </p>
@@ -225,7 +225,7 @@ export default function EducationPage() {
                 <p>Exploring the intersection of Islamic ethics and artificial intelligence</p>
               </div>
               <div className={styles.event}>
-                <h3>STEM M Spotlight</h3>
+                <h3>STEMM Spotlight</h3>
                 <p>Highlighting research and internship opportunities for Muslim students</p>
               </div>
             </div>
@@ -251,15 +251,17 @@ export default function EducationPage() {
               We have a large bank of resources with notes, past papers and course tips in our 
               House of Wisdom Teams Channel as well as the Ihsaan by Fosis Careers Resource Guide
             </p>
-            <div className={styles.resourcesBox}>
-              <h3>House of Wisdom Resources</h3>
-              <ul>
-                <li>Course Notes</li>
-                <li>Past Papers</li>
-                <li>Study Guides</li>
-                <li>Tutorial Recordings</li>
-                <li>Subject Group Chats</li>
-              </ul>
+            <div className={styles.resourceBoxes}>
+              <div className={styles.resourcesBox}>
+                <h3>House of Wisdom Resources</h3>
+                <ul>
+                  <li>Course Notes</li>
+                  <li>Past Papers</li>
+                  <li>Study Guides</li>
+                  <li>Tutorial Recordings</li>
+                  <li>Subject Group Chats</li>
+                </ul>
+              </div>
 
               <div className={styles.ihsaanBox}>
                 <h3>The Ihsaan Careers Guide</h3>
@@ -270,15 +272,14 @@ export default function EducationPage() {
                   <li>Resources to embody excellence (Ihsaan) in your professional journey</li>
                 </ul>
                 <div className={styles.ihsaanActions}>
-                  <Link href="https://ihsaanbyfosis.notion.site/careers-essentials?v=1c37c26bd27f80d18a4d000c5ae1053b" className={styles.resourcesButton}>Check out the lGuide</Link>
-
+                  <Link href="https://ihsaanbyfosis.notion.site/careers-essentials?v=1c37c26bd27f80d18a4d000c5ae1053b" className={styles.resourcesButton}>Check out the Guide</Link>
                 </div>
               </div>
             </div>
           </div>
           <div className={styles.imageContainer}>
             <Image 
-              src="/education/resources.png" 
+              src="/education/resources/resources.png" 
               alt="Educational resources" 
               width={500} 
               height={350}

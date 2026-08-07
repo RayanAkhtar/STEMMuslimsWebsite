@@ -50,10 +50,23 @@
       min-width: 300px;
       height: 100%;
 
-      background-image: url("/Outreach/sky.jpg");
+      background-image: url("/outreach/sky.jpg");
       background-size: cover;
     }
   }
+}
+
+/* Programmes — same language as the About page streams, but on a
+   lighter brand green: the stream pages sit above their own bright
+   hero, so the very dark field used on About reads too heavy here. */
+$field: $stemm-deep-blue;
+$field-line: rgba(255, 255, 255, 0.18);
+$cream: #eef4f0;
+$accent: #86efc4; // tint of the brand green, legible on the lighter field
+
+@keyframes slideInUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
 .outreachContainer {
@@ -61,91 +74,111 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 4rem;
+  margin-bottom: 0;
+  background-color: $field;
+  padding: 4rem 1.5rem 4.5rem;
+  box-sizing: border-box;
 
   h1 {
-    font-size: 3rem;
-    font-weight: 500;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 700;
+    color: $cream;
+    margin: 0 0 2.5rem;
   }
 
     .masonryContainer {
-      width: 70%;
+      width: 100%;
+      max-width: 1120px;
 
       .outreachCard {
-        display: flex;
-        flex-direction: column;
-        align-items: stretch;
+        display: block;
         text-align: left;
-        min-width: 100px;
+        background: none;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 2.25rem 0;
+        border-top: 1px solid $field-line;
+        animation: slideInUp 0.8s ease-out;
+        animation-fill-mode: both;
 
-        background: white;
-        border-radius: 12px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.06);
-        padding: 1.25rem;
-        overflow: hidden;
+        @for $i from 1 through 6 {
+          &:nth-child(#{$i}) {
+            animation-delay: #{$i * 0.15}s;
+          }
+        }
 
         .cardContent {
-          display: flex;
-          width: 100%;
-          height: auto;
-          flex-direction: row;
-          gap: 1rem;
+          display: grid;
+          grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+          gap: 2.5rem;
           align-items: center;
         }
 
+        /* every programme photograph is framed identically */
         .cardImage {
-          flex: 0 0 45%;
-          overflow: visible; /* allow image to determine height */
+          order: 2;
           display: block;
-          justify-content: center;
-          align-items: center;
           border-radius: 8px;
+          overflow: hidden;
+          background-color: rgba(255, 255, 255, 0.06);
 
           img {
             width: 100%;
-            height: auto; /* keep natural height */
-            object-fit: contain; /* avoid cropping */
+            height: 230px;
+            object-fit: cover;
+            display: block;
             border-radius: 8px;
+          }
+
+          /* logos/icons must not be cropped like photographs.
+             Keyed to the asset names; a `fit` prop on OutreachCard
+             would be the cleaner fix if more of these are added. */
+          img[src*="UCAS_logo"],
+          img[src*="mailing_list_icon"] {
+            object-fit: contain;
+            padding: 2rem;
+            box-sizing: border-box;
+            background: #ffffff;
           }
         }
 
         .textContent {
-          flex: 1 1 55%;
-          justify-content: center;
-          align-items: flex-start;
-          height: auto;
-          padding: 0.5rem 0;
+          order: 1;
+          padding: 0;
 
           h1 {
-            color: $stemm-blue;
-            font-size: 1.6rem;
-            font-weight: 600;
-            margin: 0 0 0.5rem 0;
+            color: $cream;
+            font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+            font-weight: 700;
+            line-height: 1.15;
+            margin: 0 0 0.75rem;
           }
 
           p {
             font-size: 1rem;
-            line-height: 1.6;
-            color: $text-color;
-            margin-bottom: 0.75rem;
+            line-height: 1.7;
+            color: rgba(238, 244, 240, 0.72);
+            margin-bottom: 1rem;
           }
 
           button, a {
-            display: inline-block;
-            padding: 0.6rem 1rem;
-            border-radius: 999px;
-            background: $stemm-blue;
-            color: white;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0;
+            border-radius: 0;
+            background: none;
+            color: $accent;
+            font-size: 0.9375rem;
+            font-weight: 600;
             text-decoration: none;
             border: none;
             cursor: pointer;
-            transition: background 0.15s ease, transform 0.12s ease;
 
-            &:hover {
-              background: $stemm-darker-blue;
-              transform: translateY(-2px);
+            &:hover, &:focus-visible {
+              text-decoration: underline;
+              text-underline-offset: 4px;
+              background: none;
             }
           }
         }
@@ -190,26 +223,27 @@
   }
 
   .outreachContainer {
+    padding: 3rem 1.25rem 3.5rem;
+
     .masonryContainer {
       width: 100%;
 
       .outreachCard {
         .cardContent {
-          display: flex;
-          flex-direction: column; /* stack image then text on narrow screens */
-          gap: 0.75rem;
+          display: grid;
+          grid-template-columns: 1fr; /* stack text then image on narrow screens */
+          gap: 1.25rem;
         }
 
         .cardImage {
-          flex: 0 0 auto;
           width: 100%;
-          overflow: visible;
+          overflow: hidden;
           display: block;
 
           img {
             width: 100%;
-            height: auto; /* preserve aspect ratio, no cropping */
-            object-fit: contain;
+            height: 200px; /* keep every photograph the same size */
+            object-fit: cover;
             border-radius: 8px;
           }
         }
@@ -316,5 +350,24 @@
         }
       }
     }
+  }
+}
+
+/* Accessibility floor: content must not depend on motion to become
+   visible, and nothing should animate indefinitely, for users who
+   have asked their OS to reduce motion. */
+@media (prefers-reduced-motion: reduce) {
+  .pageIntro,
+  .pageIntro *,
+  .pageIntro *::before,
+  .pageIntro *::after,
+  .outreachContainer,
+  .outreachContainer *,
+  .outreachContainer *::before,
+  .outreachContainer *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.001ms !important;
   }
 }

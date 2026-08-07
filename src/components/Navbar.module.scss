@@ -37,7 +37,6 @@
     align-items: center;
     text-decoration: none;
     z-index: 1001;
-    margin-left: -2.5rem;
   }
 
   .logoWrapper {
@@ -262,17 +261,16 @@
       }
     }
 
-    // The visible panel/card — frosted glass
+    // The visible panel/card — solid, so menu text stays legible
+    // over whatever content sits behind it
     .dropdownInner {
       @media (min-width: 1025px) {
-        background: linear-gradient(180deg, rgba($stemm-blue, 0.14), rgba($stemm-blue, 0.06));
-        backdrop-filter: blur(16px) saturate(170%);
-        -webkit-backdrop-filter: blur(16px) saturate(170%);
-        border-radius: 14px;
-        border: 1px solid rgba(255, 255, 255, 0.35);
-        box-shadow: 0 14px 34px rgba(6, 78, 59, 0.16), 0 3px 10px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+        background: #ffffff;
+        border-radius: 10px;
+        border: 1px solid rgba($stemm-deep-blue, 0.12);
+        box-shadow: 0 10px 26px rgba(6, 78, 59, 0.15);
         overflow: hidden;
-        padding: 0.4rem;
+        padding: 0.35rem;
       }
 
       @media (max-width: 1024px) {

@@ -217,8 +217,11 @@
         
         ul {
           margin-bottom: 1.5rem;
-          padding-left: 1.5rem;
-          
+          /* the tick below is the bullet; suppress the default marker
+             so the two don't render together */
+          list-style: none;
+          padding-left: 0;
+
           li {
             margin-bottom: 0.5rem;
             position: relative;

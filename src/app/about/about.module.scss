@@ -1,213 +1,274 @@
 @import "../../styles/globals.module.scss";
 
-@keyframes imgSkeleton {
-    0% {
-        background-position: 100% 0;
-    }
-    100% {
-        background-position: -100% 0;
-    }
-}
+/* ============================================================
+   "Who we are / what we do"
+
+   Thesis: the society's strongest material is photographs of
+   real students at real events, so the three streams are built
+   around evidence rather than description. They sit on a deep
+   brand-green field — using the club's own colour as a surface
+   instead of an accent — with the intro kept quiet above it.
+   ============================================================ */
+
+$field: #06392c;          // deeper than the stats band so the two read apart
+$field-line: rgba(255, 255, 255, 0.15);
+$cream: #eef4f0;
+$cream-muted: rgba(238, 244, 240, 0.72);
 
 .inline_bold {
     font-weight: 700;
+    color: $stemm-deep-blue;
 }
 
 .container_page {
-    /* keep page within viewport and avoid horizontal overflow */
     width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem 4rem;
     box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    flex-wrap: wrap;
     overflow-x: hidden;
+}
 
-    .container_who_we_are {
-        margin-top: 4rem;
+/* ---------- Intro: deliberately quiet ---------- */
+.container_who_we_are {
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 5rem 1.5rem 4.5rem;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.title h1 {
+    font-family: var(--font-cormorant-garamond), serif;
+    font-size: clamp(2.1rem, 4.6vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: $stemm-deep-blue;
+    margin: 0 0 1.75rem;
+}
+
+.desc {
+    margin: 0 0 1rem;
+
+    p {
+        margin: 0;
+        font-size: 1.0625rem;
+        line-height: 1.75;
+        color: $text-color;
+    }
+}
+
+.desc:last-child {
+    margin: 1.75rem 0 0;
+
+    p {
+        font-size: 1.15rem;
         color: $stemm-darker-blue;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-        box-sizing: border-box;
+    }
+}
 
-        .title {
-            h1 {
-                font-family: var(--font-cormorant-garamond), serif;
-                font-size: clamp(2rem, 5vw, 3.5rem);
-                font-weight: 700;
-                color: $stemm-deep-blue;
-                margin-bottom: 2rem;
-                text-align: center;
-            }
-        }
+/* ---------- Streams: full-bleed green field ---------- */
+.container_streams {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: $field;
+    padding: 4.5rem 1.5rem 5rem;
+}
 
-        .desc {
-            width: 100%;
-            max-width: 70ch;
-            text-align: center;
-            font-size: clamp(0.6rem, 1.05rem, 1.4rem);
-            color: $text-color;
-        }
+.stream {
+    width: 100%;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 4rem 0;
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+    gap: 0 4rem;
+    align-items: start;
+    border-top: 1px solid $field-line;
+
+    &:first-child {
+        border-top: none;
+        padding-top: 1rem;
     }
 
-    /* ---------- Streams (stacked vertically) ---------- */
-    .container_streams {
+    &:last-child {
+        padding-bottom: 1rem;
+    }
+}
+
+/* photographs lead on alternating sides */
+.stream:nth-child(even) {
+    .stream_body {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .stream_plate {
+        grid-column: 1;
+        grid-row: 1;
+    }
+}
+
+.stream_body {
+    min-width: 0;
+}
+
+.stream_title {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    color: $cream;
+
+    /* site convention is Cormorant for headings; sized up and
+       set at 700 (its heaviest loaded weight) to avoid faux bold */
+    h2 {
+        font-size: clamp(2.2rem, 4vw, 3.1rem);
+        font-weight: 700;
+        letter-spacing: -0.005em;
+        line-height: 1.02;
+        margin: 0;
+        color: inherit;
+    }
+
+    &::after {
+        content: "→";
+        font-size: 1.25rem;
+        color: $stemm-lighter-blue;
+        transform: translateX(0);
+        transition: transform 0.22s ease;
+    }
+
+    &:hover::after,
+    &:focus-visible::after {
+        transform: translateX(6px);
+    }
+
+    &:focus-visible {
+        outline: 2px solid $stemm-lighter-blue;
+        outline-offset: 6px;
+    }
+}
+
+.stream_caption {
+    margin: 1rem 0 0;
+    font-size: 1.0625rem;
+    font-weight: 600;
+    line-height: 1.45;
+    color: $stemm-lighter-blue;
+    max-width: 34ch;
+}
+
+.stream_text {
+    margin: 0.9rem 0 0;
+    font-size: 1rem;
+    line-height: 1.75;
+    color: $cream-muted;
+    max-width: 46ch;
+}
+
+.stream_points {
+    margin: 1.75rem 0 0;
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        max-width: 38ch;
+    }
+
+    li {
+        font-size: 0.9375rem;
+        color: $cream;
+        padding: 0.6rem 0;
+        border-top: 1px solid $field-line;
+
+        &:first-child {
+            border-top: none;
+            padding-top: 0;
+        }
+    }
+}
+
+/* ---------- Plate: two equal photographs, caption beneath ---------- */
+.stream_plate {
+    min-width: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+
+    img {
         width: 100%;
-        max-width: 1000px;
-        margin-top: 4rem;
-        display: flex;
-        flex-direction: column;
-        gap: 3.5rem;
-        box-sizing: border-box;
-    }
-
-    .stream {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        background: $surface-card;
-        border: 1px solid rgba($stemm-deep-blue, 0.08);
-        border-radius: 22px;
-        padding: 2.5rem 2rem;
-        box-shadow: 0 12px 32px rgba($stemm-deep-blue, 0.08);
-
-        .stream_title {
-            text-decoration: none;
-            display: inline-block;
-
-            h1 {
-                font-family: var(--font-cormorant-garamond), serif;
-                font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-                font-weight: 700;
-                color: $stemm-deep-blue;
-                margin: 0;
-                transition: color 0.2s ease;
-
-                &::after {
-                    content: '';
-                    display: block;
-                    width: 48px;
-                    height: 3px;
-                    margin: 0.85rem auto 0;
-                    border-radius: 2px;
-                    background: linear-gradient(90deg, $stemm-blue, $isoc-gold);
-                    transition: width 0.25s ease;
-                }
-            }
-
-            &:hover h1 {
-                color: $isoc-gold;
-
-                &::after {
-                    width: 80px;
-                }
-            }
-        }
-
-        .stream_caption {
-            margin-top: 1.25rem;
-            font-size: clamp(1.05rem, 1.6vw, 1.35rem);
-            font-weight: 800;
-            color: $stemm-darker-blue;
-        }
-
-        .stream_text {
-            margin-top: 0.75rem;
-            max-width: 62ch;
-            font-size: clamp(0.95rem, 1.1vw, 1.1rem);
-            line-height: 1.7;
-            color: $text-color;
-        }
-
-        .stream_points {
-            margin-top: 1.25rem;
-
-            ul {
-                list-style: none;
-                padding: 0;
-                margin: 0;
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 0.6rem;
-
-                li {
-                    background: rgba($stemm-blue, 0.08);
-                    color: $stemm-darker-blue;
-                    font-weight: 600;
-                    font-size: 0.9rem;
-                    padding: 0.4rem 1rem;
-                    border-radius: 999px;
-                    border: 1px solid rgba($stemm-blue, 0.15);
-                }
-            }
-        }
-
-        /* ---------- Pics ---------- */
-        .stream_images {
-            margin-top: 2rem;
-            width: 100%;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.25rem;
-
-            @media (max-width: 640px) {
-                grid-template-columns: 1fr;
-            }
-
-            img {
-                width: 100%;
-                height: 260px;
-                object-fit: cover;
-                border-radius: 16px;
-                box-shadow: 0 10px 24px rgba($stemm-deep-blue, 0.14);
-                display: block;
-                /* skeleton shimmer shows through while the image loads */
-                background: linear-gradient(90deg, rgba($stemm-blue, 0.07) 25%, rgba($stemm-blue, 0.16) 50%, rgba($stemm-blue, 0.07) 75%);
-                background-size: 200% 100%;
-                animation: imgSkeleton 1.3s linear infinite;
-            }
-        }
-
-        /* ---------- Event title under pics ---------- */
-        .stream_event {
-            margin-top: 1.25rem;
-            font-size: clamp(1.1rem, 1.6vw, 1.4rem);
-            font-weight: 700;
-            color: $stemm-deep-blue;
-            letter-spacing: 0.02em;
-
-            &::before {
-                content: '';
-                display: inline-block;
-                width: 10px;
-                height: 10px;
-                margin-right: 0.6rem;
-                border-radius: 50%;
-                background: $isoc-gold;
-                vertical-align: middle;
-            }
-        }
-    }
-
-    // small-screen adjustments
-    @media (max-width: 768px) {
-        .stream {
-            padding: 2rem 1.25rem;
-        }
-    }
-
-    /* ensure images and other media don't overflow */
-    img, video {
-        max-width: 100%;
-        height: auto;
+        height: 230px;
         display: block;
+        object-fit: cover;
+        border-radius: 8px;
+        background-color: rgba(255, 255, 255, 0.06);
+    }
+}
+
+.stream_event {
+    grid-column: 1 / -1;
+    margin: 0.3rem 0 0;
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: $cream;
+
+    span {
+        font-size: 0.6875rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.11em;
+        color: $stemm-lighter-blue;
+        flex: none;
+    }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+    .stream {
+        grid-template-columns: 1fr;
+        gap: 2rem 0;
+        padding: 3rem 0;
+        align-items: start;
+    }
+
+    /* photographs always follow the text once stacked */
+    .stream:nth-child(even) {
+        .stream_body {
+            grid-column: 1;
+            grid-row: 1;
+        }
+
+        .stream_plate {
+            grid-column: 1;
+            grid-row: 2;
+        }
+    }
+}
+
+@media (max-width: 560px) {
+    .container_who_we_are {
+        padding: 3.5rem 1.25rem 3rem;
+    }
+
+    .container_streams {
+        padding: 3rem 1.25rem 3.5rem;
+    }
+
+    .stream_plate {
+        grid-template-columns: 1fr;
+
+        img {
+            height: 210px;
+        }
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .stream_title::after {
+        transition: none;
     }
 }

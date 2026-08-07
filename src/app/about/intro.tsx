@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const Intro = () => {
-    const salaamImage = "/home-images/salaam.svg";
+    const salaamImage = "/home/salaam.svg";
 
     return (
         <section className={styles.container_intro}>

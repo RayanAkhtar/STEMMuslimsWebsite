@@ -44,7 +44,7 @@ const streams: Stream[] = [
         caption: "Inspiring Future Generations and Building Community",
         text: "We're committed to fostering a culture of knowledge-sharing and service through outreach and community initiatives.",
         points: ["STEMM Day", "UCAS Mentoring Scheme", "Community Engagement and Upliftment"],
-        images: ["/Outreach/stemday/making_car_2.webp", "/Outreach/stemday/flight_sim_2.webp"],
+        images: ["/outreach/stem-day/making_car_2.webp", "/outreach/stem-day/flight_sim_2.webp"],
         eventTitle: "STEM Day",
     },
 ];
@@ -78,43 +78,48 @@ export default function AboutPage() {
                     </div>
                     <div className={styles.desc}>
                         <p>
-                            Our focus is on <span className={styles.inline_bold}>three key areas</span> :
+                            Our work runs in <span className={styles.inline_bold}>three streams</span>.
                         </p>
                     </div>
                 </div>
                 <div className={styles.container_streams}>
                     {streams.map((stream) => (
                         <section className={styles.stream} key={stream.name}>
-                            <Link href={stream.href} className={styles.stream_title}>
-                                <h1>{stream.name}</h1>
-                            </Link>
+                            <div className={styles.stream_body}>
+                                <Link href={stream.href} className={styles.stream_title}>
+                                    <h2>{stream.name}</h2>
+                                </Link>
 
-                            <div className={styles.stream_caption}>{stream.caption}</div>
+                                <p className={styles.stream_caption}>{stream.caption}</p>
 
-                            <div className={styles.stream_text}>{stream.text}</div>
+                                <p className={styles.stream_text}>{stream.text}</p>
 
-                            <div className={styles.stream_points}>
-                                <ul>
-                                    {stream.points.map((point) => (
-                                        <li key={point}>{point}</li>
-                                    ))}
-                                </ul>
+                                <div className={styles.stream_points}>
+                                    <ul>
+                                        {stream.points.map((point) => (
+                                            <li key={point}>{point}</li>
+                                        ))}
+                                    </ul>
+                                </div>
                             </div>
 
-                            <div className={styles.stream_images}>
+                            <div className={styles.stream_plate}>
                                 {stream.images.map((img) => (
                                     <Image
                                         key={img}
                                         src={img}
                                         alt={`${stream.name} — ${stream.eventTitle}`}
                                         width={640}
-                                        height={260}
-                                        sizes="(max-width: 640px) 92vw, 470px"
+                                        height={300}
+                                        sizes="(max-width: 900px) 92vw, 560px"
                                     />
                                 ))}
-                            </div>
 
-                            <div className={styles.stream_event}>{stream.eventTitle}</div>
+                                <p className={styles.stream_event}>
+                                    <span>Pictured</span>
+                                    {stream.eventTitle}
+                                </p>
+                            </div>
                         </section>
                     ))}
                 </div>
