@@ -1,6 +1,5 @@
 @import "../../../styles/globals.module.scss";
 @import "../outreach.module.scss";
-@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap");
 
 .pageIntroSubscribe {
   width: 100%;
@@ -14,12 +13,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-family: "Montserrat", sans-serif;
   color: white;
   padding: 2rem;
   padding-top: 12rem; // Added padding to account for navbar
   h1 {
-    font-family: var(--font-cinzel-decorative), serif;
+    font-family: var(--font-cormorant-garamond), serif;
     font-weight: 700;
     font-size: 3rem;
     padding: 0.5rem 1rem;
@@ -38,7 +36,6 @@
   border: 1px solid #ddd; // Subtle border
   border-radius: 8px; // Rounded corners
   max-width: 60%; // Sets a max width for better readability
-  font-family: "Arial", sans-serif; // Clean, professional font
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Adds a subtle shadow
 
   ul {

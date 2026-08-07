@@ -2,7 +2,6 @@
   max-width: 10000px;
   margin: 0 auto;
   padding: rem;
-  font-family: Arial, sans-serif;
   display: grid;
   grid-template-rows: repeat(6, 1fr); 
   display: flex;
@@ -17,7 +16,7 @@
     grid-row-start: 1;
     grid-row-end: 2;
     font-size: 70px;
-    font-family: var(--font-cinzel-decorative), serif;
+    font-family: var(--font-cormorant-garamond), serif;
   }
   .item1{
     background-color: #F9F4EF;

@@ -89,7 +89,7 @@
   }
 
   .heading {
-    font-family: var(--font-cinzel-decorative), serif;
+    font-family: var(--font-cormorant-garamond), serif;
     font-weight: 700;
     font-size: clamp(2rem, 3.5vw, 3.1rem);
     margin: 1.1rem 0 0;
@@ -255,7 +255,7 @@
   padding: 4rem 1.5rem;
 
   .upcomingTitle {
-    font-family: var(--font-cinzel-decorative), serif;
+    font-family: var(--font-cormorant-garamond), serif;
     font-weight: $h1-weight;
     font-size: $h1-size;
     text-align: center;
@@ -409,7 +409,7 @@
 
   .title {
     font-size: $h1-size;
-    font-family: var(--font-cinzel-decorative), serif;
+    font-family: var(--font-cormorant-garamond), serif;
     font-weight: $h1-weight;
     margin-bottom: 3rem;
     letter-spacing: 0.04em;
@@ -453,8 +453,8 @@
 
     .number {
       font-size: $h1-size;
-      font-family: var(--font-cinzel-decorative), serif;
-      font-weight: 900;
+      font-family: var(--font-cormorant-garamond), serif;
+      font-weight: 700;
       margin: 0;
       text-shadow: 0 2px 14px rgba(0, 0, 0, 0.25);
     }
@@ -483,7 +483,7 @@
   padding: 4rem 0;
 
   .heading {
-    font-family: var(--font-cinzel-decorative), serif;
+    font-family: var(--font-cormorant-garamond), serif;
     font-size: $h1-size;
     font-weight: $h1-weight;
     margin-bottom: 1rem;
@@ -641,7 +641,7 @@
     }
 
     .heading {
-      font-family: var(--font-cinzel-decorative), serif;
+      font-family: var(--font-cormorant-garamond), serif;
       font-weight: 700;
       font-size: clamp(1.6rem, 2.6vw, 2.4rem);
       color: $stemm-deep-blue;

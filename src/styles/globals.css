@@ -35,6 +35,23 @@ body {
   color: var(--text-main);
 }
 
+/* Two-font system: Cormorant Garamond for headings, Inter (set on body) for everything else */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-cormorant-garamond), serif;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
 /* media should never force the page wider than its column */
 img,
 svg,
