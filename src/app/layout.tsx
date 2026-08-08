@@ -6,7 +6,6 @@ import { ReactNode } from "react";
 
 import Navbar from "../components/Navbar"
 import Footer from "../components/footer";
-import ScrollIndicator from '@/components/ScrollIndicator';
 
 const inter = Inter({
   subsets: ["latin"],
@@ -40,7 +39,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <Navbar />
         {children}
         <Footer />
-        <ScrollIndicator />
       </body>
     </html>
   );

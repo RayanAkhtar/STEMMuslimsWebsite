@@ -10,7 +10,7 @@ export default function Testimonials() {
           {" "}
           {/** individual testimonial */}
           <div className={styles.imgWrapper}>
-            <img src="/outreach/stem-day/stemDay.jpg" />
+            <img src="/outreach/competitions/students_working_2_2526.webp" />
           </div>
           <p>
             {" "}

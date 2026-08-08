@@ -3,17 +3,17 @@ import styles from "./landing.module.scss";
 export default function SocialMedia() {
     const socialMediaLinks = [
         {
-            icon: "home-images/ig-logo.svg",
+            icon: "/home/ig-logo.svg",
             label: "Instagram",
             link: "https://www.instagram.com/stem.muslims/",
         },
         {
-            icon: "home-images/linkedin-logo.svg", 
+            icon: "/home/linkedin-logo.svg", 
             label: "LinkedIn",
             link: "https://www.linkedin.com/company/stem-muslims-imperial-college-london/",
         },
         {
-            icon: "home-images/linktree-logo.svg",
+            icon: "/home/linktree-logo.svg",
             label: "Linktree",
             link: "https://linktr.ee/stemmuslims",
         },

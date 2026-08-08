@@ -26,17 +26,17 @@ function OutreachMasonry() {
         <OutreachCard
           title="STEM Day: Explore, Innovate, and Experience Imperial"
           link="outreach/stem-day"
-          imageSrc="/outreach/stem-day/flight_sim_1.webp"
+          imageSrc="/outreach/stem-day/mathscomputing_stemday_2526.webp"
+        />
+        <OutreachCard
+          title="STEM Competition: Think, Innovate, Compete!"
+          link="outreach/competitions"
+          imageSrc="/outreach/competitions/students_working_2_2526.webp"
         />
         <OutreachCard
           title="UCAS Mentorship Scheme: Guiding the Next Generation of Imperial Students"
           link="outreach/ucas-mentoring"
           imageSrc="/outreach/ucas-mentoring/UCAS_logo.webp"
-        />
-        <OutreachCard
-          title="STEM Competition: Think, Innovate, Compete!"
-          link="outreach/competitions"
-          imageSrc="/outreach/competitions/students_working_1_2024.webp"
         />
         <OutreachCard
           title="Join our mailing list!"

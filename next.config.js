@@ -18,6 +18,17 @@ const nextConfig = {
         destination: "/quarter-zip",
         permanent: true,
       },
+      {
+        source: "/careers/events/careers-fair",
+        destination: "/careers/careers-fair",
+        permanent: true,
+      },
+      {
+        // the events listing was merged into the main careers page
+        source: "/careers/events/:path*",
+        destination: "/careers",
+        permanent: true,
+      },
     ];
   },
   images: {

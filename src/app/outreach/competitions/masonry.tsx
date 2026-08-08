@@ -30,7 +30,7 @@ const CompetitionsMasonry = () => {
         <CompetitionsCard
           title="STEM Competition: Think, Innovate, Compete!"
           text={desc}
-          imageSrc1="/outreach/competitions/lollipop_tower_2024.webp"
+          imageSrc1="/outreach/competitions/y10comp_winners_2526.webp"
           imageSrc2="/outreach/competitions/students_working_2_2024.webp"
         />
       </Masonry>

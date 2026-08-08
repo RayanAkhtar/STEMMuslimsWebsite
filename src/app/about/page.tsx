@@ -44,7 +44,7 @@ const streams: Stream[] = [
         caption: "Inspiring Future Generations and Building Community",
         text: "We're committed to fostering a culture of knowledge-sharing and service through outreach and community initiatives.",
         points: ["STEMM Day", "UCAS Mentoring Scheme", "Community Engagement and Upliftment"],
-        images: ["/outreach/stem-day/making_car_2.webp", "/outreach/stem-day/flight_sim_2.webp"],
+        images: ["/outreach/stem-day/engineering_stemday_2526.webp", "/outreach/stem-day/lifescience_stemday_2526.webp"],
         eventTitle: "STEM Day",
     },
 ];
