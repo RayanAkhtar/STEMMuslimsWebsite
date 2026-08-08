@@ -14,7 +14,7 @@ const Button = ({
   onClick = () => {},
   href = null,
   theme = "primary",
-  width = "clamp(300px, 20vw, 400px)",
+  width = "clamp(200px, 15vw, 280px)",
 }: ButtonProps) => {
   const buttonStyle = {
     width: width,

@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 @import 'src/styles/globals.module.scss';
 .Top {
     max-width: 1440;
@@ -10,7 +9,7 @@
 .title {
     color: $stemm-blue;
     text-align: center;
-    font-family: var(--font-cinzel-decorative), serif;
+    font-family: var(--font-cormorant-garamond), serif;
     font-size: 80px;
     font-style: normal;
     font-weight: 700;
@@ -31,7 +30,6 @@
     color: #661C0F;
     text-align: center;
     /* Italic heading */
-    font-family: Inter;
     font-size: 25px;
     font-style: italic;
     font-weight: 400;
@@ -43,7 +41,6 @@
     color: $stemm-blue;
     text-align: center;
     /* Heading with emphasis */
-    font-family: Inter;
     font-size: 35px;
     font-style: normal;
     font-weight: 700;
@@ -79,7 +76,6 @@
 .description {
     color: $stemm-blue;
     /* Body/Body and Bio text */
-    font-family: Inter;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -144,7 +140,6 @@
 .btn_text {
     color: #772119;
     text-align: center;
-    font-family: Inter;
     font-size: 11px;
     font-style: normal;
     font-weight: 700;
@@ -192,7 +187,6 @@
     color: $stemm-blue;
     text-align: center;
     /* Heading with emphasis */
-    font-family: Inter;
     font-size: 35px;
     font-style: normal;
     font-weight: 700;
@@ -237,7 +231,6 @@
     color: $stemm-blue;
     text-align: center;
     /* Headings */
-    font-family: Inter;
     font-size: 27.816px;
     font-style: normal;
     font-weight: 400;
@@ -248,7 +241,6 @@
 .exampleDesc {
     color: $stemm-blue;
     /* Body/Body and Bio text */
-    font-family: Inter;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -258,7 +250,6 @@
 .exampleDescBold {
     color: $stemm-blue;
     /* Body/Body and Bio text */
-    font-family: Inter;
     font-size: 16px;
     font-style: normal;
     font-weight: 700;
@@ -294,7 +285,6 @@
     color: #FFF;
     text-align: center;
     /* Button text */
-    font-family: Inter;
     font-size: 16px;
     font-style: normal;
     font-weight: 700;
@@ -305,7 +295,6 @@
 .sunnahLink {
     color: #FFF;
     /* Button text */
-    font-family: Inter;
     font-size: 16px;
     font-style: normal;
     font-weight: 700;
@@ -335,7 +324,6 @@
     flex-shrink: 0;
     color: #FFF;
     /* Button text */
-    font-family: Inter;
     font-size: 16px;
     font-style: normal;
     font-weight: 700;

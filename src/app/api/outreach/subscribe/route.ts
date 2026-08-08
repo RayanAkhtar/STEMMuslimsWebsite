@@ -4,7 +4,6 @@ import { NextResponse } from "next/server";
 export async function POST(req: Request) {
   try {
     const { email, merge_fields } = await req.json(); // Get all fields from the request body
-    console.log(typeof email)
     if (!email || typeof email !== "string") {
       return NextResponse.json(
         { message: "Invalid email address" },

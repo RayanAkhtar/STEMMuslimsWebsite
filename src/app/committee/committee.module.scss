@@ -1,18 +1,5 @@
 @import "../../styles/globals.module.scss";
 
-
-
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -26,431 +13,1170 @@
 
 .committee_page {
 
-  body {
-    font-family: "Poppins", sans-serif;
-  }
+  /* ---------- Hero header ---------- */
+  .header {
+    position: relative;
+    background-color: $stemm-deep-blue;
+    background-image:
+      linear-gradient(150deg, rgba($stemm-deep-blue, 0.95), rgba($stemm-darker-blue, 0.88) 60%, rgba($stemm-blue, 0.82)),
+      url("/shared/geometric-background.png");
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    width: 100%;
+    padding: 7rem 1.5rem 3.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-bottom: 2px solid rgba($isoc-gold, 0.55);
 
-    .header {
-      background-color: #e4e8e7;
-      text-align: center;
-      width: 100%;
-      padding-bottom: 10px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-style: normal;
-      font-weight: bold;
-      font-size: clamp(25px, 4vw, 38px);
-      flex-direction: column;
+    > p {
+      font-family: var(--font-cormorant-garamond), serif;
+      color: white;
+      font-weight: 700;
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      margin: 0 0 0.75rem;
+      letter-spacing: 0.03em;
+      text-shadow: 0 2px 16px rgba(0, 0, 0, 0.3);
 
-      /* ensure header content isn't hidden under any fixed navbars */
-      padding-top: 3rem;
+      &::after {
+        content: '';
+        display: block;
+        width: 64px;
+        height: 3px;
+        margin: 1.1rem auto 0;
+        border-radius: 2px;
+        background: linear-gradient(90deg, $stemm-lighter-blue, $isoc-gold-light);
+      }
+    }
 
     .file_buttons {
       display: flex;
-      gap: 0.75rem;
+      gap: 0.6rem;
       flex-wrap: nowrap;
       justify-content: center;
       align-items: center;
       overflow-x: auto;
-      padding: 6px 8px;
+      padding: 1rem 8px 0;
       -webkit-overflow-scrolling: touch;
     }
 
     .file_button {
-      background: transparent;
-      color: $stemm-blue;
-      border: 2px solid $stemm-blue;
-      padding: 6px 12px;
+      background: rgba(255, 255, 255, 0.08);
+      color: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      padding: 7px 18px;
       border-radius: 999px;
       font-weight: 600;
       cursor: pointer;
-      transition: all 0.15s ease-in-out;
+      transition: all 0.18s ease-in-out;
       font-size: 0.95rem;
 
       &:hover {
-        background-color: rgba(0, 0, 0, 0.04);
+        background: rgba(255, 255, 255, 0.18);
         transform: translateY(-2px);
       }
     }
 
     .active_file {
+      background-color: $isoc-gold-light;
+      color: $stemm-deep-blue;
+      border-color: $isoc-gold-light;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+      transform: translateY(-2px);
+    }
+  }
+
+  /* ---------- Sticky section pill bar ---------- */
+  .section_nav {
+    position: sticky;
+    top: 66px;
+    z-index: 60;
+    width: 100%;
+    background: rgba($surface-card, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba($stemm-deep-blue, 0.08);
+    box-shadow: 0 6px 18px rgba($stemm-deep-blue, 0.06);
+
+    .section_nav_inner {
+      display: flex;
+      gap: 0.5rem;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0.65rem 1.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+
+    .section_pill {
+      flex-shrink: 0;
+      background: transparent;
+      color: #55605b;
+      border: 1px solid rgba($stemm-deep-blue, 0.14);
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.88rem;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all 0.18s ease-in-out;
+
+      &:hover {
+        background: rgba($stemm-blue, 0.08);
+        color: $stemm-darker-blue;
+        border-color: rgba($stemm-blue, 0.35);
+      }
+    }
+
+    .active_pill {
       background-color: $stemm-blue;
       color: white;
       border-color: $stemm-blue;
-
-      transform: translateY(-2px);
-    }
-
-    .selected_label {
-      margin: 0;
-      font-size: 0.9rem;
-      color: $stemm-blue;
-      opacity: 0.9;
+      box-shadow: 0 4px 12px rgba($stemm-blue, 0.3);
     }
   }
 
-  .divider {
-    width: 90%;
-  }
-
-  .committee_head {
+  /* ---------- Layout ---------- */
+  .content_wrapper {
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 4rem;
+    gap: 2.5rem;
+    position: relative;
+  }
+
+  .main_content {
+    flex: 1;
+    min-width: 0;
+    animation: fadeInUp 0.8s ease-out;
+  }
+
+  /* ---------- Section rows (small sections share a line) ---------- */
+  .section_row {
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    gap: 1rem;
-    margin: 16px auto;
+    gap: 0 2.5rem;
+
+    > .section {
+      flex: 1 1 280px;
+      min-width: 0;
+    }
+
+    /* two-up rows: size each section to its cards so both
+       groups sit together near the middle of the page */
+    @media (min-width: 846px) {
+      > .section:first-child:nth-last-child(2),
+      > .section:first-child:nth-last-child(2) ~ .section {
+        flex: 0 1 auto;
+        display: flex;
+        flex-direction: column;
+
+        /* grow to the row height so cards in both sections match */
+        .committee_members {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          align-items: stretch;
+          gap: 1.5rem;
+          flex: 1;
+
+          .member {
+            width: 250px;
+          }
+        }
+      }
+    }
+  }
+
+  /* ---------- Sections (each section centered) ---------- */
+  .section {
+    margin-bottom: 4rem;
+    text-align: center;
+
+    .section_title {
+      font-size: clamp(1.5rem, 2.5vw, 1.9rem);
+      font-weight: 700;
+      color: $stemm-deep-blue;
+      letter-spacing: 0.02em;
+      margin-bottom: 2rem;
+
+      &::after {
+        content: '';
+        display: block;
+        width: 48px;
+        height: 3px;
+        margin: 0.65rem auto 0;
+        border-radius: 2px;
+        background: linear-gradient(90deg, $stemm-blue, $isoc-gold);
+      }
+    }
+  }
+
+  /* ---------- Member grids ---------- */
+  .committee_head {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 340px));
+    justify-content: center;
+    gap: 1.75rem;
     animation: fadeInUp 0.6s ease-out;
 
-    /* make sure member cards inside header are treated like centered items */
+    /* leadership cards carry a gold crown bar */
     .member {
-      margin: 0;
-      max-width: 420px; /* allow slightly wider head cards if needed */
-      width: 100%;
+      border-top: 4px solid $isoc-gold;
     }
   }
 
   .committee_members {
     display: grid;
-    /* Use auto-fit so columns wrap cleanly and avoid overlapping when many cards are present */
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    /* Constrain overall width but allow internal wrapping */
-    max-width: 1200px;
-    margin: 16px auto 6%;
-    row-gap: 50px;
-    column-gap: 20px; /* increased gap to avoid visual crowding */
-    align-items: start; /* align start so cards have consistent heights */
+    grid-template-columns: repeat(auto-fit, minmax(230px, 265px));
     justify-content: center;
-    justify-items: center;
-    /* add scroll snap for modern browsers */
-    scroll-snap-type: y mandatory;
+    gap: 1.5rem;
+    align-items: stretch;
   }
 
-  .member {
-    box-sizing: border-box; /* ensure padding/border don't cause overflow */
-    text-align: center;
-    align-items: center;
-    margin: 0;
-    border-radius: 20px;
-    padding: 12px;
-    width: 100%; /* take full width of the grid cell */
-    max-width: 420px; /* prevent a card from becoming overly wide on large screens */
-    /* smooth transitions for hover animation */
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    /* fade in when loaded */
-    animation: fadeInUp 0.8s ease-out;
-    scroll-snap-align: start;
+  /* flex-wrap variant so an incomplete last row stays centred */
+  .centered_members {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 
-    hr {
-      width: 50%;
-      margin: 0 auto;
+    .member {
+      width: 265px;
+      max-width: 100%;
     }
+  }
+
+  /* ---------- Member card ---------- */
+  .member {
+    box-sizing: border-box;
+    background: $surface-card;
+    border: 1px solid rgba($stemm-deep-blue, 0.08);
+    border-radius: 12px;
+    padding: 1.75rem 1.25rem 1.4rem;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba($stemm-deep-blue, 0.05);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out;
+    animation: fadeInUp 0.5s ease-out;
 
     &:hover {
       transform: translateY(-3px);
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      border-color: rgba($stemm-blue, 0.28);
+      box-shadow: 0 10px 22px rgba($stemm-deep-blue, 0.1);
     }
 
     .info_div {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
       align-items: center;
       height: 100%;
-      padding: 10px;
+      gap: 0.35rem;
+    }
 
-      .member_name,
-      .member_role {
-        color: black;
-        text-align: center;
-        font-size: clamp(20px, 4vw, 25px);
-        margin: 0;
-      }
+    .avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, $stemm-blue, $stemm-deep-blue);
+      color: white;
+      font-weight: 700;
+      font-size: 1.25rem;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.75rem;
+      /* a single thin brand ring rather than a layered glow */
+      box-shadow: 0 2px 6px rgba($stemm-deep-blue, 0.16),
+                  0 0 0 2px $surface-card,
+                  0 0 0 3px rgba($isoc-gold, 0.3);
+    }
 
-      .member_name {
-        font-weight: bold;
-      }
+    .member_name {
+      color: #1f2a26;
+      font-weight: 700;
+      font-size: 1.15rem;
+      margin: 0;
+    }
 
-      .member_role {
-        font-style: italic;
+    .member_role {
+      color: $stemm-blue;
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin: 0;
+    }
+
+    .member_meta {
+      color: #6b7671;
+      font-size: 0.9rem;
+      margin: 0.15rem 0 0;
+    }
+
+    .card_contact {
+      margin-top: auto;
+      padding-top: 1rem;
+      width: 100%;
+      border-top: 1px solid rgba($stemm-deep-blue, 0.08);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+
+      .contact_label {
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: $isoc-gold;
       }
     }
 
     .icons {
       display: flex;
       flex-direction: row;
-      justify-content: space-evenly;
-      gap: 6px;
+      justify-content: center;
+      gap: 0.75rem;
     }
   }
 
   .icon {
     background-color: $stemm-blue;
     color: white;
-    padding: 10px;
-    font-size: 15px;
+    padding: 9px;
+    font-size: 14px;
     border-radius: 50%;
     transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
-    margin: 10px;
+    margin: 4px 0 0;
 
     &:hover {
       background-color: $isoc-gold;
-      transform: scale(1.1);
+      transform: scale(1.06);
       cursor: pointer;
     }
   }
+}
 
-  .content_wrapper {
-    display: flex;
-    width: 100%;
-    position: relative;
-  }
+/* ---------- Responsive ---------- */
+@media screen and (max-width: $mobile-bp) {
+  .committee_page {
+    .header {
+      padding: 6rem 1rem 2.5rem;
+    }
 
-  .side_nav {
-    position: sticky;
-    top: 120px;
-    height: calc(100vh - 120px);
-    width: 250px;
-    padding: 20px 0;
-    overflow-y: auto;
-    overflow-x: hidden;
-    /* animate the sidebar on page load */
-    animation: slideIn 1s ease-out forwards;
-    
-    .nav_container {
-      display: flex;
+    .section_nav {
+      top: 58px;
+
+      .section_nav_inner {
+        padding: 0.55rem 1rem;
+      }
+    }
+
+    .content_wrapper {
       flex-direction: column;
-      gap: 8px;
+      padding: 1.25rem 1rem 3rem;
+      gap: 1.25rem;
     }
 
-    /* hide the mobile-only select on desktop by default; it will be enabled in mobile media queries */
-    .mobile_select {
-      display: none;
+    .main_content {
+      width: 100%;
+      padding: 0;
     }
-    
-    .nav_item {
-      padding: 10px 15px;
-      border-left: 3px solid transparent;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      font-weight: 500;
-      
+
+    .section {
+      margin-bottom: 2.75rem;
+
+      .section_title {
+        margin-bottom: 1.25rem;
+      }
+    }
+
+    /* two cards per row so long committee lists stay scannable */
+    .committee_head,
+    .committee_members {
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .centered_members .member {
+      width: calc(50% - 0.375rem);
+    }
+
+    /* compact card so two fit comfortably at 320px+ */
+    .member {
+      padding: 1.15rem 0.6rem 1rem;
+      border-radius: 14px;
+
+      .avatar {
+        width: 52px;
+        height: 52px;
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .member_name {
+        font-size: 0.95rem;
+        overflow-wrap: anywhere;
+      }
+
+      .member_role {
+        font-size: 0.68rem;
+        letter-spacing: 0.06em;
+      }
+
+      .member_meta {
+        font-size: 0.78rem;
+      }
+
+      .card_contact {
+        padding-top: 0.7rem;
+
+        .contact_label {
+          font-size: 0.62rem;
+          letter-spacing: 0.08em;
+        }
+      }
+
+      .icons {
+        gap: 0.5rem;
+      }
+    }
+
+    .icon {
+      padding: 8px;
+      font-size: 12px;
+    }
+  }
+}
+
+@media (min-width: 846px) and (max-width: 1024px) {
+  .committee_page {
+    .committee_members {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+/* ============================================================
+   Retro archive theme — applied to the 2023-24 committee only.
+   Hard edges, offset shadows and a monospace stack evoke an
+   old terminal/window UI for the earliest archived year.
+   ============================================================ */
+// shared cream base, also used by the 2024-25 transitional theme below
+$cream-paper: #fdfbf5;
+$cream-canvas: #f6f2e8;
+
+// shared archive ink: 2022-23 and 2023-24 use the same deep green
+$archive-ink: #052b20;
+$retro-ink: $archive-ink;
+// same cream as 2024-25, nudged a touch lighter
+$retro-paper: #fefdfa; // lighten($cream-paper, 1.2%)
+$retro-canvas: #f9f6ef; // lighten($cream-canvas, 1.8%)
+// STEMM greens: the deep tone carries text, the brighter one is decorative only
+$retro-accent: $stemm-deep-blue;
+$retro-pop: $stemm-blue;
+$retro-mono: ui-monospace, "Cascadia Mono", "Courier New", Courier, monospace;
+
+.committee_page.retro {
+  background-color: $retro-canvas;
+
+  /* header follows the same flat-ink treatment as 2022-23, no gold */
+  .header {
+    background-color: $retro-ink;
+    background-image:
+      linear-gradient(0deg, rgba($retro-ink, 0.93), rgba($retro-ink, 0.93)),
+      url("/shared/geometric-background.png");
+    border-bottom: 4px solid $retro-ink;
+
+    > p {
+      color: $retro-paper;
+
+      &::after {
+        background: $retro-pop;
+      }
+    }
+
+    .file_button {
+      font-family: $retro-mono;
+      background: transparent;
+      color: $retro-paper;
+      border: 2px solid $retro-paper;
+      border-radius: 0;
+
       &:hover {
-        background-color: rgba(0, 0, 0, 0.05);
-        border-left-color: $stemm-blue;
-        transform: scale(1.02);
+        background: $retro-paper;
+        color: $retro-ink;
+        transform: none;
       }
-      
-      &.active {
-        border-left-color: $isoc-gold;
-        font-weight: 700;
-        background-color: rgba(0, 0, 0, 0.03);
+    }
+
+    .active_file {
+      background: $retro-paper;
+      color: $retro-ink;
+      border-color: $retro-paper;
+      box-shadow: 3px 3px 0 rgba($retro-paper, 0.3);
+      transform: none;
+    }
+  }
+
+  .section_nav {
+    background: rgba($retro-paper, 0.94);
+    border-bottom: 3px solid $retro-ink;
+    box-shadow: none;
+
+    .section_pill {
+      font-family: $retro-mono;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: $retro-ink;
+      background: $retro-paper;
+      border: 2px solid $retro-ink;
+      border-radius: 0;
+      box-shadow: 3px 3px 0 rgba($retro-ink, 0.85);
+
+      &:hover {
+        background: $retro-accent;
+        color: $retro-paper;
+        border-color: $retro-ink;
+      }
+    }
+
+    .active_pill {
+      background: $retro-ink;
+      color: $retro-paper;
+      border-color: $retro-ink;
+      box-shadow: 3px 3px 0 $retro-pop;
+    }
+  }
+
+  .section_title {
+    font-family: $retro-mono;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: $retro-ink;
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+
+    &::after {
+      width: 100%;
+      max-width: 220px;
+      height: 0;
+      border-top: 3px double $retro-ink;
+      background: none;
+      border-radius: 0;
+    }
+  }
+
+  /* ---------- Retro card ---------- */
+  .member {
+    position: relative;
+    background: $retro-paper;
+    border: 3px solid $retro-ink;
+    border-radius: 0;
+    box-shadow: 6px 6px 0 $retro-ink;
+    padding: 2.9rem 1.1rem 1.3rem;
+    transition: transform 0.12s steps(2), box-shadow 0.12s steps(2);
+    animation: none;
+
+    /* striped window title bar */
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 20px;
+      border-bottom: 3px solid $retro-ink;
+      background: repeating-linear-gradient(
+        to bottom,
+        $retro-ink 0 2px,
+        $retro-paper 2px 4px
+      );
+    }
+
+    /* window "close" square, purely decorative */
+    &::after {
+      content: '';
+      position: absolute;
+      top: 5px;
+      right: 7px;
+      width: 10px;
+      height: 10px;
+      background: $retro-paper;
+      border: 2px solid $retro-ink;
+    }
+
+    &:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 9px 9px 0 $retro-pop;
+      border-color: $retro-ink;
+    }
+
+    .avatar {
+      width: 58px;
+      height: 58px;
+      border-radius: 0;
+      border: 3px solid $retro-ink;
+      background: $retro-accent;
+      color: $retro-paper;
+      font-family: $retro-mono;
+      font-size: 1.2rem;
+      letter-spacing: 0.04em;
+      box-shadow: 4px 4px 0 rgba($retro-ink, 0.55);
+    }
+
+    .member_name {
+      font-family: $retro-mono;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: $retro-ink;
+    }
+
+    .member_role {
+      font-family: $retro-mono;
+      color: $retro-paper;
+      background: $retro-ink;
+      border: 2px solid $retro-ink;
+      padding: 2px 7px;
+      margin-top: 0.35rem;
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+    }
+
+    .member_meta {
+      font-family: $retro-mono;
+      color: rgba($retro-ink, 0.75);
+      font-size: 0.72rem;
+      margin-top: 0.5rem;
+    }
+
+    .card_contact {
+      border-top: 2px dashed rgba($retro-ink, 0.45);
+
+      .contact_label {
+        font-family: $retro-mono;
+        color: $retro-accent;
       }
     }
   }
 
-  .main_content {
-    flex: 1;
-    padding: 0 20px;
-    /* add a slight fade-in for the main content */
-    animation: fadeInUp 0.8s ease-out;
-    /* you could also add scroll-snap-type here if you want the content area to snap */
-    min-width: 0; /* allow this flex child to shrink below its contents to avoid overflow */
+  /* leadership keeps the crown bar, in retro ink */
+  .committee_head .member {
+    border-top: 3px solid $retro-ink;
+
+    &::before {
+      background: repeating-linear-gradient(
+        to bottom,
+        $retro-pop 0 2px,
+        $retro-paper 2px 4px
+      );
+    }
   }
 
-  .section {
-    margin-bottom: 50px;
-    
-    .section_title {
-      font-size: 28px;
-      font-weight: 700;
-      margin-bottom: 20px;
-      padding-bottom: 10px;
-      border-bottom: 2px solid $stemm-blue;
+  .icon {
+    background-color: $retro-ink;
+    border-radius: 0;
+
+    &:hover {
+      background-color: $retro-pop;
+      transform: none;
+    }
+  }
+}
+
+/* retro cards need a little breathing room for their offset shadow */
+@media screen and (max-width: $mobile-bp) {
+  .committee_page.retro {
+    .committee_head,
+    .committee_members {
+      gap: 1rem 0.9rem;
+    }
+
+    .member {
+      padding: 2.4rem 0.55rem 1rem;
+      box-shadow: 4px 4px 0 $retro-ink;
+
+      &:hover {
+        box-shadow: 6px 6px 0 $retro-pop;
+      }
+
+      .avatar {
+        width: 46px;
+        height: 46px;
+        font-size: 1rem;
+      }
+
+      .member_name {
+        font-size: 0.85rem;
+      }
+
+      .member_role {
+        font-size: 0.55rem;
+        letter-spacing: 0.05em;
+      }
+
+      .member_meta {
+        font-size: 0.66rem;
+      }
+    }
+
+    .centered_members .member {
+      width: calc(50% - 0.45rem);
+    }
+  }
+}
+
+/* ============================================================
+   1-bit monochrome theme — layered on top of .retro for the
+   oldest year (2022-23). Two green tones only, no warm ink and
+   no accents: the most "archival" end of the progression.
+   ============================================================ */
+$mono-ink: $archive-ink;
+$mono-paper: #e8f1ec;
+$mono-canvas: #d3e2da;
+// classic 1-bit checkerboard dither, used instead of solid fills
+@mixin mono-dither($a, $b) {
+  background-image: repeating-conic-gradient($a 0% 25%, $b 0% 50%);
+  background-size: 4px 4px;
+}
+
+.committee_page.retro.mono {
+  background-color: $mono-canvas;
+
+  .header {
+    background-color: $mono-ink;
+    background-image:
+      linear-gradient(0deg, rgba($mono-ink, 0.93), rgba($mono-ink, 0.93)),
+      url("/shared/geometric-background.png");
+    border-bottom: 4px solid $mono-ink;
+
+    > p {
+      color: $mono-paper;
+
+      &::after {
+        background: $mono-paper;
+      }
+    }
+
+    .file_button {
+      background: transparent;
+      color: $mono-paper;
+      border: 2px solid $mono-paper;
+      border-radius: 0;
+
+      &:hover {
+        background: $mono-paper;
+        color: $mono-ink;
+      }
+    }
+
+    .active_file {
+      background: $mono-paper;
+      color: $mono-ink;
+      border-color: $mono-paper;
+      box-shadow: 3px 3px 0 rgba($mono-paper, 0.35);
+    }
+  }
+
+  .section_nav {
+    background: $mono-paper;
+    border-bottom: 4px solid $mono-ink;
+
+    .section_pill {
+      background: $mono-paper;
+      color: $mono-ink;
+      border-color: $mono-ink;
+      box-shadow: 3px 3px 0 $mono-ink;
+
+      &:hover {
+        background: $mono-ink;
+        color: $mono-paper;
+      }
+    }
+
+    .active_pill {
+      background: $mono-ink;
+      color: $mono-paper;
+      border-color: $mono-ink;
+      box-shadow: 3px 3px 0 rgba($mono-ink, 0.4);
+    }
+  }
+
+  .section_title {
+    color: $mono-ink;
+
+    &::after {
+      border: none;
+      height: 6px;
+      max-width: 180px;
+      @include mono-dither($mono-ink, transparent);
+    }
+  }
+
+  .member {
+    background: $mono-paper;
+    border-color: $mono-ink;
+    box-shadow: 6px 6px 0 $mono-ink;
+
+    /* dithered title bar rather than clean stripes */
+    &::before {
+      border-bottom-color: $mono-ink;
+      @include mono-dither($mono-ink, $mono-paper);
+    }
+
+    &::after {
+      background: $mono-paper;
+      border-color: $mono-ink;
+    }
+
+    &:hover {
+      box-shadow: 9px 9px 0 $mono-ink;
+      border-color: $mono-ink;
+    }
+
+    .avatar {
+      background: $mono-ink;
+      color: $mono-paper;
+      border-color: $mono-ink;
+      box-shadow: 4px 4px 0 rgba($mono-ink, 0.35);
+    }
+
+    .member_name { color: $mono-ink; }
+
+    .member_role {
+      background: $mono-ink;
+      border-color: $mono-ink;
+      color: $mono-paper;
+    }
+
+    .member_meta { color: rgba($mono-ink, 0.78); }
+
+    .card_contact {
+      border-top-color: rgba($mono-ink, 0.5);
+
+      .contact_label { color: $mono-ink; }
+    }
+  }
+
+  .committee_head .member {
+    border-top-color: $mono-ink;
+
+    &::before {
+      @include mono-dither($mono-ink, $mono-paper);
+      background-size: 6px 6px;
+    }
+  }
+
+  .icon {
+    background-color: $mono-ink;
+    color: $mono-paper;
+
+    &:hover {
+      background-color: $mono-paper;
+      color: $mono-ink;
+      box-shadow: inset 0 0 0 2px $mono-ink;
     }
   }
 }
 
 @media screen and (max-width: $mobile-bp) {
-  .committee_page {
-    .content_wrapper {
-      flex-direction: column;
-    }
-    
-    .side_nav {
-      /* Keep the nav in the document flow initially; stick to the top when scrolled */
-      position: sticky;
-      top: 70px; /* offset for any global header - sticks after this distance */
-      width: 100%;
-      height: 56px;
-      padding: 8px 0px;
-      margin: 0 0 12px 0;
-      z-index: 60; /* ensure nav sits above content when sticky */
-      background: transparent;
-      box-shadow: none;
-      border-bottom: none;
-      overflow-y: hidden;
+  .committee_page.retro.mono {
+    .member {
+      box-shadow: 4px 4px 0 $mono-ink;
 
-      /* hide the horizontal pills on small screens; use the select instead */
-      .nav_container {
-        display: none;
-      }
-
-      .mobile_select {
-        display: block;
-        width: calc(100% - 32px);
-        margin: 6px 16px;
-        height: 36px;
-        padding: 6px 10px;
-        border-radius: 999px;
-        border: 1px solid rgba(0,0,0,0.08);
-        font-size: 0.95rem;
-      }
-
-      .nav_item {
-        white-space: nowrap;
-        border-left: none;
-        border-bottom: 3px solid transparent;
-        padding: 0.4rem 0.8rem;
-        background: transparent;
-        border-radius: 999px;
-
-        &:hover,
-        &.active {
-          border-left-color: transparent;
-          border-bottom-color: $isoc-gold;
-          background: rgba(0,0,0,0.03);
-        }
+      &:hover {
+        box-shadow: 6px 6px 0 $mono-ink;
       }
     }
-    
-    .main_content {
-      padding: 0;
-      /* when nav is sticky it remains in flow, so no extra top padding is needed */
-      padding-top: 0;
+  }
+}
+
+/* ============================================================
+   Transitional theme — the 2024-25 committee sits between the
+   retro archive and the current cards: softened corners, a hard
+   offset shadow paired with an ambient one, and a monospace
+   role label as the last remaining retro cue.
+   ============================================================ */
+$trans-paper: $cream-paper;
+$trans-canvas: $cream-canvas;
+$trans-line: rgba($stemm-deep-blue, 0.24);
+
+.committee_page.transitional {
+  background-color: $trans-canvas;
+
+  /* green-only palette: no gold anywhere in this theme */
+  .header {
+    border-bottom-color: rgba($stemm-lighter-blue, 0.55);
+
+    > p::after {
+      background: linear-gradient(90deg, $stemm-lighter-blue, $stemm-light-blue);
     }
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    .committee_head {
-      flex-direction: column;
-      width: 100%;
+    .active_file {
+      background-color: $stemm-lighter-blue;
+      border-color: $stemm-lighter-blue;
+      color: $stemm-deep-blue;
     }
+  }
+
+  .section_nav {
+    background: rgba($trans-paper, 0.93);
+    border-bottom: 2px solid $trans-line;
+
+    .section_pill {
+      border-radius: 8px;
+      border: 2px solid $trans-line;
+      background: $trans-paper;
+      box-shadow: 2px 2px 0 rgba($stemm-deep-blue, 0.1);
+    }
+
+    .active_pill {
+      background: $stemm-deep-blue;
+      color: white;
+      border-color: $stemm-deep-blue;
+      box-shadow: 2px 2px 0 rgba($stemm-lighter-blue, 0.85);
+    }
+  }
+
+  .section_title::after {
+    width: 56px;
+    height: 4px;
+    border-radius: 1px;
+    background: linear-gradient(90deg, $stemm-blue, $stemm-lighter-blue);
+  }
+
+  /* ---------- Transitional card ---------- */
+  .member {
+    background: $trans-paper;
+    border: 2px solid $trans-line;
+    border-radius: 8px;
+    /* hard offset (retro) softened by an ambient blur (modern) */
+    box-shadow: 4px 4px 0 rgba($stemm-deep-blue, 0.11),
+                0 10px 22px rgba($stemm-deep-blue, 0.07);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+
+    &:hover {
+      transform: translate(-2px, -4px);
+      border-color: rgba($stemm-deep-blue, 0.45);
+      box-shadow: 7px 7px 0 rgba($stemm-blue, 0.16),
+                  0 18px 34px rgba($stemm-deep-blue, 0.13);
+    }
+
+    /* squircle avatar: halfway between the retro square and the circle */
+    .avatar {
+      border-radius: 14px;
+      border: 2px solid rgba($stemm-deep-blue, 0.5);
+      box-shadow: 3px 3px 0 rgba($stemm-deep-blue, 0.14);
+    }
+
+    .member_name {
+      font-size: 1.1rem;
+    }
+
+    .member_role {
+      font-family: $retro-mono;
+      display: inline-block;
+      color: $stemm-deep-blue;
+      background: rgba($stemm-blue, 0.1);
+      border: 1px solid rgba($stemm-deep-blue, 0.18);
+      border-radius: 4px;
+      padding: 2px 8px;
+      margin-top: 0.3rem;
+      font-size: 0.64rem;
+      letter-spacing: 0.08em;
+    }
+
+    .card_contact {
+      border-top: 1px dashed rgba($stemm-deep-blue, 0.25);
+
+      /* base styles colour this gold; keep the theme green-only */
+      .contact_label {
+        color: $stemm-deep-blue;
+      }
+    }
+  }
+
+  /* leadership crown bar, in green rather than gold */
+  .committee_head .member {
+    border-top: 4px solid $stemm-blue;
+  }
+
+  .icon {
+    border-radius: 6px;
+
+    &:hover {
+      background-color: $stemm-blue;
+    }
+  }
+}
+
+@media screen and (max-width: $mobile-bp) {
+  .committee_page.transitional {
+    .committee_head,
     .committee_members {
-      row-gap: 20px;
+      gap: 0.9rem 0.8rem;
     }
 
     .member {
-      width: 100%;
-      padding: 0;
+      padding: 1.15rem 0.6rem 1rem;
+      box-shadow: 3px 3px 0 rgba($stemm-deep-blue, 0.11),
+                  0 6px 14px rgba($stemm-deep-blue, 0.06);
 
-      .info_div {
-        padding: 0;
+      .member_name {
+        font-size: 0.95rem;
+      }
+
+      .member_role {
+        font-size: 0.56rem;
+        letter-spacing: 0.05em;
+        padding: 2px 5px;
       }
     }
+
+    .centered_members .member {
+      width: calc(50% - 0.4rem);
+    }
   }
 }
-@media (max-width: 768px) {
-  .committee_page {
-    padding: 1rem;
-  }
 
+/* ============================================================
+   Heritage theme (2025-26) — guided by the year's merch design:
+   deep forest green, warm ivory and sage line-art tones, with
+   serif display headings in place of the plain sans ones.
+   ============================================================ */
+// main colour stays the brand green; only the accents come from the design
+$h-forest: $stemm-deep-blue;
+$h-ivory: #fdfbf2;
+$h-canvas: #f5f2e8;
+$h-sage: #a9ae8c;
+$h-sage-deep: #5f6543; // darkened sage, for small text contrast
+$h-ink: #26332d;
+
+.committee_page.heritage {
+  background-color: $h-canvas;
+
+  /* header keeps the standard brand-green gradient; only the gold is swapped */
   .header {
-    padding: 2rem 1rem;
-    
-    p {
-      font-size: 1.75rem;
+    border-bottom: 2px solid rgba($h-sage, 0.7);
+
+    > p::after {
+      background: linear-gradient(90deg, $h-sage, rgba($h-sage, 0.3));
+    }
+
+    .active_file {
+      background-color: $h-sage;
+      border-color: $h-sage;
+      color: $h-ink;
     }
   }
 
-  .content_wrapper {
-    flex-direction: column;
-  }
+  .section_nav {
+    background: rgba($h-ivory, 0.94);
+    border-bottom: 1px solid rgba($h-forest, 0.14);
+    box-shadow: 0 4px 14px rgba($h-forest, 0.05);
 
-  .side_nav {
-    position: sticky;
-    top: 70px;
-    width: 100%;
-    margin-bottom: 1.5rem;
-    z-index: 10;
-  }
-  
-  /* hide the horizontal pill nav on small screens and show the mobile select */
-  .nav_container {
-    display: none;
-  }
+    .section_pill {
+      color: $h-ink;
+      border-color: rgba($h-forest, 0.18);
 
-  .side_nav .mobile_select {
-    display: block;
-    width: calc(100% - 32px);
-    margin: 8px 16px;
-    height: 44px; /* touch-friendly */
-    padding: 0 14px;
-    border-radius: 999px;
-    border: 1px solid rgba(0,0,0,0.06);
-    background: white;
-    color: $stemm-darker-blue;
-    font-weight: 600;
+      &:hover {
+        background: rgba($h-sage, 0.25);
+        border-color: rgba($h-sage, 0.9);
+        color: $h-forest;
+      }
+    }
 
-    box-shadow: none;
-    transition: border-color 0.12s ease, box-shadow 0.12s ease;
-
-    /* Add a subtle chevron arrow on the right using an inline SVG so it looks native */
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='8' viewBox='0 0 14 8'><path fill='%236a928d' d='M7 8L0 0h14z'/></svg>");
-    background-repeat: no-repeat;
-    background-position: right 12px center;
-    background-size: 14px 8px;
-
-    -webkit-appearance: none;
-    appearance: none;
-
-    &:focus {
-      outline: none;
-      border-color: $stemm-blue;
-      box-shadow: 0 6px 18px rgba(106,146,141,0.12);
+    .active_pill {
+      background: $h-forest;
+      border-color: $h-forest;
+      color: $h-ivory;
+      box-shadow: 0 4px 12px rgba($h-forest, 0.3);
     }
   }
-  
-  .nav_item {
-    flex: 0 0 auto;
-    padding: 0.5rem 1rem;
-    margin: 0 0.25rem;
-    white-space: nowrap;
-    font-size: 0.9rem;
-  }
-}
 
-.main_content {
-  @media (max-width: 768px) {
-    width: 100%;
-    padding: 0;
-  }
-}
-
-.section {
-  @media (max-width: 768px) {
-    padding: 1.5rem 0;
-  }
-  
+  /* serif display headings, echoing the design's type */
   .section_title {
-    @media (max-width: 768px) {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
+    font-family: var(--font-cormorant-garamond), serif;
+    font-weight: 700;
+    color: $h-forest;
+    font-size: clamp(1.7rem, 2.8vw, 2.15rem);
+    letter-spacing: 0.03em;
+
+    &::after {
+      background: linear-gradient(90deg, $h-forest, $h-sage);
     }
   }
+
+  .member {
+    background: $h-ivory;
+    border: 1px solid rgba($h-forest, 0.14);
+    box-shadow: 0 2px 6px rgba($h-forest, 0.06);
+
+    &:hover {
+      border-color: rgba($h-sage, 0.95);
+      box-shadow: 0 10px 22px rgba($h-forest, 0.12);
+    }
+
+    /* keeps the brand-green gradient fill; only the ring becomes sage */
+    .avatar {
+      font-family: var(--font-cormorant-garamond), serif;
+      font-size: 1.5rem;
+      box-shadow: 0 2px 6px rgba($h-forest, 0.2),
+                  0 0 0 2px $h-ivory,
+                  0 0 0 3px rgba($h-sage, 0.9);
+    }
+
+    .member_name { color: $h-ink; }
+
+    .member_meta { color: rgba($h-ink, 0.62); }
+
+    .card_contact {
+      border-top-color: rgba($h-forest, 0.12);
+
+      .contact_label { color: $h-sage-deep; }
+    }
+  }
+
+  /* leadership crown bar in sage rather than gold */
+  .committee_head .member {
+    border-top: 4px solid $h-sage;
+  }
+
+  .icon:hover {
+    background-color: $h-sage;
+    color: $h-ink;
+  }
 }
 
-.committee_head, .committee_members {
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-  
-  @media (min-width: 769px) and (max-width: 1024px) {
-    grid-template-columns: repeat(2, 1fr);
+@media screen and (max-width: $mobile-bp) {
+  .committee_page.heritage .member .avatar {
+    /* keep the compact mobile avatar; the serif face needs a touch more size */
+    font-size: 1.2rem;
   }
 }
 
+
+/* Accessibility floor: content must not depend on motion to become visible,
+   and nothing should animate indefinitely, for users who have asked their OS
+   to reduce motion. */
+@media (prefers-reduced-motion: reduce) {
+  .committee_page,
+  .committee_page *,
+  .committee_page *::before,
+  .committee_page *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}

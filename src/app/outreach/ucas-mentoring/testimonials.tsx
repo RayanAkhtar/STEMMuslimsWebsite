@@ -26,17 +26,17 @@ const Testimonials = () => {
     <>
       <div className={styles.testimonials}>
         <div className={styles.testimonial}>
-          <img src="/Outreach/UCAS_Mentorship/woman.webp" />
+          <img src="/outreach/ucas-mentoring/woman.webp" />
           <p style={{ whiteSpace: "pre-line" }}>{secondText}</p>
         </div>
 
         <div className={styles.testimonial}>
-          <img src="/Outreach/UCAS_Mentorship/man.webp" />
+          <img src="/outreach/ucas-mentoring/man.webp" />
           <p style={{ whiteSpace: "pre-line" }}>{muhammadText}</p>
         </div>
 
         <div className={styles.testimonial}>
-          <img src="/Outreach/UCAS_Mentorship/woman.webp" />
+          <img src="/outreach/ucas-mentoring/woman.webp" />
           <p style={{ whiteSpace: "pre-line" }}>{thirdText}</p>
         </div>
       </div>

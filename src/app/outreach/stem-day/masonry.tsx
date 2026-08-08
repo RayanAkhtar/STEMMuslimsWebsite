@@ -2,7 +2,6 @@
 import styles from "./stem-day.module.scss";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import exp from "constants";
 
 const ResponsiveMasonry = dynamic(
   () => import("react-responsive-masonry").then((mod) => mod.ResponsiveMasonry),
@@ -32,8 +31,8 @@ const StemDayMasonry = () => {
         <StemDayCard
           title="Explore, Innovate, and Experience Imperial"
           text={desc}
-          imageSrc1="/Outreach/stemday/making_car_2.webp"
-          imageSrc2="/Outreach/stemday/flight_sim_2.webp"
+          imageSrc1="/outreach/stem-day/engineering_stemday_2526.webp"
+          imageSrc2="/outreach/stem-day/lifescience_stemday_2526.webp"
         />
       </Masonry>
     </ResponsiveMasonry>

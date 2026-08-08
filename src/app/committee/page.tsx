@@ -37,21 +37,28 @@ interface LinkedInButtonProps {
     linkedin: string;
 }
 
-// Define sections for navigation
+// Define sections (display order)
 const sections = [
     { id: "leadership", title: "Leadership" },
     { id: "vice-presidents", title: "Vice Presidents" },
     { id: "secretaries", title: "Secretaries" },
-    { id: "tech", title: "Tech Team" },
+    { id: "tech", title: "Tech Leads" },
+    { id: "careers", title: "Careers" },
+    { id: "education", title: "Education" },
+    { id: "outreach", title: "Outreach" },
+    { id: "stemnet", title: "STEMnet" },
+    { id: "alumni", title: "Alumni Liaison" },
+    { id: "publicity", title: "Publicity & SM" },
+    { id: "social", title: "Social Media" },
+    { id: "treasury", title: "Treasury & Sponsorship" },
+    { id: "sponsorship", title: "Sponsorship" },
+    { id: "general", title: "General Committee" },
+    // additional sections kept for prior years' data
     { id: "events", title: "Events Team" },
     { id: "academic", title: "Academic Team" },
     { id: "how", title: "House of Wisdom" },
-    { id: "outreach", title: "Outreach" },
-    { id: "publicity", title: "Publicity & SM" },
-    { id: "treasury", title: "Treasury & Sponsorship" },
-    { id: "careers", title: "Careers" },
-    { id: "education", title: "Education" },
-    { id: "general", title: "General Committee" },
+    { id: "haqqathon", title: "Haqqathon Team" },
+    { id: "hackathon", title: "Hackathon" },
     { id: "freshers", title: "Fresher Representatives" }
 ];
 
@@ -117,7 +124,9 @@ const CommitteePage: React.FC = () => {
     const members = (committeeData && committeeData.members) ? committeeData.members : {} as PeopleDetails;
     const [activeSection, setActiveSection] = useState("leadership");
     const sectionRefs = useRef<{[key: string]: HTMLDivElement | null}>({});
-    
+    const pillRefs = useRef<{[key: string]: HTMLButtonElement | null}>({});
+
+
     // Group members by their roles
     const vicePresidents = Object.entries(members).filter(([_, details]) => details.role.includes("Vice President"));
     const secretaries = Object.entries(members).filter(([_, details]) => details.role.includes("Secretary"));
@@ -133,13 +142,27 @@ const CommitteePage: React.FC = () => {
         return role.includes('outreach') && !role.includes('vice president');
     });
     const publicityTeam = Object.entries(members).filter(([_, details]) => details.role.includes("Publicity"));
-    const treasuryTeam = Object.entries(members).filter(([_, details]) => details.role.includes("Treasury"));
+    const socialMediaTeam = Object.entries(members).filter(([_, details]) => (details.role || '').toLowerCase().includes('social media'));
+    // "Treasurer" (2022-23) and "Treasury & Sponsorship Officer" (2024-25) share this section
+    const treasuryTeam = Object.entries(members).filter(([_, details]) => {
+        const role = (details.role || '').toLowerCase();
+        return role.includes('treasury') || role.includes('treasurer');
+    });
+    const alumniTeam = Object.entries(members).filter(([_, details]) => (details.role || '').toLowerCase().includes('alumni'));
+    // years that list sponsorship separately; "Treasury & Sponsorship" stays in its own section
+    const sponsorshipTeam = Object.entries(members).filter(([_, details]) => {
+        const role = (details.role || '').toLowerCase();
+        return role.includes('sponsorship') && !role.includes('treasury');
+    });
+    const stemnetTeam = Object.entries(members).filter(([_, details]) => (details.role || '').toLowerCase().includes('stemnet'));
+    const hackathonTeam = Object.entries(members).filter(([_, details]) => (details.role || '').toLowerCase().includes('hackathon'));
     const techTeam = Object.entries(members).filter(([_, details]) => details.role.includes("Tech"));
     const careersTeam = Object.entries(members).filter(([_, details]) => {
         const role = (details.role || '').toLowerCase();
         return (role.includes('careers') || role.includes('career')) && !role.includes('vice president');
     });
     const generalCommittee = Object.entries(members).filter(([_, details]) => details.role.includes("General"));
+    const haqqathonTeam = Object.entries(members).filter(([_, details]) => details.role.includes("Haqqathon"));
     const fresherReps = Object.entries(members).filter(([_, details]) => details.role.includes("Fresher"));
 
     // Map section ids to their entries so we can hide empty sections
@@ -153,19 +176,57 @@ const CommitteePage: React.FC = () => {
     education: educationTeam,
         how: houseOfWisdom,
         outreach: outreachTeam,
+        stemnet: stemnetTeam,
+        alumni: alumniTeam,
         publicity: publicityTeam,
+        social: socialMediaTeam,
         treasury: treasuryTeam,
+        sponsorship: sponsorshipTeam,
         tech: techTeam,
         general: generalCommittee,
+        haqqathon: haqqathonTeam,
+        hackathon: hackathonTeam,
         freshers: fresherReps,
     };
 
-    // Precompute which sections have members
-    const availableSections = sections.filter(s => (sectionEntries[s.id] && sectionEntries[s.id].length > 0));
+    const is2024 = selectedFile.startsWith('2024');
+    const is2023 = selectedFile.startsWith('2023');
+    const is2022 = selectedFile.startsWith('2022');
+    const is2025 = selectedFile.startsWith('2025');
 
-    // Scroll event handler to update active section
+    // Year-specific title tweaks: 2024-25 had a single tech lead; 2022-23
+    // listed sponsorship separately and had a single publicity head
+    const titles2022: Record<string, string> = { treasury: 'Treasury', publicity: 'Publicity Head' };
+    const displaySections = is2024
+        ? sections.map(s => (s.id === 'tech' ? { ...s, title: 'Tech Lead' } : s))
+        : is2022
+        ? sections.map(s => (titles2022[s.id] ? { ...s, title: titles2022[s.id] } : s))
+        : sections;
+
+    // Precompute which sections have members
+    const availableSections = displaySections.filter(s => (sectionEntries[s.id] && sectionEntries[s.id].length > 0));
+
+    // Small sections that share a row on desktop (per year)
+    const rowGroups: string[][] = is2024
+        ? [["secretaries", "tech"], ["how", "academic"], ["outreach", "events"]]
+        : is2023
+        ? [["secretaries", "events"], ["academic", "general"], ["outreach", "stemnet", "hackathon"], ["publicity", "social", "sponsorship"]]
+        : is2022
+        ? [["secretaries", "events"], ["treasury", "sponsorship"], ["outreach", "alumni", "publicity"]]
+        : [["secretaries", "tech"], ["careers", "education", "outreach"]];
+
+    const sectionRows: Array<typeof availableSections> = [];
+    const placed = new Set<string>();
+    for (const section of availableSections) {
+        if (placed.has(section.id)) continue;
+        const group = rowGroups.find(g => g.includes(section.id));
+        const row = group ? group.flatMap(id => availableSections.filter(s => s.id === id)) : [section];
+        row.forEach(s => placed.add(s.id));
+        sectionRows.push(row);
+    }
+
+    // Track which section is in view so the pill bar can highlight it
     useEffect(() => {
-        // If the current activeSection is not available, set it to the first available one
         if (availableSections.length > 0 && !availableSections.find(s => s.id === activeSection)) {
             setActiveSection(availableSections[0].id);
         }
@@ -191,18 +252,31 @@ const CommitteePage: React.FC = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, [availableSections, activeSection]);
 
+    // Keep the active pill visible by scrolling only the bar itself,
+    // never the window (scrollIntoView would also scroll the page)
+    useEffect(() => {
+        const pill = pillRefs.current[activeSection];
+        const bar = pill?.parentElement;
+        if (pill && bar) {
+            bar.scrollTo({
+                left: pill.offsetLeft - (bar.clientWidth - pill.clientWidth) / 2,
+                behavior: 'smooth'
+            });
+        }
+    }, [activeSection]);
+
     const scrollToSection = (id: string) => {
         const element = sectionRefs.current[id];
         if (element) {
             window.scrollTo({
-                top: element.offsetTop - 100,
+                top: element.offsetTop - 140,
                 behavior: 'smooth'
             });
         }
     };
 
     return (
-        <div className={styles.committee_page}>
+        <div className={`${styles.committee_page} ${(is2022 || is2023) ? styles.retro : ''} ${is2022 ? styles.mono : ''} ${is2024 ? styles.transitional : ''} ${is2025 ? styles.heritage : ''}`}>
             <div className={styles.header}>
                 <p>Meet Our Committee {selectedFile ? selectedFile.replace('.json','') : ''}</p>
                 <div className={styles.file_buttons}>
@@ -218,346 +292,87 @@ const CommitteePage: React.FC = () => {
                 </div>
             </div>
             
+            <div className={styles.section_nav}>
+                <div className={styles.section_nav_inner}>
+                    {availableSections.map(section => (
+                        <button
+                            key={section.id}
+                            ref={(el) => { pillRefs.current[section.id] = el }}
+                            className={`${styles.section_pill} ${activeSection === section.id ? styles.active_pill : ''}`}
+                            onClick={() => scrollToSection(section.id)}
+                        >
+                            {section.title}
+                        </button>
+                    ))}
+                </div>
+            </div>
+
             <div className={styles.content_wrapper}>
-                <div className={styles.side_nav}>
-                    {/* Mobile: show a select dropdown instead of the horizontal scrollable pills */}
-                    <select
-                        className={styles.mobile_select}
-                        aria-label="Navigate committee sections"
-                        value={activeSection}
-                        onChange={(e) => {
-                            const id = e.target.value;
-                            setActiveSection(id);
-                            scrollToSection(id);
-                        }}
-                    >
-                        {availableSections.map(section => (
-                            <option key={section.id} value={section.id}>{section.title}</option>
-                        ))}
-                    </select>
-
-                    <div className={styles.nav_container}>
-                        {availableSections.map(section => (
-                            <div 
-                                key={section.id}
-                                className={`${styles.nav_item} ${activeSection === section.id ? styles.active : ''}`}
-                                onClick={() => scrollToSection(section.id)}
-                            >
-                                {section.title}
-                            </div>
-                        ))}
-                    </div>
-                </div>
-                
                 <div className={styles.main_content}>
-                    {sectionEntries['leadership'] && sectionEntries['leadership'].length > 0 && (
-                        <div ref={(el) => { sectionRefs.current['leadership'] = el }} id="leadership" className={styles.section}>
-                            <h2 className={styles.section_title}>Leadership</h2>
-                            <div className={styles.committee_head}>
-                                {Object.entries(heads).map(([name, details]) => (
-                                    <HeadMember
-                                        key={name}
-                                        name={name}
-                                        role={details.role}
-                                        course={details.course}
-                                        year={details.year}
-                                        email={details.email}
-                                        linkedin={details.LinkedIn}
-                                    />
-                                ))}
-                            </div>
+                    {sectionRows.map(row => (
+                        <div key={row[0].id} className={styles.section_row}>
+                            {row.map(section => {
+                                const entries = sectionEntries[section.id] || [];
+                                const isLeadership = section.id === 'leadership';
+                                return (
+                                    <div
+                                        key={section.id}
+                                        ref={(el) => { sectionRefs.current[section.id] = el }}
+                                        id={section.id}
+                                        className={styles.section}
+                                    >
+                                        <h2 className={styles.section_title}>{section.title}</h2>
+                                        <div className={isLeadership ? styles.committee_head : `${styles.committee_members} ${section.id === 'freshers' ? styles.centered_members : ''}`}>
+                                            {entries.map(([name, details]) => (
+                                                <MemberCard
+                                                    key={name}
+                                                    name={name}
+                                                    role={details.role}
+                                                    course={details.course}
+                                                    year={details.year}
+                                                    email={details.email}
+                                                    linkedin={details.LinkedIn}
+                                                />
+                                            ))}
+                                        </div>
+                                    </div>
+                                );
+                            })}
                         </div>
-                    )}
-
-                    {sectionEntries['vice-presidents'] && sectionEntries['vice-presidents'].length > 0 && (
-                        <div ref={(el) => { sectionRefs.current['vice-presidents'] = el }} id="vice-presidents" className={styles.section}>
-                            <h2 className={styles.section_title}>Vice Presidents</h2>
-                            <div className={styles.committee_members}>
-                                {vicePresidents.map(([name, details]) => (
-                                    <ComMember
-                                        key={name}
-                                        name={name}
-                                        role={details.role}
-                                        course={details.course}
-                                        year={details.year}
-                                        email={details.email}
-                                        linkedin={details.LinkedIn}
-                                    />
-                                ))}
-                            </div>
-                        </div>
-                    )}
-
-                    {sectionEntries['secretaries'] && sectionEntries['secretaries'].length > 0 && (
-                        <div ref={(el) => { sectionRefs.current['secretaries'] = el }} id="secretaries" className={styles.section}>
-                            <h2 className={styles.section_title}>Secretaries</h2>
-                            <div className={styles.committee_members}>
-                                {secretaries.map(([name, details]) => (
-                                    <ComMember
-                                        key={name}
-                                        name={name}
-                                        role={details.role}
-                                        course={details.course}
-                                        year={details.year}
-                                        email={details.email}
-                                        linkedin={details.LinkedIn}
-                                    />
-                                ))}
-                            </div>
-                        </div>
-                    )}
-
-                    {sectionEntries['tech'] && sectionEntries['tech'].length > 0 && (
-                        <div ref={(el) => { sectionRefs.current['tech'] = el }} id="tech" className={styles.section}>
-                            <h2 className={styles.section_title}>Tech Team</h2>
-                            <div className={styles.committee_members}>
-                                {techTeam.map(([name, details]) => (
-                                    <ComMember
-                                        key={name}
-                                        name={name}
-                                        role={details.role}
-                                        course={details.course}
-                                        year={details.year}
-                                        email={details.email}
-                                        linkedin={details.LinkedIn}
-                                    />
-                                ))}
-                            </div>
-                        </div>
-                    )}
-
-                    {sectionEntries['events'] && sectionEntries['events'].length > 0 && (
-                        <div ref={(el) => { sectionRefs.current['events'] = el }} id="events" className={styles.section}>
-                            <h2 className={styles.section_title}>Events Team</h2>
-                            <div className={styles.committee_members}>
-                                {eventsTeam.map(([name, details]) => (
-                                    <ComMember
-                                        key={name}
-                                        name={name}
-                                        role={details.role}
-                                        course={details.course}
-                                        year={details.year}
-                                        email={details.email}
-                                        linkedin={details.LinkedIn}
-                                    />
-                                ))}
-                            </div>
-                        </div>
-                    )}
-
-                    {sectionEntries['academic'] && sectionEntries['academic'].length > 0 && (
-                        <div ref={(el) => { sectionRefs.current['academic'] = el }} id="academic" className={styles.section}>
-                            <h2 className={styles.section_title}>Academic Team</h2>
-                            <div className={styles.committee_members}>
-                                {academicTeam.map(([name, details]) => (
-                                    <ComMember
-                                        key={name}
-                                        name={name}
-                                        role={details.role}
-                                        course={details.course}
-                                        year={details.year}
-                                        email={details.email}
-                                        linkedin={details.LinkedIn}
-                                    />
-                                ))}
-                            </div>
-                        </div>
-                    )}
-
-                    {sectionEntries['how'] && sectionEntries['how'].length > 0 && (
-                        <div ref={(el) => { sectionRefs.current['how'] = el }} id="how" className={styles.section}>
-                            <h2 className={styles.section_title}>House of Wisdom</h2>
-                            <div className={styles.committee_members}>
-                                {houseOfWisdom.map(([name, details]) => (
-                                    <ComMember
-                                        key={name}
-                                        name={name}
-                                        role={details.role}
-                                        course={details.course}
-                                        year={details.year}
-                                        email={details.email}
-                                        linkedin={details.LinkedIn}
-                                    />
-                                ))}
-                            </div>
-                        </div>
-                    )}
-
-                    {sectionEntries['outreach'] && sectionEntries['outreach'].length > 0 && (
-                        <div ref={(el) => { sectionRefs.current['outreach'] = el }} id="outreach" className={styles.section}>
-                            <h2 className={styles.section_title}>Outreach Team</h2>
-                            <div className={styles.committee_members}>
-                                {outreachTeam.map(([name, details]) => (
-                                    <ComMember
-                                        key={name}
-                                        name={name}
-                                        role={details.role}
-                                        course={details.course}
-                                        year={details.year}
-                                        email={details.email}
-                                        linkedin={details.LinkedIn}
-                                    />
-                                ))}
-                            </div>
-                        </div>
-                    )}
-
-                    {sectionEntries['publicity'] && sectionEntries['publicity'].length > 0 && (
-                        <div ref={(el) => { sectionRefs.current['publicity'] = el }} id="publicity" className={styles.section}>
-                            <h2 className={styles.section_title}>Publicity & Social Media</h2>
-                            <div className={styles.committee_members}>
-                                {publicityTeam.map(([name, details]) => (
-                                    <ComMember
-                                        key={name}
-                                        name={name}
-                                        role={details.role}
-                                        course={details.course}
-                                        year={details.year}
-                                        email={details.email}
-                                        linkedin={details.LinkedIn}
-                                    />
-                                ))}
-                            </div>
-                        </div>
-                    )}
-
-                    {sectionEntries['treasury'] && sectionEntries['treasury'].length > 0 && (
-                        <div ref={(el) => { sectionRefs.current['treasury'] = el }} id="treasury" className={styles.section}>
-                            <h2 className={styles.section_title}>Treasury & Sponsorship</h2>
-                            <div className={styles.committee_members}>
-                                {treasuryTeam.map(([name, details]) => (
-                                    <ComMember
-                                        key={name}
-                                        name={name}
-                                        role={details.role}
-                                        course={details.course}
-                                        year={details.year}
-                                        email={details.email}
-                                        linkedin={details.LinkedIn}
-                                    />
-                                ))}
-                            </div>
-                        </div>
-                    )}
-
-                                        {sectionEntries['careers'] && sectionEntries['careers'].length > 0 && (
-                        <div ref={(el) => { sectionRefs.current['careers'] = el }} id="careers" className={styles.section}>
-                            <h2 className={styles.section_title}>Careers</h2>
-                            <div className={styles.committee_members}>
-                                {careersTeam.map(([name, details]) => (
-                                    <ComMember
-                                        key={name}
-                                        name={name}
-                                        role={details.role}
-                                        course={details.course}
-                                        year={details.year}
-                                        email={details.email}
-                                        linkedin={details.LinkedIn}
-                                    />
-                                ))}
-                            </div>
-                        </div>
-                    )}
-
-                    {sectionEntries['education'] && sectionEntries['education'].length > 0 && (
-                        <div ref={(el) => { sectionRefs.current['education'] = el }} id="education" className={styles.section}>
-                            <h2 className={styles.section_title}>Education</h2>
-                            <div className={styles.committee_members}>
-                                {educationTeam.map(([name, details]) => (
-                                    <ComMember
-                                        key={name}
-                                        name={name}
-                                        role={details.role}
-                                        course={details.course}
-                                        year={details.year}
-                                        email={details.email}
-                                        linkedin={details.LinkedIn}
-                                    />
-                                ))}
-                            </div>
-                        </div>
-                    )}
-
-                    {sectionEntries['general'] && sectionEntries['general'].length > 0 && (
-                        <div ref={(el) => { sectionRefs.current['general'] = el }} id="general" className={styles.section}>
-                            <h2 className={styles.section_title}>General Committee</h2>
-                            <div className={styles.committee_members}>
-                                {generalCommittee.map(([name, details]) => (
-                                    <ComMember
-                                        key={name}
-                                        name={name}
-                                        role={details.role}
-                                        course={details.course}
-                                        year={details.year}
-                                        email={details.email}
-                                        linkedin={details.LinkedIn}
-                                    />
-                                ))}
-                            </div>
-                        </div>
-                    )}
-
-                    {sectionEntries['freshers'] && sectionEntries['freshers'].length > 0 && (
-                        <div ref={(el) => { sectionRefs.current['freshers'] = el }} id="freshers" className={styles.section}>
-                            <h2 className={styles.section_title}>Fresher Representatives</h2>
-                            <div className={styles.committee_members}>
-                                {fresherReps.map(([name, details]) => (
-                                    <ComMember
-                                        key={name}
-                                        name={name}
-                                        role={details.role}
-                                        course={details.course}
-                                        year={details.year}
-                                        email={details.email}
-                                        linkedin={details.LinkedIn}
-                                    />
-                                ))}
-                            </div>
-                        </div>
-                    )}
+                    ))}
                 </div>
             </div>
         </div>
     );
 };
 
-const HeadMember: React.FC<HeadMemberProps> = ({ name, role, year, course, email, linkedin }) => {
-    return (
-        <div className={styles.member}>
-            <div className={styles.info_div}>
-                <p className={styles.member_name}>{name}</p>
-                <hr />
-                <p className={styles.member_role}>{role}</p>
-                <p>
-                    {year} Year {course}
-                </p>
-                <br />
-                <b>Get in Touch</b>
-                <div className={styles.icons}>
-                    <MailButton email={email} />
-                    {linkedin && <LinkedInButton linkedin={linkedin} />}
-                </div>
-            </div>
-        </div>
-    );
-};
+const getInitials = (name: string) =>
+    name
+        .split(' ')
+        .filter(Boolean)
+        .map(word => word[0])
+        .slice(0, 2)
+        .join('')
+        .toUpperCase();
 
-const ComMember: React.FC<ComMemberProps> = ({ name, role, year, course, email, linkedin }) => {
+const MemberCard: React.FC<HeadMemberProps> = ({ name, role, year, course, email, linkedin }) => {
+    const meta = [year ? `${year} Year` : '', course].filter(Boolean).join(' ');
     return (
         <div className={styles.member}>
             <div className={styles.info_div}>
+                <div className={styles.avatar} aria-hidden="true">{getInitials(name)}</div>
                 <p className={styles.member_name}>{name}</p>
-                <hr />
                 <p className={styles.member_role}>{role}</p>
-                <p>
-                    {year} Year {course}
-                </p>
-                <br />
-                <b>Get in Touch</b>
-                <div className={styles.icons}>
-                    <MailButton email={email} />
-                    {linkedin && <LinkedInButton linkedin={linkedin} />}
-                </div>
+                {meta && <p className={styles.member_meta}>{meta}</p>}
+                {(email || linkedin) && (
+                    <div className={styles.card_contact}>
+                        <span className={styles.contact_label}>Get in Touch</span>
+                        <div className={styles.icons}>
+                            {email && <MailButton email={email} />}
+                            {linkedin && <LinkedInButton linkedin={linkedin} />}
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     );
