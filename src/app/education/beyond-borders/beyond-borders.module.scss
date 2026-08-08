@@ -1131,3 +1131,18 @@
   backface-visibility: hidden; // Prevents flickering
   transform: translateZ(0); // Forces GPU rendering
 } 
+
+/* Accessibility floor: content must not depend on motion to become visible,
+   and nothing should animate indefinitely, for users who have asked their OS
+   to reduce motion. */
+@media (prefers-reduced-motion: reduce) {
+  .beyondBordersPage,
+  .beyondBordersPage *,
+  .beyondBordersPage *::before,
+  .beyondBordersPage *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}

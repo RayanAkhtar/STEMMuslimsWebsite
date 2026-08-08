@@ -1,6 +1,5 @@
 import styles from "./competitions.module.scss";
 import CompetitionsMasonry from "./masonry";
-// import Testimonials from './testimonials'
 import PastPapers from "./pastPapers";
 
 export default function Competitions() {
@@ -14,7 +13,6 @@ export default function Competitions() {
           <CompetitionsMasonry />
         </div>
         <hr />
-        {/* <Testimonials/> */}
         <PastPapers />
       </div>
     </>

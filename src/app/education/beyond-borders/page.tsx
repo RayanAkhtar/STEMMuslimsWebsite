@@ -12,7 +12,6 @@ const ReactPlayer = dynamic(() => import('react-player/lazy'), { ssr: false });
 export default function EducationBeyondBordersPage() {
   const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({
     mission: null,
-    impact: null,
     programs: null,
     volunteer: null,
     donate: null,
@@ -47,14 +46,6 @@ export default function EducationBeyondBordersPage() {
     };
   }, []);
 
-
-  const playVideo = (id: number) => {
-    setIsVideoPlaying(true);
-  };
-
-  const closeVideo = () => {
-    setIsVideoPlaying(false);
-  };
 
   return (
     <div className={styles.beyondBordersPage}>

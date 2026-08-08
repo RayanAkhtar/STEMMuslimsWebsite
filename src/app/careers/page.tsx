@@ -115,7 +115,13 @@ const wealthData: ChartDataPoint[] = [
   { name: 'Muslim', value: 20500, fill: '#048560' },
 ].sort((a, b) => b.value - a.value); // Sort by value descending
 
-const CustomTooltip = ({ active, payload, label }: any) => {
+interface ChartTooltipProps {
+  active?: boolean;
+  payload?: { payload: ChartDataPoint }[];
+  label?: string;
+}
+
+const CustomTooltip = ({ active, payload, label }: ChartTooltipProps) => {
   if (active && payload && payload.length) {
     return (
       <div className={styles.customTooltip}>
