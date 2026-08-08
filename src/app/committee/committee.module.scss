@@ -55,11 +55,31 @@
       display: flex;
       gap: 0.6rem;
       flex-wrap: nowrap;
-      justify-content: center;
       align-items: center;
       overflow-x: auto;
       padding: 1rem 8px 0;
       -webkit-overflow-scrolling: touch;
+      /* centered flex items size to their content, so without a cap this bar
+         grows wider than the phone screen and drags the whole page sideways;
+         capping it makes the bar itself scroll instead */
+      max-width: 100%;
+      overscroll-behavior-x: contain;
+      scrollbar-width: none;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      /* auto margins centre the row when it fits but, unlike
+         justify-content: center, keep the first year reachable
+         once the bar overflows and scrolls */
+      > :first-child {
+        margin-left: auto;
+      }
+
+      > :last-child {
+        margin-right: auto;
+      }
     }
 
     .file_button {
@@ -110,6 +130,7 @@
       padding: 0.65rem 1.5rem;
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
+      overscroll-behavior-x: contain;
       scrollbar-width: none;
 
       &::-webkit-scrollbar {
