@@ -1,8 +1,17 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs/promises';
-import path from 'path';
+import committee2022 from '@/lib/committees/2022-2023.json';
+import committee2023 from '@/lib/committees/2023-2024.json';
+import committee2024 from '@/lib/committees/2024-2025.json';
+import committee2025 from '@/lib/committees/2025-2026.json';
 
-const COMMITTEES_DIR = path.join(process.cwd(), 'src', 'lib', 'committees');
+/* Statically imported so the data is bundled into the deployed worker —
+   Cloudflare Workers have no filesystem, so fs reads fail in production. */
+const COMMITTEES: Record<string, unknown> = {
+  '2022-2023.json': committee2022,
+  '2023-2024.json': committee2023,
+  '2024-2025.json': committee2024,
+  '2025-2026.json': committee2025,
+};
 
 /* Committee data is static JSON that changes a handful of times a year, so
    let the CDN serve it rather than reading from disk on every page view.
@@ -16,26 +25,14 @@ export async function GET(request: Request) {
   const url = new URL(request.url);
   const file = url.searchParams.get('file');
 
-  try {
-    const filenames = await fs.readdir(COMMITTEES_DIR);
-    const jsonFiles = filenames.filter(f => f.endsWith('.json'));
-
-    if (!file) {
-      return NextResponse.json({ files: jsonFiles }, { headers: CACHE_HEADERS });
-    }
-
-    // sanitize file param
-    if (!jsonFiles.includes(file)) {
-      return new NextResponse(JSON.stringify({ error: 'File not found' }), { status: 404 });
-    }
-
-    const filePath = path.join(COMMITTEES_DIR, file);
-    const content = await fs.readFile(filePath, 'utf-8');
-    const parsed = JSON.parse(content);
-
-    return NextResponse.json(parsed, { headers: CACHE_HEADERS });
-  } catch (err) {
-    console.error('committees route error:', err);
-    return new NextResponse(JSON.stringify({ error: 'Server error' }), { status: 500 });
+  if (!file) {
+    return NextResponse.json({ files: Object.keys(COMMITTEES) }, { headers: CACHE_HEADERS });
   }
+
+  const data = COMMITTEES[file];
+  if (!data) {
+    return new NextResponse(JSON.stringify({ error: 'File not found' }), { status: 404 });
+  }
+
+  return NextResponse.json(data, { headers: CACHE_HEADERS });
 }
