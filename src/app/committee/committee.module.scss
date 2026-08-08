@@ -1164,3 +1164,19 @@ $h-ink: #26332d;
     font-size: 1.2rem;
   }
 }
+
+
+/* Accessibility floor: content must not depend on motion to become visible,
+   and nothing should animate indefinitely, for users who have asked their OS
+   to reduce motion. */
+@media (prefers-reduced-motion: reduce) {
+  .committee_page,
+  .committee_page *,
+  .committee_page *::before,
+  .committee_page *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}

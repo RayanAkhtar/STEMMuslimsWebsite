@@ -12,7 +12,12 @@ interface PrayerTime {
     date: string;
 }
 
-const API_KEY = "9fa65efc-3a14-4636-af03-98a7b51c401f";
+/* NOTE: this is a client component, so any key placed here ships to the
+   browser regardless of how it is stored. NEXT_PUBLIC_ keeps it out of the
+   repo, but if this component is ever revived, the fetch should move behind
+   a server route so the key stays server-side (see /api/update-prayer-times
+   and lib/prayerTimes.ts). */
+const API_KEY = process.env.NEXT_PUBLIC_PRAYER_TIMES_API_KEY ?? "";
 const PRAYER_TIMES_ENDPOINT = `https://www.londonprayertimes.com/api/times/?format=json&key=${API_KEY}&24hours=true`;
 
 const CACHE_KEY = 'prayerTimesCache';

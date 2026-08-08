@@ -105,8 +105,9 @@ export default function SubscribePage() {
         <div className={styles.formContainer}>
           <form className={styles.subscribeForm} onSubmit={handleSubmit}>
             <input
-              type="text"
+              type="email"
               name="email"
+              required
               placeholder="Enter your email (required)"
               value={formData.email}
               onChange={handleChange}
@@ -115,6 +116,7 @@ export default function SubscribePage() {
             <input
               type="text"
               name="schoolName"
+              required
               placeholder="Enter your school name (required)"
               value={formData.schoolName}
               onChange={handleChange}
@@ -157,7 +159,6 @@ export default function SubscribePage() {
             <div className={styles.formButton}>
               <Button
                 label="Subscribe"
-                // onClick={alternative_function}
                 width="clamp(200px, 20vw, 400px)"
               />
             </div>
@@ -168,7 +169,3 @@ export default function SubscribePage() {
     </main>
   );
 }
-
-const alternative_function = () => {
-  console.log("Dummy function called!");
-};

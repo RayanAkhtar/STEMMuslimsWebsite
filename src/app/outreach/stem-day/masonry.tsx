@@ -2,7 +2,6 @@
 import styles from "./stem-day.module.scss";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import exp from "constants";
 
 const ResponsiveMasonry = dynamic(
   () => import("react-responsive-masonry").then((mod) => mod.ResponsiveMasonry),

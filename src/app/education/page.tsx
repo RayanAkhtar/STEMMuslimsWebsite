@@ -12,8 +12,7 @@ export default function EducationPage() {
     representatives: null,
     events: null,
     scienceFair: null,
-    resources: null,
-    beyond: null
+    resources: null
   });
 
   /* Photos from the science fair. Drop files into
@@ -24,7 +23,7 @@ export default function EducationPage() {
   useEffect(() => {
     // Use slightly more forgiving options and a fallback for environments
     // where IntersectionObserver may not reliably trigger (some mobile browsers).
-    if (typeof window !== 'undefined' && !(window as any).IntersectionObserver) {
+    if (typeof IntersectionObserver === 'undefined') {
       // If IntersectionObserver isn't supported, reveal everything.
       Object.values(sectionRefs.current).forEach((ref) => {
         if (ref) ref.classList.add(styles.visible);

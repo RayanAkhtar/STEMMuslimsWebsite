@@ -35,7 +35,8 @@ export default function SocialMedia() {
                         className={styles.socialMediaBox}
                     >
                         <div className={styles.iconBackground}>
-                            <img src={icon} alt={label} className={styles.icon} />
+                            {/* decorative: the visible label carries the meaning */}
+                            <img src={icon} alt="" className={styles.icon} />
                         </div>
                         <span className={styles.socialLabel}>{label}</span>
                     </a>

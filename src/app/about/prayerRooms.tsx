@@ -1,5 +1,3 @@
-"use client";
-import { useState, useEffect } from "react";
 import Image from "next/image";
 import styles from "./landing.module.scss";
 import Logo from "../../../public/shared/ISoc.svg";
@@ -29,16 +27,9 @@ const locations: Location[] = [
   },
 ];
 
+const imgDimensions = { width: 1200, height: 1000 };
+
 export default function PrayerRoomsServer() {
-  const [imgDimensions, setImgDimensions] = useState<{ width: number; height: number }>({
-    width: 1200,
-    height: 1000,
-  });
-
-  useEffect(() => {
-    setImgDimensions({ width: 1200, height: 1000 });
-  }, []);
-
   return (
     <div className={styles.container_directions}>
       <div className={styles.container_image}>

@@ -19,7 +19,7 @@ function PastPaper() {
       <div>
         <h1>2024/5</h1>
         <details className={styles.details}>
-          <summary className={styles.paperSummary}>
+          <summary>
             STEM Muslims Competition 2024
           </summary>
           <p className={styles.congratsMessage}>

@@ -200,37 +200,6 @@
 }
 }
 
-.testimonialContainer {
-  margin: 1.5rem;
-  display: flex;
-  flex-direction: column;
-
-  .testimonial {
-    display: flex;
-    margin: 1.5rem;
-    background-color: #f9f4ef;
-    flex-direction: column;
-    max-width: 40vw;
-    border-radius: 20px;
-
-    .imgWrapper {
-      max-height: 20vh;
-      overflow: hidden;
-
-      img {
-        border-radius: 20px;
-        height: 40vh;
-      }
-    }
-
-    p {
-      font-family: var(--font-cormorant-garamond), serif;
-      padding: 1rem;
-      max-width: 29vw;
-    }
-  }
-}
-
 .pastPapers {
   display: flex;
   flex-direction: column;
