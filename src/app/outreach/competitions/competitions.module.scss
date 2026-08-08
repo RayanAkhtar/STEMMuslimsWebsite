@@ -128,76 +128,55 @@
     }
   }
 
-/* Mobile adjustments: stack card content, hide desktop image container, and make text full-width */
-@media screen and (max-width: 900px) {
-  .contentContainer {
+  /* Mobile adjustments: stack the card into one column, text first, then
+     full-width images. (This block is nested inside .contentContainer, so
+     selectors must NOT repeat .contentContainer.) */
+  @media screen and (max-width: 900px) {
     .masonryContainer {
-      width: 98%;
-    }
+      width: 94%;
 
-    .competitionCard {
-      padding: 1rem 0.5rem; /* reduce side padding on mobile */
-      width: 100% !important;
-      box-sizing: border-box;
+      .competitionCard {
+        padding: 1rem 0.5rem;
+        box-sizing: border-box;
 
-      .cardContent {
-        flex-direction: column;
-        width: 100% !important;
-        gap: 0.75rem;
-        align-items: stretch;
-      }
-
-      .cardImageContainer {
-        display: none !important;
-        height: 0 !important;
-        overflow: hidden !important;
-        visibility: hidden !important;
-      }
-
-      /* also neutralise any large left margins from desktop styles that may still affect layout */
-      .cardImage,
-      .cardImage img {
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-        margin: 0 auto !important;
-        width: 0 !important;
-        height: 0 !important;
-        display: none !important;
-        visibility: hidden !important;
-      }
-
-      .textContent {
-        width: 100% !important;
-        flex: 1 1 auto !important;
-        min-width: 0 !important;
-        padding: 1rem !important;
-        font-size: 1rem !important;
-        margin: 0 !important;
-        align-self: stretch !important;
-
-        h1 {
-          font-size: 1.4rem !important;
-          line-height: 1.2 !important;
-          margin-bottom: 0.5rem !important;
+        .cardContent {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 1rem;
         }
 
-        p {
-          font-size: 0.95rem !important;
-          line-height: 1.5 !important;
+        .textContent {
+          flex: none;
+          width: 100%;
+          box-sizing: border-box;
+          padding: 1.25rem;
+          font-size: 1rem;
+
+          h1 {
+            font-size: 1.4rem;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+          }
+
+          p {
+            font-size: 0.95rem;
+            line-height: 1.5;
+          }
+        }
+
+        .cardImageContainer {
+          align-items: center;
+
+          .cardImage {
+            flex: none;
+            width: 100%;
+            max-width: 26rem;
+            margin: 0 auto 1rem;
+          }
         }
       }
     }
   }
-  /* additionally hide any imgs rendered inside the card to be certain */
-  .competitionCard img {
-    display: none !important;
-    visibility: hidden !important;
-    width: 0 !important;
-    height: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-}
 }
 
 .pastPapers {
@@ -230,7 +209,8 @@
   a {
     text-decoration: none !important;
 
-    .downloadLink {
+    /* the anchor itself carries the class, so use & instead of nesting */
+    &.downloadLink {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
@@ -281,6 +261,31 @@
   .contentContainer {
     h1 {
       font-size: 2rem;
+    }
+
+    /* needs the extra specificity to beat the base .backgroundImage h1 rule */
+    .backgroundImage h1 {
+      font-size: 2.25rem;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+  }
+
+  .pastPapers {
+    h1 {
+      font-size: 1.6rem;
+      text-align: center;
+      padding-inline: 1rem;
+    }
+
+    details {
+      min-width: 0;
+      width: calc(100% - 20px);
+      box-sizing: border-box;
+    }
+
+    .downloadLink {
+      flex-wrap: wrap;
     }
   }
 }
