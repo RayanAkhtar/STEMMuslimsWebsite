@@ -11,9 +11,14 @@ export default function EducationPage() {
     tutorials: null,
     representatives: null,
     events: null,
+    scienceFair: null,
     resources: null,
     beyond: null
   });
+
+  /* Photos from the science fair. Drop files into
+     /public/education/elm-science-fair/ and add them here. */
+  const scienceFairPhotos: { src: string; alt: string }[] = [];
 
   // Animation on scroll
   useEffect(() => {
@@ -92,10 +97,10 @@ export default function EducationPage() {
           </div>
           <div className={styles.imageContainer}>
             <Image 
-              src="/outreach/stem-day/stemDay.jpg" 
+              src="/education/tutorials/tutorial.webp" 
               alt="Lecturer teaching students" 
-              width={500} 
-              height={350}
+              width={600} 
+              height={800}
               className={styles.image}
               onError={() => { /* ignore image load errors to avoid breaking render */ }}
             />
@@ -113,10 +118,10 @@ export default function EducationPage() {
         <div className={styles.container}>
           <div className={styles.imageContainer}>
             <Image 
-              src="/education/tutorials/tutorial.jpeg" 
-              alt="Tutorial session" 
-              width={500} 
-              height={350}
+              src="/education/tutorials/tutorial2.webp" 
+              alt="Students at a STEM Muslims tutorial session" 
+              width={600} 
+              height={800}
               className={styles.image}
               onError={() => {}}
             />
@@ -183,10 +188,10 @@ export default function EducationPage() {
           </div>
           <div className={styles.imageContainer}>
             <Image 
-              src="/education/tutorials/tutorial2.jpeg" 
+              src="/education/tutorials/tutorial3.webp" 
               alt="Academic representative helping students" 
-              width={500} 
-              height={350}
+              width={600} 
+              height={800}
               className={styles.image}
               onError={() => {}}
             />
@@ -204,10 +209,10 @@ export default function EducationPage() {
         <div className={styles.container}>
           <div className={styles.imageContainer}>
             <Image 
-              src="/education/hero/education-hero.jpeg" 
-              alt="STEM Muslims event" 
-              width={500} 
-              height={350}
+              src="/education/tutorials/tutorial4.webp" 
+              alt="Students at a STEM Muslims event" 
+              width={600} 
+              height={800}
               className={styles.image}
               onError={() => {}}
             />
@@ -233,7 +238,50 @@ export default function EducationPage() {
         </div>
       </section>
 
-      {/* Resources Section */}
+      {/* East London Mosque Science Fair */}
+      <section
+        ref={(el) => {
+          if (el) sectionRefs.current.scienceFair = el;
+        }}
+        className={`${styles.section} ${styles.scienceFairSection}`}
+      >
+        <div className={styles.scienceFairInner}>
+          <div className={styles.scienceFairIntro}>
+            <h2>East London Mosque Science Fair</h2>
+            <p>
+              A family science day at the London Muslim Centre, run by East London Mosque,
+              where children get hands on with experiments and activities across the
+              sciences. Our members volunteer on the day, facilitating the experiments and
+              helping young people discover science for themselves.
+            </p>
+            <p>
+              It is one of the most direct ways we get to inspire the next generation of
+              Muslim scientists, and one of the most enjoyable days in our calendar.
+            </p>
+          </div>
+
+          <div className={styles.scienceFairGallery}>
+            {scienceFairPhotos.length > 0
+              ? scienceFairPhotos.map((photo) => (
+                  <Image
+                    key={photo.src}
+                    src={photo.src}
+                    alt={photo.alt}
+                    width={600}
+                    height={450}
+                    className={styles.scienceFairPhoto}
+                  />
+                ))
+              : [0, 1, 2].map((slot) => (
+                  <div key={slot} className={styles.scienceFairPlaceholder} aria-hidden="true">
+                    <span>Photos to follow</span>
+                  </div>
+                ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Resources — an extra alongside the main programmes, not one of them */}
       <section 
         ref={(el) => {
           if (el) sectionRefs.current.resources = el;
@@ -277,43 +325,22 @@ export default function EducationPage() {
               </div>
             </div>
           </div>
-          <div className={styles.imageContainer}>
-            <Image 
-              src="/education/resources/resources.png" 
-              alt="Educational resources" 
-              width={500} 
-              height={350}
-              className={styles.image}
-              onError={() => {}}
-            />
-          </div>
         </div>
       </section>
 
         
-      {/* Education Beyond Borders Section */}
-      <section className={`${styles.section} ${styles.beyondBordersSection}`}>
+      {/* Education Beyond Borders — a pointer to its own page */}
+      <section className={styles.beyondBordersBanner}>
         <div className={styles.container}>
-          <div className={styles.content}>
-            <h2>Education Beyond Borders</h2>
-            <p>
-              How can you use your skills to help educate childrne in need? Look out at our Education Beyond Borders page to find out more about
-              the work we do in Syria, Lebanon, Jordan, Palestine and Turkey.
-            </p>
-            <Link href="/education/beyond-borders" className={styles.beyondBordersButton}>
-                Education Beyond Borders
-            </Link>
-          </div>
-          <div className={styles.imageContainer}>
-            <Image 
-              src="/education/beyond-borders.png"
-              alt="Education Beyond Borders"
-              width={500}
-              height={350}
-              className={styles.image}
-              onError={() => {}}
-            />
-          </div>
+          <h2>Education Beyond Borders</h2>
+          <p>
+            How can you use your skills to help educate children in need? Our Education
+            Beyond Borders page covers the work we do in Syria, Lebanon, Jordan, Palestine
+            and Turkey.
+          </p>
+          <Link href="/education/beyond-borders" className={styles.beyondBordersButton}>
+            Explore Education Beyond Borders
+          </Link>
         </div>
       </section>
     </div>

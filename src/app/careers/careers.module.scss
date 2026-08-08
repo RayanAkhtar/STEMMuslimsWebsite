@@ -32,6 +32,13 @@
   100% { transform: scale(1); }
 }
 
+/* the poster strip renders its list twice, so shifting by half its width
+   lands exactly back on the first poster */
+@keyframes scrollPosters {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
 .careersContainer {
   width: 100%;
   overflow-x: hidden;
@@ -154,6 +161,34 @@
     background-color: #f1f5f9;
     position: relative;
     overflow: hidden;
+
+    /* Sized to one viewport on laptop screens and up, so the whole picture is
+       taken in at a glance instead of being scrolled through. The charts flex
+       into whatever height is left over, so this adapts to the screen rather
+       than assuming a fixed one. Below this width the layout stacks and is
+       allowed to run as long as it needs. */
+    @media (min-width: 1025px) {
+      display: flex;
+      min-height: 100vh;
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        min-height: 0;
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+      }
+
+      h2 {
+        margin-bottom: 1.5rem;
+      }
+
+      .statsLayout {
+        flex: 1;
+        min-height: 0;
+      }
+    }
     
     &::before {
       content: '';
@@ -179,15 +214,49 @@
       z-index: 0;
     }
     
-    .statsGrid {
+    /* figures on the left as a 2x2 block, charts stacked alongside them */
+    .statsLayout {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: 1fr 1fr;
       gap: 2rem;
-      margin-bottom: 4rem;
+      align-items: stretch;
+      margin-bottom: 2rem;
       position: relative;
       z-index: 1;
+
+      @media (max-width: 1024px) {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .chartsColumn {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      min-height: 0;
+    }
+
+    .chartBody {
+      flex: 1;
+      min-height: 140px;
+    }
+
+    .statsGrid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: 1fr;
+      gap: 2rem;
+      position: relative;
+      z-index: 1;
+
+      @media (max-width: 480px) {
+        grid-template-columns: 1fr;
+      }
       
       .statCard {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         background-color: white;
         padding: 2rem;
         border-radius: 15px;
@@ -223,18 +292,23 @@
     }
     
     .chartContainer {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-height: 0;
       background-color: white;
-      padding: 2rem;
+      padding: 1.25rem 1.25rem 0.75rem;
       border-radius: 15px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      margin: 3rem 0;
+      /* spacing is owned by .chartsColumn's gap */
+      margin: 0;
       overflow: hidden;
 
       h3 {
         text-align: center;
         color: $stemm-blue;
-        margin-bottom: 2rem;
-        font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+        margin: 0 0 0.5rem;
+        font-size: clamp(0.95rem, 1.2vw, 1.15rem);
       }
 
       .customTooltip {
@@ -261,8 +335,8 @@
         text-align: center;
         color: #666;
         font-style: italic;
-        margin-top: 1.5rem;
-        font-size: 0.9rem;
+        margin: 0.4rem 0 0;
+        font-size: 0.75rem;
       }
 
       // Responsive adjustments
@@ -313,126 +387,274 @@
       animation: fadeIn 1.5s ease-out;
       
       h3 {
-        margin-bottom: 1rem;
+        margin-bottom: 0.6rem;
         color: $stemm-blue;
-        font-size: 1.8rem;
+        font-size: 1.5rem;
       }
       
       p {
-        margin-bottom: 2rem;
+        margin: 0 auto;
         max-width: 800px;
-        margin-left: auto;
-        margin-right: auto;
         color: #666;
         line-height: 1.6;
-      }
-      
-      .ctaButton {
-        display: inline-block;
-        background-color: $stemm-blue;
-        color: white;
-        padding: 1rem 2rem;
-        border-radius: 50px;
-        text-decoration: none;
-        font-weight: bold;
-        transition: all 0.3s ease;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        animation: pulse 2s infinite;
-
-        &:hover {
-          background-color: $stemm-darker-blue;
-          transform: translateY(-3px);
-          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-        }
       }
     }
   }
   
-  .upcomingEvents {
+  /* What we actually run, as a showcase rather than a listing: no dates or
+     sign-up links, since these recur each year. */
+  .events {
     position: relative;
-    
-    .eventCards {
+    scroll-margin-top: 100px;
+
+    .sectionIntro {
+      max-width: 720px;
+      margin: -2rem auto 3rem;
+      text-align: center;
+      color: #555;
+      line-height: 1.7;
+      font-size: 1.05rem;
+    }
+
+    /* Held at three across so the panelled look survives a fourth event; the
+       odd one out is centred on its own row rather than left-hanging. */
+    .eventGrid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 2rem;
-      
-      .eventCard {
-        background-color: #f8f8f8;
-        padding: 2rem;
-        border-radius: 15px;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
-        animation: slideInUp 0.8s ease-out;
-        animation-fill-mode: both;
-        
-        &:nth-child(1) {
-          animation-delay: 0.2s;
+      align-items: stretch;
+
+      > :last-child:nth-child(3n + 1) {
+        grid-column: 2;
+      }
+
+      @media (max-width: 1024px) {
+        grid-template-columns: repeat(2, 1fr);
+
+        > :last-child:nth-child(3n + 1) {
+          grid-column: auto;
         }
-        
-        &:nth-child(2) {
-          animation-delay: 0.4s;
+      }
+
+      @media (max-width: 700px) {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .eventCard {
+      display: flex;
+      flex-direction: column;
+      background-color: $surface-card;
+      border: 1px solid rgba($stemm-deep-blue, 0.1);
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: slideInUp 0.8s ease-out both;
+
+      &:nth-child(2) { animation-delay: 0.15s; }
+      &:nth-child(3) { animation-delay: 0.3s; }
+      &:nth-child(4) { animation-delay: 0.45s; }
+
+      &:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      /* A fixed height rather than a ratio, so every card matches regardless of
+         whether its photo is portrait or landscape, and so the number means
+         what it says. Individual photos can bias their crop via the
+         photoPosition field on the event rather than by changing this. */
+      .eventPhoto {
+        height: 325px;
+        width: 100%;
+        background-color: rgba($stemm-deep-blue, 0.04);
+        /* This is a flex item in a column card, so min-height defaults to auto
+           and the image's intrinsic height would push the box open past the
+           height set above. Pin it shut so the photo is genuinely cropped. */
+        flex: 0 0 auto;
+        min-height: 0;
+        overflow: hidden;
+
+        @media (max-width: 1024px) {
+          height: 265px;
         }
-        
-        &:hover {
-          transform: translateY(-10px);
-          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-          background-color: white;
+
+        .eventPhotoImg {
+          display: block;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center 40%;
         }
-        
-        .eventDate {
-          color: $stemm-blue;
-          font-weight: bold;
-          margin-bottom: 0.5rem;
-          font-size: 1.1rem;
+
+        /* shown until a real photo from the event is dropped in */
+        .photoPlaceholder {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: repeating-linear-gradient(
+            45deg,
+            rgba($stemm-deep-blue, 0.03),
+            rgba($stemm-deep-blue, 0.03) 12px,
+            rgba($stemm-deep-blue, 0.06) 12px,
+            rgba($stemm-deep-blue, 0.06) 24px
+          );
+
+          span {
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: rgba($stemm-deep-blue, 0.45);
+          }
         }
-        
+      }
+
+      /* Spacing here is deliberately tight: with four panels on the page, the
+         body padding and gaps are where the scroll length accumulates. */
+      .eventBody {
+        display: flex;
+        flex-direction: column;
+        padding: 1.5rem;
+
         h3 {
-          margin-bottom: 1rem;
+          margin-bottom: 0.4rem;
           color: $stemm-blue;
-          font-size: 1.5rem;
+          font-size: 1.4rem;
         }
-        
+
+        .eventTagline {
+          color: $stemm-deep-blue;
+          font-weight: 600;
+          margin-bottom: 0.75rem;
+          line-height: 1.5;
+        }
+
         p {
-          margin-bottom: 1.5rem;
           color: #666;
-          line-height: 1.6;
+          line-height: 1.65;
+          margin-bottom: 1rem;
         }
-        
-        .eventLink {
-          color: $stemm-blue;
-          font-weight: bold;
-          text-decoration: none;
-          transition: all 0.3s ease;
-          
-          &:hover {
-            color: $stemm-darker-blue;
-            text-decoration: underline;
+
+        .eventHighlights {
+          list-style: none;
+          padding: 0;
+          margin: auto 0 0;
+
+          li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.45rem;
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.5;
+
+            &::before {
+              content: '';
+              position: absolute;
+              left: 0;
+              top: 0.55em;
+              width: 7px;
+              height: 7px;
+              border-radius: 50%;
+              background-color: $stemm-blue;
+            }
           }
         }
       }
     }
-    
-    .viewAll {
-      text-align: center;
-      margin-top: 3rem;
-      animation: fadeIn 1.5s ease-out;
-      
-      a {
-        display: inline-block;
-        color: $stemm-blue;
-        font-weight: bold;
-        text-decoration: none;
-        padding: 0.8rem 2rem;
-        border: 2px solid $stemm-blue;
-        border-radius: 50px;
-        transition: all 0.3s ease;
-        
-        &:hover {
-          background-color: $stemm-blue;
-          color: white;
-          transform: translateY(-3px);
-          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
+  }
+
+  /* Poster wall: the promo artwork for each event, scrolling past. */
+  .posters {
+    background: linear-gradient(to bottom, #f4efe6, #faf8f3);
+
+    .container {
+      overflow: hidden;
+    }
+
+    .posterMarqueeContainer {
+      position: relative;
+      padding: 1rem 0;
+
+      &::before, &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        width: 140px;
+        height: 100%;
+        z-index: 2;
+        pointer-events: none;
+      }
+
+      &::before {
+        left: 0;
+        background: linear-gradient(to right, #f7f2ea, transparent);
+      }
+
+      &::after {
+        right: 0;
+        background: linear-gradient(to left, #faf8f3, transparent);
+      }
+    }
+
+    .posterMarquee {
+      display: flex;
+      gap: 2rem;
+      width: max-content;
+      /* trailing gap so the two halves are exactly equal and the loop is seamless */
+      padding-right: 2rem;
+      animation: scrollPosters 40s linear infinite;
+
+      &:hover {
+        animation-play-state: paused;
+      }
+
+      .poster {
+        height: 300px;
+        width: auto;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba($stemm-deep-blue, 0.15);
+      }
+    }
+  }
+
+  .fairBanner {
+    background-color: $stemm-deep-blue;
+    color: white;
+    text-align: center;
+
+    h2 {
+      color: white;
+
+      &::after {
+        background-color: white;
+      }
+    }
+
+    p {
+      max-width: 680px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.8;
+      font-size: 1.05rem;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .fairButton {
+      display: inline-block;
+      background-color: white;
+      color: $stemm-deep-blue;
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+      &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
       }
     }
   }
@@ -454,49 +676,19 @@
       font-size: 2rem;
     }
     
-    .chartContainer {
-      .customChart, .wealthChart {
-        overflow-x: auto;
-        justify-content: flex-start;
-        
-        .barGroup {
-          min-width: 60px;
-        }
+    .posters {
+      .posterMarqueeContainer::before,
+      .posterMarqueeContainer::after {
+        width: 60px;
+      }
+
+      .posterMarquee .poster {
+        height: 200px;
       }
     }
   }
 }
 
-.chartsRow {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
-  margin: 3rem 0;
-
-  .chartContainer {
-    background-color: white;
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    
-    h3 {
-      text-align: center;
-      color: $stemm-blue;
-      margin-bottom: 2rem;
-      font-size: clamp(1rem, 1.8vw, 1.4rem);
-    }
-  }
-
-  @media (max-width: 1024px) {
-    grid-template-columns: 1fr;
-    gap: 3rem;
-  }
-}
-
-// Update the existing .chartContainer class to remove margin
-.chartContainer {
-  margin: 0;  // Remove the margin since it's handled by .chartsRow
-} 
 /* Accessibility floor: content must not depend on motion to become
    visible, and nothing should animate indefinitely, for users who
    have asked their OS to reduce motion. */

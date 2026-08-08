@@ -6,13 +6,14 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import styles from "./Navbar.module.scss";
 
-// Every reachable page is listed here.
+// Every page surfaced in the nav is listed here. The /life pages are
+// intentionally omitted: they still build and resolve by direct URL, they are
+// just not advertised.
 const links = [
     ["About", "/about"],
     ["Our Committee", "/committee"],
     ["Careers", "/careers", [
-        ["Current Events", "/careers/events"],
-        ["Careers Fair", "/careers/events/careers-fair"],
+        ["Careers Fair", "/careers/careers-fair"],
     ]],
     ["Education", "/education", [
         ["Beyond Borders", "/education/beyond-borders"],
@@ -22,11 +23,6 @@ const links = [
         ["UCAS Mentoring", "/outreach/ucas-mentoring"],
         ["Competitions", "/outreach/competitions"],
         ["Subscribe", "/outreach/subscribe"],
-    ]],
-    ["Life", "/life", [
-        ["Jumu'ah", "/life/jumuah"],
-        ["Tarbiyyah", "/life/tarbiyyah"],
-        ["Halal Food", "/life/halal-food"],
     ]],
     ["Quarter Zip", "/quarter-zip"],
 ];

@@ -64,7 +64,7 @@ function StemDayMasonry() {
         <MainContent
           title="Description goes here"
           description="Description..."
-          imageSrc="/outreach/stem-day/stemDay.jpg"
+          imageSrc="/outreach/stem-day/main_engineering_stemday_2526.webp"
         />
       </Masonry>
     </ResponsiveMasonry>
