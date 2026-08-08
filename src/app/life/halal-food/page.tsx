@@ -201,7 +201,7 @@ export default function HalalFood() {
                     <p>  <strong> - Scan Halal</strong> </p>
                     <p>
                         <br />
-                        Another great website is <Link href="https://halalgems.com">http://halalgems.com</Link>, a superb guide to Halal eating in London
+                        Another great website is <Link href="https://halalgems.com">halalgems.com</Link>, a superb guide to Halal eating in London
                     </p>
                 </div>
                 <div id="skcampus"> <h1> South Ken Campus</h1> </div>
@@ -228,7 +228,7 @@ export default function HalalFood() {
 
 function MasonryItem({ title, introduction, directions, notes }: MasonryCardTypes) {
     // Split the notes string into an array of strings, each string is a line
-    var formattedNotes = notes ? notes.replace(/\n/g, '<br />') : "empty";
+    let formattedNotes = notes ? notes.replace(/\n/g, '<br />') : "empty";
 
     // So the break tags inside the parameter are rendered as \n which gets replaced with <br /> above
     // I still don't know why, without it, the line spacing won't work

@@ -1,9 +1,66 @@
 
 /* Custom styles */
+:root {
+  /* Brand palette — kept in sync with globals.module.scss */
+  --stemm-blue: #048560;
+  --stemm-light-blue: #06a573;
+  --stemm-lighter-blue: #11c78b;
+  --stemm-darker-blue: #076d51;
+  --stemm-deep-blue: #075c46;
+  --isoc-gold: #b08d4a;
+  --isoc-gold-light: #cdb178;
+  --surface: #faf8f3;
+  --text-main: #2e3733;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 html {
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* clip (not hidden) prevents sideways scroll without breaking position: sticky */
+  overflow-x: clip;
 }
 
 body {
-  @apply bg-white text-gray-800;
-} 
+  margin: 0;
+  max-width: 100%;
+  overflow-x: clip;
+  background-color: var(--surface);
+  color: var(--text-main);
+}
+
+/* Two-font system: Cormorant Garamond for headings, Inter (set on body) for everything else */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-cormorant-garamond), serif;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
+/* media should never force the page wider than its column */
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+}
+
+::selection {
+  background-color: var(--stemm-blue);
+  color: #ffffff;
+}

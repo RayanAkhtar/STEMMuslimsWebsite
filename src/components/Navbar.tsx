@@ -6,26 +6,28 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import styles from "./Navbar.module.scss";
 
+// Every page surfaced in the nav is listed here. The /life pages are
+// intentionally omitted: they still build and resolve by direct URL, they are
+// just not advertised.
 const links = [
-    ["Home", "/home"],
     ["About", "/about"],
     ["Our Committee", "/committee"],
     ["Careers", "/careers", [
-        ["Current Events", "/careers/events"],
-        ["Careers Fair", "/careers/events/careers-fair"],
+        ["Careers Fair", "/careers/careers-fair"],
     ]],
-    ["Quarter Zip", "/quarter-zip"],
     ["Education", "/education", [
         ["Beyond Borders", "/education/beyond-borders"],
-        
     ]],
     ["Outreach", "/outreach", [
         ["STEM Day", "/outreach/stem-day"],
+        ["UCAS Mentoring", "/outreach/ucas-mentoring"],
         ["Competitions", "/outreach/competitions"],
         ["Subscribe", "/outreach/subscribe"],
     ]],
-    ["Contact", "/contact"],
+    ["Quarter Zip", "/quarter-zip"],
 ];
+
+const ctaLink = ["Contact", "/contact"] as const;
 
 export default function Navbar() {
     const [menuActive, setMenuActive] = useState(false);
@@ -90,23 +92,13 @@ export default function Navbar() {
         setExpandedSubmenu(expandedSubmenu === index ? null : index);
     };
 
-    const isActive = (route: string) => {
-        if (route === "/home" && pathname === "/") return true;
-        return pathname === route || pathname.startsWith(`${route}/`);
-    };
-
-    // Check if a dropdown item is active
-    const isDropdownActive = (items: string[][]) => {
-        return items.some(([_, route]) => isActive(route));
-    };
-
     return (
         <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`} ref={navRef}>
             <div className={styles.navbarBody}>
-                <Link href="/home" className={styles.logoContainer}>
+                <Link href="/about" className={styles.logoContainer}>
                     <div className={styles.logoWrapper}>
                         <Image 
-                            src="/svgstemuslims.svg" 
+                            src="/shared/svgstemuslims.svg" 
                             alt="STEM Muslims Logo" 
                             width={150} 
                             height={50} 
@@ -128,12 +120,12 @@ export default function Navbar() {
                     <span></span>
                 </button>
 
-                {/* Desktop & Mobile Menu */}
+                {/* Desktop & Mobile Menu (centered links) */}
                 <div className={`${styles.navMenu} ${menuActive ? styles.active : ""}`}>
                     {links.map(([titleName, titleRoute, dropdownItems], index) => (
                         dropdownItems === undefined ? (
 
-                            <div key={String(titleRoute)} className={`${styles.navItem} ${isActive(titleRoute as string) ? styles.active : ""}`}>
+                            <div key={String(titleRoute)} className={styles.navItem}>
                                 <Link href={titleRoute as string} className={styles.navLink}>
                                     {titleName}
                                 </Link>
@@ -141,10 +133,7 @@ export default function Navbar() {
                         ) : (
                             <div 
                                 key={String(titleRoute)} 
-
-                                className={`${styles.navItem} ${styles.hasDropdown} ${
-                                    isActive(titleRoute as string) || isDropdownActive(dropdownItems as string[][]) ? styles.active : ""
-                                }`}
+                                className={`${styles.navItem} ${styles.hasDropdown}`}
                             >
                                 <Link href={titleRoute as string} className={styles.navLink}>
                                     {titleName}
@@ -166,19 +155,35 @@ export default function Navbar() {
                                     </svg>
                                 </button>
                                 <div className={`${styles.dropdownContent} ${expandedSubmenu === index ? styles.show : ''}`}>
-                                    {(dropdownItems as string[][]).map(([itemName, itemRoute]) => (
-                                        <Link 
-                                            key={itemRoute} 
-                                            href={itemRoute} 
-                                            className={`${styles.dropdownItem} ${isActive(itemRoute) ? styles.active : ""}`}
-                                        >
-                                            {itemName}
-                                        </Link>
-                                    ))}
+                                    <div className={styles.dropdownInner}>
+                                        {(dropdownItems as string[][]).map(([itemName, itemRoute]) => (
+                                            <Link 
+                                                key={itemRoute} 
+                                                href={itemRoute} 
+                                                className={styles.dropdownItem}
+                                            >
+                                                {itemName}
+                                            </Link>
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
                         )
                     ))}
+
+                    {/* Contact CTA inside slide-in menu (mobile) */}
+                    <div className={`${styles.navItem} ${styles.contactMobile}`}>
+                        <Link href={ctaLink[1]} className={styles.navLink}>
+                            {ctaLink[0]}
+                        </Link>
+                    </div>
+                </div>
+
+                {/* Contact CTA pill (desktop) */}
+                <div className={styles.navActions}>
+                    <Link href={ctaLink[1]} className={styles.ctaButton}>
+                        {ctaLink[0]}
+                    </Link>
                 </div>
             </div>
         </nav>

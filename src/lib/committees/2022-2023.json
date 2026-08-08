@@ -1,0 +1,111 @@
+{
+    "heads": {
+        "Ibrahim Qayyum": {
+            "role": "Head Brother",
+            "course": "Civil Engineering",
+            "year": "3rd",
+            "email": "",
+            "LinkedIn": ""
+        },
+        "Safiyya Musa": {
+            "role": "Head Sister",
+            "course": "Bioengineering",
+            "year": "4th",
+            "email": "",
+            "LinkedIn": ""
+        }
+    },
+    "members": {
+        "Shahbanno Hussain": {
+            "role": "Vice President of Education",
+            "course": "Physics",
+            "year": "4th",
+            "email": "",
+            "LinkedIn": ""
+        },
+        "Aahnaf Newaz": {
+            "role": "Vice President of Careers",
+            "course": "Medical Biosciences",
+            "year": "3rd",
+            "email": "",
+            "LinkedIn": ""
+        },
+        "Tabiya Syed": {
+            "role": "Secretary of Logistics",
+            "course": "Materials",
+            "year": "2nd",
+            "email": "",
+            "LinkedIn": ""
+        },
+        "Aakrati Sharma": {
+            "role": "Secretary of Comms",
+            "course": "Chemistry",
+            "year": "2nd",
+            "email": "",
+            "LinkedIn": ""
+        },
+        "Nabil Ahmed": {
+            "role": "Treasurer",
+            "course": "Aeronautical Engineering",
+            "year": "2nd",
+            "email": "",
+            "LinkedIn": ""
+        },
+        "Majd Yousof": {
+            "role": "Sponsorship Officer",
+            "course": "Civil Engineering",
+            "year": "2nd",
+            "email": "",
+            "LinkedIn": ""
+        },
+        "Margarita Mordvina": {
+            "role": "Outreach Officer",
+            "course": "Mechanical Engineering",
+            "year": "3rd",
+            "email": "",
+            "LinkedIn": ""
+        },
+        "Mohamed Ali": {
+            "role": "Alumni Liaisons Officer",
+            "course": "Aeronautical Engineering",
+            "year": "2nd",
+            "email": "",
+            "LinkedIn": ""
+        },
+        "Hamna Farooq": {
+            "role": "Events Officer",
+            "course": "Biochemistry",
+            "year": "3rd",
+            "email": "",
+            "LinkedIn": ""
+        },
+        "Shahriar Alam": {
+            "role": "Events Officer",
+            "course": "Aeronautical Engineering",
+            "year": "2nd",
+            "email": "",
+            "LinkedIn": ""
+        },
+        "Safeeyah Ahmed": {
+            "role": "General Committee",
+            "course": "Materials",
+            "year": "2nd",
+            "email": "",
+            "LinkedIn": ""
+        },
+        "Rayyan Islam": {
+            "role": "General Committee",
+            "course": "Civil Engineering",
+            "year": "2nd",
+            "email": "",
+            "LinkedIn": ""
+        },
+        "Sadia Wahid": {
+            "role": "Publicity Head",
+            "course": "Computing",
+            "year": "2nd",
+            "email": "",
+            "LinkedIn": ""
+        }
+    }
+}

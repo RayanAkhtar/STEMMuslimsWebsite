@@ -4,6 +4,11 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: "/home",
+        destination: "/about",
+        permanent: true,
+      },
+      {
         source: "/careers/hoodie",
         destination: "/quarter-zip",
         permanent: true,
@@ -11,6 +16,17 @@ const nextConfig = {
       {
         source: "/hoodie",
         destination: "/quarter-zip",
+        permanent: true,
+      },
+      {
+        source: "/careers/events/careers-fair",
+        destination: "/careers/careers-fair",
+        permanent: true,
+      },
+      {
+        // the events listing was merged into the main careers page
+        source: "/careers/events/:path*",
+        destination: "/careers",
         permanent: true,
       },
     ];

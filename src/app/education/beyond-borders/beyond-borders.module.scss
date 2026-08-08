@@ -25,7 +25,7 @@
     left: 0;
     width: 100%;
     height: 100px;
-    background: linear-gradient(to top, white, transparent);
+    background: linear-gradient(to top, #faf8f3, transparent);
   }
   
   .heroContent {
@@ -35,14 +35,14 @@
     animation: fadeIn 1.5s ease-out;
     
     .h1 {
-        font-family: var(--font-cinzel-decorative), serif;
+        font-family: var(--font-cormorant-garamond), serif;
         font-size: clamp(2.5rem, 5vw, 4rem);
         margin-bottom: 1rem;
         text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
       }
     
     .tagline {
-            font-family: var(--font-cinzel-decorative), serif;
+            font-family: var(--font-cormorant-garamond), serif;
 
       font-size: clamp(1.2rem, 2.5vw, 1.8rem);
       margin-bottom: 2rem;
@@ -100,7 +100,7 @@
 // Poster Section
 .posterSection {
   padding: 5rem 0;
-  background-color: #f9f9f9;
+  background-color: #f4efe6;
   
   .posterContainer {
     max-width: 1200px;
@@ -147,7 +147,7 @@
           display: block;
           width: 60px;
           height: 3px;
-          background-color: $stemm-lighter-blue;
+          background-color: $isoc-gold;
           margin-top: 0.5rem;
         }
       }
@@ -194,7 +194,7 @@
         font-size: 1.2rem;
         cursor: pointer;
         transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
-        
+
         &:hover {
           transform: translateY(-3px);
           box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
@@ -228,7 +228,7 @@
   }
   
   &:nth-child(even) {
-    background-color: #f9f9f9;
+    background-color: #f4efe6;
   }
   
   .container {
@@ -257,7 +257,7 @@
       display: block;
       width: 60px;
       height: 3px;
-      background-color: $stemm-lighter-blue;
+      background-color: $isoc-gold;
       margin-top: 0.5rem;
     }
   }
@@ -392,7 +392,7 @@
 
 // Kuramaa Section
 .kuramaaSection {
-  background-color: #f5f5f5;
+  background-color: #f4efe6;
   
   .kuramaaTagline {
     font-size: 1.3rem;
@@ -409,7 +409,9 @@
     margin: 1.5rem 0;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
     border-left: 4px solid #917849;
-    
+    /* the dot below is the bullet; suppress the default marker */
+    list-style: none;
+
     li {
       margin-bottom: 0.8rem;
       position: relative;
@@ -474,7 +476,7 @@
       &::before, &::after {
         content: '"';
         font-size: 1.5rem;
-        color: $stemm-lighter-blue;
+        color: $isoc-gold;
       }
     }
     
@@ -598,7 +600,7 @@
   }
   
   .volunteerBenefits {
-    background-color: #f5f5f5;
+    background-color: #f4efe6;
     border-radius: 10px;
     padding: 1.5rem;
     margin: 1.5rem 0;
@@ -638,7 +640,7 @@
     font-weight: 600;
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
-    
+
     &:hover {
       transform: translateY(-3px);
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
@@ -707,7 +709,7 @@
 
 // Contact Section
 .contactSection {
-  background-color: #f9f9f9;
+  background-color: #f4efe6;
   padding: 5rem 0;
   text-align: center;
   
@@ -730,7 +732,7 @@
         display: block;
         width: 60px;
         height: 3px;
-        background-color: $stemm-lighter-blue;
+        background-color: $isoc-gold;
         margin: 0.5rem auto 0;
       }
     }
@@ -803,7 +805,7 @@
         &::before, &::after {
           content: '"';
           font-size: 2rem;
-          color: $stemm-lighter-blue;
+          color: $isoc-gold;
           position: absolute;
         }
         
@@ -883,7 +885,7 @@
         display: block;
         width: 60px;
         height: 3px;
-        background-color: $stemm-lighter-blue;
+        background-color: $isoc-gold;
         margin: 0.5rem auto 0;
       }
     }
@@ -1129,3 +1131,18 @@
   backface-visibility: hidden; // Prevents flickering
   transform: translateZ(0); // Forces GPU rendering
 } 
+
+/* Accessibility floor: content must not depend on motion to become visible,
+   and nothing should animate indefinitely, for users who have asked their OS
+   to reduce motion. */
+@media (prefers-reduced-motion: reduce) {
+  .beyondBordersPage,
+  .beyondBordersPage *,
+  .beyondBordersPage *::before,
+  .beyondBordersPage *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}

@@ -19,7 +19,7 @@ function PastPaper() {
       <div>
         <h1>2024/5</h1>
         <details className={styles.details}>
-          <summary className={styles.paperSummary}>
+          <summary>
             STEM Muslims Competition 2024
           </summary>
           <p className={styles.congratsMessage}>
@@ -27,7 +27,7 @@ function PastPaper() {
             our 2024 winner!
           </p>
           <a
-            href="/Outreach/competition/past_papers/december_2024.zip"
+            href="/outreach/competitions/past_papers/december_2024.zip"
             download
             className={styles.downloadLink}
           >
